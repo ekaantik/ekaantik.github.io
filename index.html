@@ -2,866 +2,1891 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ekaantik Software Solutions</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+<link rel="icon" href="favicon.ico"><link href="style.css" rel="stylesheet"></head>
 
-  <!-- Favicons -->
-  <link href="assets/img/bank.png" rel="icon">
-  <!-- <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
+<body x-data="{ page: 'home', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
+  x-init="
+          darkMode = JSON.parse(localStorage.getItem('darkMode'));
+          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+  :class="{'dark bg-black': darkMode === true}">
+  <!-- ===== Header Start ===== -->
+  <header class="fixed left-0 top-0 w-full z-99999 py-7"
+  :class="{ 'bg-white dark:bg-black shadow !py-4 transition duration-100' : stickyMenu }"
+  @scroll.window="stickyMenu = (window.pageYOffset > 20) ? true : false">
+  <div class="mx-auto max-w-1390 px-4 md:px-8 2xl:px-0 lg:flex items-center justify-between relative">
+    <div class="w-full lg:w-1/4 flex items-center justify-between">
+      <a href="index.html">
+        <div class="flex items-center">
+          <img class="dark:hidden w-15" src="images/logo.png" alt="Logo Light" />
+          <p class=" ml-4 dark:hidden">Ekaantik Software Solutions</p>
+        </div>
+        <div class="flex items-center">
+          <img class="hidden dark:block w-15" src="images/logo-dark.png" alt="Logo Dark" />
+          <p class=" ml-4 hidden dark:block">Ekaantik Software Solutions</p>
+        </div>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+      </a>
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+      <!-- Hamburger Toggle BTN -->
+      <button class="lg:hidden block" @click="navigationOpen = !navigationOpen">
+        <span class="block relative cursor-pointer w-5.5 h-5.5">
+          <span class="du-block absolute right-0 w-full h-full">
+            <span
+              class="block relative top-0 left-0 bg-black dark:bg-white rounded-sm w-0 h-0.5 my-1 ease-in-out duration-200 delay-[0]"
+              :class="{ '!w-full delay-300': !navigationOpen }"></span>
+            <span
+              class="block relative top-0 left-0 bg-black dark:bg-white rounded-sm w-0 h-0.5 my-1 ease-in-out duration-200 delay-150"
+              :class="{ '!w-full delay-400': !navigationOpen }"></span>
+            <span
+              class="block relative top-0 left-0 bg-black dark:bg-white rounded-sm w-0 h-0.5 my-1 ease-in-out duration-200 delay-200"
+              :class="{ '!w-full delay-500': !navigationOpen }"></span>
+          </span>
+          <span class="du-block absolute right-0 w-full h-full rotate-45">
+            <span
+              class="block bg-black dark:bg-white rounded-sm ease-in-out duration-200 delay-300 absolute left-2.5 top-0 w-0.5 h-full"
+              :class="{ 'h-0 delay-[0]': !navigationOpen }"></span>
+            <span
+              class="block bg-black dark:bg-white rounded-sm ease-in-out duration-200 delay-400 absolute left-0 top-2.5 w-full h-0.5"
+              :class="{ 'h-0 dealy-200': !navigationOpen }"></span>
+          </span>
+        </span>
+      </button>
+      <!-- Hamburger Toggle BTN -->
+    </div>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-    integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <div class="w-full lg:w-3/4 h-0 lg:h-auto invisible lg:visible lg:flex items-center justify-between"
+      :class="{ '!visible bg-white dark:bg-blacksection shadow-solid-5 !h-auto max-h-[400px] overflow-y-scroll rounded-md mt-4 p-7.5': navigationOpen }">
+      <nav>
+        <ul class="flex lg:items-center flex-col lg:flex-row gap-5 lg:gap-10">
+          <li><a href="index.html" class="hover:text-primary" :class="{ 'text-primary': page === 'home' }">Home</a></li>
+          <li><a href="index.html#features" class="hover:text-primary">About</a></li>
+          <li><a href="index.html#services" class="hover:text-primary">Services</a></li>
+          <li><a href="index.html#portfolio" class="hover:text-primary">Portfolio</a></li>
 
-  
-</head>
-
-<body>
-
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center">
-
-      <div class="logo me-auto mt">
-        <h1 class="pd-1"><a href="index.html"><img src="assets/img/bank.png" class="mr" alt=""> Ekaantik Software Solutions</a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      </div>
-
-      <nav id="navbar" class="navbar order-last order-lg-0">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-          <!-- <li><a class="nav-link scrollto" href="#testimonials">Testimonials</a></li> -->
-          <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li> -->
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
         </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+      </nav>
 
-      <div class="header-social-links d-flex align-items-center">
-        <!-- <a href="#" class="twitter"><i class="bi bi-twitter"></i></a> -->
-        <!-- <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a> -->
-        <!-- <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a> -->
+      <div class="flex items-center gap-6 mt-7 lg:mt-0">
+        <div class="mr-1.5 absolute lg:static top-2.5 right-17" :class="navigationOpen ? '!-visible' : '!visible'">
+          <label class="block m-0 relative">
+            <input type="checkbox" :value="darkMode" @change="darkMode = !darkMode"
+              class="cursor-pointer w-full h-full opacity-0 absolute top-0 z-50 m-0" />
+            <!-- Icon Sun -->
+            <svg : class="fill-body dark:hidden" width="25" height="25" viewBox="0 0 25 25" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12.0908 18.6363C10.3549 18.6363 8.69 17.9467 7.46249 16.7192C6.23497 15.4916 5.54537 13.8268 5.54537 12.0908C5.54537 10.3549 6.23497 8.69 7.46249 7.46249C8.69 6.23497 10.3549 5.54537 12.0908 5.54537C13.8268 5.54537 15.4916 6.23497 16.7192 7.46249C17.9467 8.69 18.6363 10.3549 18.6363 12.0908C18.6363 13.8268 17.9467 15.4916 16.7192 16.7192C15.4916 17.9467 13.8268 18.6363 12.0908 18.6363ZM12.0908 16.4545C13.2481 16.4545 14.358 15.9947 15.1764 15.1764C15.9947 14.358 16.4545 13.2481 16.4545 12.0908C16.4545 10.9335 15.9947 9.8236 15.1764 9.00526C14.358 8.18692 13.2481 7.72718 12.0908 7.72718C10.9335 7.72718 9.8236 8.18692 9.00526 9.00526C8.18692 9.8236 7.72718 10.9335 7.72718 12.0908C7.72718 13.2481 8.18692 14.358 9.00526 15.1764C9.8236 15.9947 10.9335 16.4545 12.0908 16.4545ZM10.9999 0.0908203H13.1817V3.36355H10.9999V0.0908203ZM10.9999 20.8181H13.1817V24.0908H10.9999V20.8181ZM2.83446 4.377L4.377 2.83446L6.69082 5.14828L5.14828 6.69082L2.83446 4.37809V4.377ZM17.4908 19.0334L19.0334 17.4908L21.3472 19.8046L19.8046 21.3472L17.4908 19.0334ZM19.8046 2.83337L21.3472 4.377L19.0334 6.69082L17.4908 5.14828L19.8046 2.83446V2.83337ZM5.14828 17.4908L6.69082 19.0334L4.377 21.3472L2.83446 19.8046L5.14828 17.4908ZM24.0908 10.9999V13.1817H20.8181V10.9999H24.0908ZM3.36355 10.9999V13.1817H0.0908203V10.9999H3.36355Z"
+                fill="" />
+            </svg>
+            <!-- Icon Sun -->
+            <img class="hidden dark:block" src="images/icon-moon.svg" alt="Moon" />
+          </label>
+        </div>
+
+        <!-- <a :class="{ '!text-white hover:text-white' : page === 'home', '!text-body' : page === 'home' && stickyMenu }"
+          class="font-medium text-body hover:text-primary">Contact Us</a> -->
+        <!-- <a href="index.html#contact"
+          :class="{ '!text-white hover:text-white' : page === 'home', '!text-body' : page === 'home' && stickyMenu }"
+          class="font-medium text-body hover:text-primary">Contact Us</a> -->
+        <a href="index.html#contact" : class="font-medium text-body hover:text-primary">Contact Us</a>
+
       </div>
-
     </div>
-  </header><!-- End Header -->
+  </div>
+</header>
+  <!-- ===== Header End ===== -->
 
-  <!-- ======= Hero Section ======= -->
-  <!-- <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
-    <div class="container text-center text-md-left" data-aos="fade-up">
-      <h1>Welcome to <span>Lumia</span></h1>
-      <h2>We are team of talented designers making websites with Bootstrap</h2>
-      <a href="#about" class="btn-get-started scrollto">Get Started</a>
-    </div>
-  </section>End Hero -->
-
-  <section class="hero">
-      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="10000">
-            <img src="assets/img/slider/1.jpg" class="d-block w-100 ht" alt="...">
-          </div>
-          <div class="carousel-item" data-bs-interval="2000">
-            <img src="assets/img/slider/4.jpg" class="d-block w-100 ht" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="assets/img/slider/hello.jpg" class="d-block w-100 ht" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="assets/img/slider/lern.jpg" class="d-block w-100 ht" alt="...">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+  <main>
+    <!-- ===== Hero Start ===== -->
+    <section class="pt-35 md:pt-40 xl:pt-52 pb-20 lg:pb-30 xl:pb-59 relative overflow-hidden">
+      <!-- Hero Images -->
+      <div class="hidden md:block w-1/2 2xl:w-187.5 h-auto 2xl:h-171.5 absolute right-0 top-0">
+        <img src="images/shape-01.svg" alt="shape"
+          class="hidden 2xl:block absolute top-[40%] -left-[10%] z-1" />
+        <img src="images/shape-02.svg" alt="shape"
+          class="hidden 2xl:block absolute right-[20%] bottom-0 z-10" />
+        <img src="images/shape-03.svg" alt="shape"
+          class="hidden 2xl:block absolute left-[15%] bottom-[10%] z-10" />
+        <!-- <img src="./images/shape/shape-04.svg" alt="shape" class="absolute right-0 top-0" style="width: 100%;" /> -->
+        <img src="images/hero-img.png" alt="Woman" class="absolute  z-1" style="left: 113px;
+          top: 85px;" />
       </div>
-  </section>
 
-  <main id="main">
-
-    <!-- ======= What We Do Section ======= -->
-    <section id="what-we-do" class="what-we-do">
-      <div class="container"> 
-
-        <div class="section-title pt">
-          <h2>What We Do</h2>
-          <p>We Are providing Differnt Type Of Traning Or internship Program</p>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4><a href="">Web/App Full Stack Development</a></h4>
-              <!-- <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p> -->
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="">Devops And Automation Services</a></h4>
-              <!-- <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p> -->
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4><a href="">Cloud Computing (AWS)</a></h4>
-              <!-- <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p> -->
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End What We Do Section -->
-
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container">
-
-        <div class="row align-items-center pb-60">
-          <div class="col-lg-6">
-            <img src="assets/img/about.jpg" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-6 pt-4 pt-lg-0">
-            <h3>About Us</h3>
-            <p>
-              Group of professional Software Engineers who are passionate about solving and supporting industries in their technological support. With a view to take responibility of tech initiatives so that they can focus more on their core business.
+      <!-- Hero Content -->
+      <div class="mx-auto max-w-1390 px-4 md:px-8 2xl:px-0">
+        <div class="flex lg:items-center">
+          <div class="animate_left md:w-1/2">
+            <h1 class="font-semibold text-3xl lg:text-4xl xl:text-title-xxl text-black dark:text-white mb-6">Because
+              technology should not be a barrier but enabler...</h1>
+            <p class="xl:w-[79%]">
+              A cutting-edge technology consulting company, specializing in providing services in scalable Web & Mobile
+              apps, Cloud, Devops, AI/ML and IoT solutions. Team consists of experienced and young talent who have been
+              there and done that. Team who has ability, intelligence and experience to deliver a great experience to
+              the clients.
             </p>
-            <ul>
-              <li><i class="bx bx-check-double"></i> Team of developers with 10+ years of experience working in fortune Top 50 companies who have delivered industries most complex projects with cutting edge technolgy stack</li>
-              <li><i class="bx bx-check-double"></i> Ability to deliver project end to end, from requirement gathering to developer, deployment and support there after</li>  
-              <li><i class="bx bx-check-double"></i> Giving service in wide range of dev tech stack like languages(Java, python, php), database (sql, nosql), frontend (react, angular), kafka, redis</li>
-              <li><i class="bx bx-check-double"></i> Cloud native way of developeing and deploying with tech like  docker, k8s, aws</li>
-              <!-- <li><i class="bx bx-check-double"></i> Online + Offline classes.</li> -->
 
+            <div class="flex flex-col-reverse lg:flex-row gap-7.5 mt-10">
+              <a href="#"
+                class="font-medium leading-7 text-white bg-primary py-3 px-7.5 rounded-full ease-in-out duration-300 inline-flex w-fit hover:shadow-1">Get
+                Started Now</a>
+
+              <span class="flex flex-col">
+                <a href="#" class="inline-block font-medium text-lg text-black dark:text-white"> Call us (+91)
+                  9428448108</a>
+                <!-- <span class="inline-block">For any question or concern</span> -->
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===== Hero End ===== -->
+
+    <!-- ===== Small Features Start ===== -->
+    <section id="features">
+      <div class="mx-auto max-w-1390 px-4 md:px-7.5 2xl:px-12.5">
+        <div class="flex flex-wrap lg:flex-nowrap justify-center lg:justify-between gap-7.5 lg:gap-5 xl:gap-22.5">
+          <!-- Small Features Item -->
+          <div class="animate_top md:w-[45%] lg:w-1/3 flex gap-5 xl:gap-7.5">
+            <div class="flex items-center justify-center shrink-0 w-21 h-21 rounded-full bg-meta-green">
+              <img src="images/icon-02.svg" alt="Icon" />
+            </div>
+            <div>
+              <h4 class="font-medium text-xl md:text-title-sm text-black dark:text-white mb-2.5">Take Ownership</h4>
+              <p>We take full ownership of your project, ensuring seamless execution from start to finish.</p>
+            </div>
+          </div>
+          <div class="animate_top md:w-[45%] lg:w-1/3 flex gap-5 xl:gap-7.5">
+            <div class="flex items-center justify-center shrink-0 w-21 h-21 rounded-full bg-meta-orange">
+              <img src="images/icon-03.svg" alt="Icon" />
+            </div>
+            <div>
+              <h4 class="font-medium text-xl md:text-title-sm text-black dark:text-white mb-2.5">Team Work</h4>
+              <p>We work closely with clients to understand their requirement, dynamics to achieve the common goals with
+                zero gap.
+              </p>
+            </div>
+          </div>
+
+          <div class="animate_top md:w-[45%] lg:w-1/3 flex gap-5 xl:gap-7.5">
+            <div class="flex items-center justify-center shrink-0 w-21 h-21 rounded-full bg-secondary">
+              <img src="images/icon-01.svg" alt="Icon" />
+            </div>
+            <div>
+              <h4 class="font-medium text-xl md:text-title-sm text-black dark:text-white mb-2.5">Support</h4>
+              <p>When it comes to support we provide delightfull experience to our clients to ensure their business runs
+                smoothly at all times</p>
+            </div>
+          </div>
+
+          <!-- Small Features Item -->
+
+          <!-- Small Features Item -->
+
+        </div>
+      </div>
+    </section>
+    <!-- ===== Small Features End ===== -->
+
+    <!-- ===== About Start ===== -->
+    <section class="py-20 lg:py-25 xl:py-30 2xl:py-35 overflow-hidden">
+      <div class="mx-auto max-w-1390 px-4 md:px-8 xl:px-9">
+        <div class="flex items-center gap-8 xl:gap-30">
+          <!-- About Images -->
+          <div class="animate_left hidden md:flex gap-8 md:w-1/2 relative">
+            <div>
+              <img src="images/shape-05.svg" alt="Shape" class="absolute -left-5 top-5" />
+              <img src="images/About-us-3.png" alt="About" class="mb-8" />
+              <img src="images/About-us-2.png" alt="About" />
+            </div>
+            <div>
+              <img src="images/shape-06.svg" alt="Shape" />
+              <img src="images/About-us-1.png" alt="About" class="mt-7.5 mb-5" />
+              <img src="images/shape-07.svg" alt="Shape" class="mx-auto" />
+            </div>
+          </div>
+
+          <!-- About Content -->
+          <div class="animate_right md:w-1/2">
+            <h4 class="font-medium text-xl text-primary mb-5">About Us</h4>
+            <h3 class="font-semibold text-3xl lg:text-4xl xl:text-title-xl text-black dark:text-white mb-7.5">Innovating
+              Industries, Simplifying Solutions: Your End-to-End Tech Partner</h3>
+            <p class="lg:w-[95%]">Group of professional Software Engineers who are passionate about solving and
+              supporting industries in their technological endeavour. With a view to take responibility of their tech
+              initiatives so that they can focus more on their core business.</p>
+            <ul class="list-disc mt-2 ">
+              <li class="mb-4">Team of developers with 10+ years of experience worked in Fortune 50 companies,
+                delivering complex projects with cutting-edge technology stacks</li>
+              <li class="mb-4">Ability to deliver projects end-to-end, from requirement gathering to development,
+                deployment, and support</li>
+              <li class="mb-4">Offering services across a wide range of development technology stacks including
+                languages (Java, Python, PHP), databases (SQL, NoSQL, Influx), front-end frameworks (React, Angular),
+                Kafka,
+                Redis, Hazelcast and many more</li>
+              <li>Utilizing cloud-native development and deployment technologies such as Docker, Kubernetes, AWS, Azure
+              </li>
             </ul>
-            <!-- <p>Good prograamer know how to work with langauge, Great programmer knows how language works!</p> -->
-            <!-- <div class="row icon-boxes">
-              <div class="col-md-6">
-                <i class="bx bx-receipt"></i>
-                <h4>Corporis voluptates sit</h4>
-                <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
-              </div>
-              <div class="col-md-6 mt-4 mt-md-0">
-                <i class="bx bx-cube-alt"></i>
-                <h4>Ullamco laboris nisi</h4>
-                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
-              </div>
-            </div> -->
+
+
+
           </div>
         </div>
+      </div>
+    </section>
+    <!-- ===== About End ===== -->
+
+
+
+    <!-- ===== Services Start ===== -->
+    <section class="pb-7.5 lg:pb-12.5 xl:pb-17.5">
+      <!-- Section Title Start -->
+      <div
+        x-data="{ sectionTitle: `We Offer The Best Quality Service for You`, sectionTitleText: `We deliver unparalleled quality services tailored just for you, ensuring your satisfaction every step of the way.`}">
+        <div class="animate_top mx-auto max-w-1390 text-center px-4 md:px-8 xl:px-0">
+    <h2
+            x-text="sectionTitle"
+            class="font-semibold text-3xl xl:text-title-xl text-black dark:text-white md:w-4/5 xl:w-1/2 mx-auto mb-4.5"
+    >
+    </h2>
+    <p class="mx-auto md:w-4/5 lg:w-3/5 xl:w-[46%]" x-text="sectionTitleText"></p>
+</div>
+
 
       </div>
-    </section><!-- End About Section -->
+      <!-- Section Title End -->
 
-    <!-- ======= Skills Section ======= -->
-    <!-- <section id="skills" class="skills">
-      <div class="container">
-
-        <div class="row skills-content">
-
-          <div class="col-lg-6">
-
-            <div class="progress">
-              <span class="skill">HTML <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">CSS <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">JavaScript <i class="val">75%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
+      <div class="mx-auto max-w-1390 px-4 md:px-8 xl:px-21 mt-10 md:mt-5">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-0">
+          <!-- Service Item -->
+          <div
+            class="animate_top rounded-lg py-12.5 px-8 xl:px-12.5 ease-in-out duration-300 hover:shadow-2 dark:hover:shadow-none dark:hover:bg-blacksection">
+            <img src="images/icon-04.svg" alt="Icon" />
+            <h4 class="font-medium text-title-sm text-black dark:text-white mt-11 mb-4.5">Crafted for Startups</h4>
+            <p>Crafted specifically for startups, ensuring tailored solutions.</p>
           </div>
 
-          <div class="col-lg-6">
-
-            <div class="progress">
-              <span class="skill">PHP <i class="val">80%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">WordPress/CMS <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">Photoshop <i class="val">55%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
+          <!-- Service Item -->
+          <div
+            class="animate_top rounded-lg py-12.5 px-8 xl:px-12.5 ease-in-out duration-300 hover:shadow-2 dark:hover:shadow-none dark:hover:bg-blacksection">
+            <img src="images/icon-05.svg" alt="Icon" />
+            <h4 class="font-medium text-title-sm text-black dark:text-white mt-11 mb-4.5">High-quality Design</h4>
+            <p>Delivering high-quality design to elevate your brand image.</p>
           </div>
 
+          <!-- Service Item -->
+          <div
+            class="animate_top rounded-lg py-12.5 px-8 xl:px-12.5 ease-in-out duration-300 hover:shadow-2 dark:hover:shadow-none dark:hover:bg-blacksection">
+            <img src="images/icon-06.svg" alt="Icon" />
+            <h4 class="font-medium text-title-sm text-black dark:text-white mt-11 mb-4.5">All Essential Sections</h4>
+            <p>Providing all essential sections for a comprehensive user experience.</p>
+          </div>
+
+          <!-- Service Item -->
+          <div
+            class="animate_top rounded-lg py-12.5 px-8 xl:px-12.5 ease-in-out duration-300 hover:shadow-2 dark:hover:shadow-none dark:hover:bg-blacksection">
+            <img src="images/icon-07.svg" alt="Icon" />
+            <h4 class="font-medium text-title-sm text-black dark:text-white mt-11 mb-4.5">Speed Optimized</h4>
+            <p>Ensuring speed optimization for enhanced performance.</p>
+          </div>
+
+          <!-- Service Item -->
+          <div
+            class="animate_top rounded-lg py-12.5 px-8 xl:px-12.5 ease-in-out duration-300 hover:shadow-2 dark:hover:shadow-none dark:hover:bg-blacksection">
+            <img src="images/icon-05.svg" alt="Icon" />
+            <h4 class="font-medium text-title-sm text-black dark:text-white mt-11 mb-4.5">Fully Customizable</h4>
+            <p>Offering fully customizable solutions to meet your unique requirements.</p>
+          </div>
+
+          <!-- Service Item -->
+          <div
+            class="animate_top rounded-lg py-12.5 px-8 xl:px-12.5 ease-in-out duration-300 hover:shadow-2 dark:hover:shadow-none dark:hover:bg-blacksection">
+            <img src="images/icon-06.svg" alt="Icon" />
+            <h4 class="font-medium text-title-sm text-black dark:text-white mt-11 mb-4.5">Regular Updates</h4>
+            <p>Committing to regular updates to keep your platform up-to-date.</p>
+          </div>
         </div>
+      </div>
+    </section>
+    <!-- ===== Services End ===== -->
+
+    <!-- ===== Pricing Table Start ===== -->
+    <section id="services" x-data="setup()"
+      class="relative overflow-hidden bg-whiter dark:bg-blacksection py-20 lg:py-25 xl:py-30">
+      <!-- Bg Shapes -->
+      <img src="images/shape-06.svg" alt="Shape" class="absolute top-[5%] left-[10%]" />
+      <img src="images/shape-03.svg" alt="Shape" class="absolute top-[25%] right-[20%]" />
+      <img src="images/shape-07.svg" alt="Shape" class="absolute bottom-[10%] right-[5%] w-25" />
+      <img src="images/shape-12.svg" alt="Shape" class="absolute bottom-0 left-0" />
+      <img src="images/shape-13.svg" alt="Shape" class="absolute top-0 right-0" />
+
+      <!-- Section Title Start -->
+      <div
+        x-data="{ sectionTitle: `Transforming Ideas into Reality with Cutting-Edge Services.`, sectionTitleText: `Unleashing the Future with Cloud-Native Web Development, Mobile Apps, DevOps, and AI/ML Excellence.`}">
+        <div class="animate_top mx-auto max-w-1390 text-center px-4 md:px-8 xl:px-0">
+    <h2
+            x-text="sectionTitle"
+            class="font-semibold text-3xl xl:text-title-xl text-black dark:text-white md:w-4/5 xl:w-1/2 mx-auto mb-4.5"
+    >
+    </h2>
+    <p class="mx-auto md:w-4/5 lg:w-3/5 xl:w-[46%]" x-text="sectionTitleText"></p>
+</div>
+
 
       </div>
-    </section>End Skills Section -->
+      <!-- Section Title End -->
 
-    <!-- ======= Counts Section ======= -->
-    <section id="counts" class="counts">
-      <div class="container">
 
-        <div class="row">
 
-          <div class="col-lg-3 col-6">
-            <div class="count-box">
-              <i class="bi bi-emoji-smile"></i>
-              <span data-purecounter-start="0" data-purecounter-end="2" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Happy Clients</p>
+
+      <!-- Pricing Table -->
+      <div class="mx-auto max-w-1390 relative z-10 px-4 md:px-8 xl:px-21 mt-15">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+          <!-- Pricing Item 1 -->
+          <div class="animate_top relative rounded-lg bg-white dark:bg-black shadow-3 dark:shadow-none ">
+            <img src="images/Devops.png" alt="Image" class="w-full rounded-t-lg mb-4 ">
+            <h4 class="text-title-sm text-center text-black dark:text-white mb-4">DevOps & Cloud</h4>
+            <div class="flex items-center gap-1.5 mb-1.5 px-7.5">
+              <p class="text-justify text-black dark:text-white">Embrace DevOps and cloud technology as
+                catalysts for innovation and growth. <br> Transforming your infrastructure and propel your business into
+                the future with cloud providers like AWS, Azure, GCP using IaC principles.</p>
+            </div>
+            <!-- "Read more" link -->
+            <div>
+              <a href="blog-single.html"
+                class="font-medium leading-7 text-primary py-3 px-7.5 inline-flex w-fit  bottom-0 left-0 mb-3 "><u>Read
+                  more</u></a>
+            </div>
+
+          </div>
+
+
+
+          <!-- Pricing Item 2 -->
+          <div class="animate_top  rounded-lg bg-white dark:bg-black shadow-3 dark:shadow-none ">
+            <img src="images/WebApp.png" alt="Image" class="w-full rounded-t-lg mb-4 px-0">
+            <h4 class="text-title-sm text-center text-black dark:text-white mb-4">Web Apps</h4>
+
+            <div class="flex items-center  gap-1.5 mb-1.5 px-7.5">
+              <p class="text-justify  text-black dark:text-white">We specialize in designing and developing custom web
+                platforms that strengthen businesses' digital footprint and propel them to reach new heights. <br>
+                Efficient, Responsive, Scalable and Secure web app development.</p>
+
+            </div>
+            <div>
+              <a href="blog-single.html"
+                class="font-medium leading-7 text-primary py-3 px-7.5 inline-flex w-fit  bottom-0 left-0 mb-3 "><u>Read
+                  more</u></a>
             </div>
           </div>
 
-          <div class="col-lg-3 col-6">
-            <div class="count-box">
-              <i class="bi bi-journal-richtext"></i>
-              <span data-purecounter-start="0" data-purecounter-end="2" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Projects</p>
+          <!-- Pricing Item 3 -->
+          <div class="animate_top  rounded-lg bg-white dark:bg-black shadow-3 dark:shadow-none ">
+            <img src="images/AutomatedTesting.png" alt="Image" class="w-full rounded-t-lg mb-4 px-0">
+            <h4 class="text-title-sm text-center text-black dark:text-white mb-4">Automation Testing</h4>
+
+            <div class="flex items-center  gap-1.5 mb-1.5 px-7.5">
+              <p class="text-justify  text-black dark:text-white">With a Team of Seasoned QA Professionals, we deliver
+                unsurpassed Load & Performance Testing to evaluate the maximum load that can be effectively handled by
+                the system being tested.</p>
+
+            </div>
+            <div>
+              <a href="blog-single.html"
+                class="font-medium leading-7 text-primary py-3 px-7.5 inline-flex w-fit  bottom-0 left-0 mb-3 "
+                style="margin-top: 26px;"><u>Read
+                  more</u></a>
             </div>
           </div>
 
-          <div class="col-lg-3 col-6 mt-5 mt-lg-0">
-            <div class="count-box">
-              <i class="bi bi-headset"></i>
-              <span data-purecounter-start="0" data-purecounter-end="200" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Hours Of Support</p>
+          <div class="animate_top  rounded-lg bg-white dark:bg-black shadow-3 dark:shadow-none  ">
+            <img src="images/AI.png" alt="Image" class="w-full rounded-t-lg mb-4 px-0">
+            <h4 class="text-title-sm text-center text-black dark:text-white mb-4">AI Development</h4>
+
+            <div class="flex items-center  gap-1.5 mb-1.5  px-7.5">
+              <p class="text-justify  text-black dark:text-white">We develop and integrate AI to enhance your business
+                operations using our expertise in conversational AI, NLP, computer vision, and machine learning.</p>
+
+            </div>
+            <div>
+              <a href="blog-single.html"
+                class="font-medium leading-7 text-primary py-3 px-7.5 inline-flex w-fit  bottom-0 left-0 mb-3 "
+                style="margin-top: 52px;"><u>Read
+                  more</u></a>
             </div>
           </div>
+          <div class="animate_top  rounded-lg bg-white dark:bg-black shadow-3 dark:shadow-none ">
+            <img src="images/IoT.png" alt="Image" class="w-full rounded-t-lg mb-4 px-0">
+            <h4 class="text-title-sm text-center text-black dark:text-white mb-4">IoT</h4>
 
-          <div class="col-lg-3 col-6 mt-5 mt-lg-0">
-            <div class="count-box">
-              <i class="bi bi-people"></i>
-              <span data-purecounter-start="0" data-purecounter-end="5" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Hard Workers</p>
+            <div class="flex items-center  gap-1.5 mb-1.5 px-7.5">
+              <p class="text-justify  text-black dark:text-white"> - Premier IoT integration and Software solutions.
+                <br>
+                - Revolutionize Your Business with Advanced IoT Application Solutions.
+              </p>
+
+            </div>
+            <div>
+              <a href="blog-single.html"
+                class="font-medium leading-7 text-primary py-3 px-7.5 inline-flex w-fit  bottom-0 left-0 mb-3 "
+                style="margin-top: 52px;"><u>Read
+                  more</u></a>
+            </div>
+          </div>
+          <div class="animate_top  rounded-lg bg-white dark:bg-black shadow-3 dark:shadow-none  ">
+            <img src="images/MobileApp.png" alt="Image" class="w-full rounded-t-lg mb-4 px-0">
+            <h4 class="text-title-sm text-center text-black dark:text-white mb-4">Mobile App Development</h4>
+
+            <div class="flex items-center  gap-1.5 mb-1.5 px-7.5">
+              <p class="text-justify  text-black dark:text-white"> Want To Shape Your Thoughts Into An Ideal Application
+                That Runs Uninterruptedly?Our Dedicated App
+                Development Team Provides Bespoke App Development Services And Excellent Support Services.
+              </p>
+
+            </div>
+            <div>
+              <a href="blog-single.html"
+                class="font-medium leading-7 text-primary py-3 px-7.5 inline-flex w-fit  bottom-0 left-0 mb-3 "><u>Read
+                  more</u></a>
             </div>
           </div>
 
         </div>
+      </div>
+
+
+    </section>
+    <!-- ===== Pricing Table End ===== -->
+
+    <!-- ===== Projects Start ===== -->
+    <!-- <section class="overflow-hidden pt-20 lg:pt-25 xl:pt-30 pb-10 lg:pb-15 xl:pb-20">
+
+        <div
+          x-data="{ sectionTitle: `We Offer Great Affordable Premium Prices.`, sectionTitleText: `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using.`}">
+          <div class="animate_top mx-auto max-w-1390 text-center px-4 md:px-8 xl:px-0">
+    <h2
+            x-text="sectionTitle"
+            class="font-semibold text-3xl xl:text-title-xl text-black dark:text-white md:w-4/5 xl:w-1/2 mx-auto mb-4.5"
+    >
+    </h2>
+    <p class="mx-auto md:w-4/5 lg:w-3/5 xl:w-[46%]" x-text="sectionTitleText"></p>
+</div>
+
+
+        </div>
+
+
+        <div class="mx-auto max-w-1390 px-4 md:px-8 2xl:px-0 mt-12.5" x-data="{filterTab: 1}">
+
+          <div
+            class="projects-tab max-w-fit mx-auto flex flex-wrap items-center justify-center gap-5 rounded-full bg-white dark:bg-blacksection shadow-3 dark:shadow-none py-2 px-2.5 mb-17.5">
+            <button data-filter="*" @click="filterTab = 1" :class="{ 'bg-primary text-white' : filterTab === 1 }"
+              class="project-tab-btn font-medium rounded-full ease-in-out duration-300 py-1 px-6">
+              All
+            </button>
+            <button data-filter=".iot" @click="filterTab = 2" :class="{ 'bg-primary text-white' : filterTab === 2 }"
+              class="project-tab-btn font-medium rounded-full ease-in-out duration-300 py-1 px-6">
+              IoT
+            </button>
+            <button data-filter=".aiml" @click="filterTab = 3" :class="{ 'bg-primary text-white' : filterTab === 3 }"
+              class="project-tab-btn font-medium rounded-full ease-in-out duration-300 py-1 px-6">
+              AI/ML
+            </button>
+            <button data-filter=".devops" @click="filterTab = 4" :class="{ 'bg-primary text-white' : filterTab === 4 }"
+              class="project-tab-btn font-medium rounded-full ease-in-out duration-300 py-1 px-6">
+              Cloud/DevOps
+            </button>
+            <button data-filter=".web-mobile" @click="filterTab = 5"
+              :class="{ 'bg-primary text-white' : filterTab === 5 }"
+              class="project-tab-btn font-medium rounded-full ease-in-out duration-300 py-1 px-6">
+              Web/MobileApp
+            </button>
+          </div>
+
+
+          <div class="projects-wrapper flex -mx-5">
+            <div class="project-sizer"></div>
+
+            <div class="project-item px-5 mb-10 w-full md:w-1/2 lg:w-1/3 aiml">
+              <div class="group relative overflow-hidden rounded-lg z-1">
+                <img src="./images/Portfolio/AIML.jpg" alt="Project" />
+
+                <div
+                  class="absolute left-0 top-0 translate-y-full ease-linear duration-700 group-hover:translate-y-0 flex flex-col items-center justify-center w-full h-full rounded-lg backdrop-blur bg-white/20 z-10">
+                  <h4 class="font-medium text-2xl text-black mb-0.5">Sentiment Analysis</h4>
+                  <p>AI/ML</p>
+                  <a class="group flex items-center justify-center w-10 h-10 rounded-full border border-body ease-in-out duration-300 bg-transparent group-hover:border-primary group- mt-4"
+                    href="#">
+                    <svg class="fill-body group-hover:fill-white ease-in-out duration-300" width="14" height="14"
+                      viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M10.4763 6.16664L6.00634 1.69664L7.18467 0.518311L13.6663 6.99998L7.18467 13.4816L6.00634 12.3033L10.4763 7.83331H0.333008V6.16664H10.4763Z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="project-item px-5 mb-10 w-full md:w-1/2 lg:w-1/3 devops">
+              <div class="group relative overflow-hidden rounded-lg z-1">
+                <img src="./images/Portfolio/Cloud.jpg" alt="Project" />
+
+                <div
+                  class="absolute left-0 top-0 translate-y-full ease-linear duration-700 group-hover:translate-y-0 flex flex-col items-center justify-center w-full h-full rounded-lg backdrop-blur bg-white/20 z-10">
+                  <h4 class="font-medium text-2xl text-black mb-0.5">Cloud Hosting</h4>
+                  <p>Cloud</p>
+                  <a class="group flex items-center justify-center w-10 h-10 rounded-full border border-body ease-in-out duration-300 bg-transparent group-hover:border-primary group- mt-4"
+                    href="#">
+                    <svg class="fill-body group-hover:fill-white ease-in-out duration-300" width="14" height="14"
+                      viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M10.4763 6.16664L6.00634 1.69664L7.18467 0.518311L13.6663 6.99998L7.18467 13.4816L6.00634 12.3033L10.4763 7.83331H0.333008V6.16664H10.4763Z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="project-item px-5 mb-10 w-full md:w-1/2 lg:w-1/3 devops">
+              <div class="group relative overflow-hidden rounded-lg z-1">
+                <img src="./images/Portfolio/DevOps-Cloud.png" alt="Project" />
+
+                <div
+                  class="absolute left-0 top-0 translate-y-full ease-linear duration-700 group-hover:translate-y-0 flex flex-col items-center justify-center w-full h-full rounded-lg backdrop-blur bg-white/20 z-10">
+                  <h4 class="font-medium text-2xl text-black mb-0.5">CI/CD Pipeline</h4>
+                  <p>DevOps</p>
+                  <a class="group flex items-center justify-center w-10 h-10 rounded-full border border-body ease-in-out duration-300 bg-transparent group-hover:border-primary group- mt-4"
+                    href="#">
+                    <svg class="fill-body group-hover:fill-white ease-in-out duration-300" width="14" height="14"
+                      viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M10.4763 6.16664L6.00634 1.69664L7.18467 0.518311L13.6663 6.99998L7.18467 13.4816L6.00634 12.3033L10.4763 7.83331H0.333008V6.16664H10.4763Z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="project-item px-5 mb-10 w-full lg:w-2/3 iot">
+              <div class="group relative overflow-hidden rounded-lg z-1">
+                <img src="./images/Portfolio/IoT_Dashboard.jpg" alt="Project" />
+
+                <div
+                  class="absolute left-0 top-0 translate-y-full ease-linear duration-700 group-hover:translate-y-0 flex flex-col items-center justify-center w-full h-full rounded-lg backdrop-blur bg-white/20 z-10">
+                  <h4 class="font-medium text-2xl text-black mb-0.5">Power Plant Monitoring</h4>
+                  <p>IoT</p>
+                  <a class="group flex items-center justify-center w-10 h-10 rounded-full border border-body ease-in-out duration-300 bg-transparent group-hover:border-primary group- mt-4"
+                    href="#">
+                    <svg class="fill-body group-hover:fill-white ease-in-out duration-300" width="14" height="14"
+                      viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M10.4763 6.16664L6.00634 1.69664L7.18467 0.518311L13.6663 6.99998L7.18467 13.4816L6.00634 12.3033L10.4763 7.83331H0.333008V6.16664H10.4763Z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="project-item px-5 mb-10 w-full lg:w-1/3 web-mobile">
+              <div class="group relative overflow-hidden rounded-lg z-1">
+                <img src="./images/Portfolio/Mobile.png" alt="Project" />
+
+                <div
+                  class="absolute left-0 top-0 translate-y-full ease-linear duration-700 group-hover:translate-y-0 flex flex-col items-center justify-center w-full h-full rounded-lg backdrop-blur bg-white/20 z-10">
+                  <h4 class="font-medium text-2xl text-black mb-0.5">Mobile App</h4>
+                  <p>Mobile App</p>
+                  <a class="group flex items-center justify-center w-10 h-10 rounded-full border border-body ease-in-out duration-300 bg-transparent group-hover:border-primary group- mt-4"
+                    href="#">
+                    <svg class="fill-body group-hover:fill-white ease-in-out duration-300" width="14" height="14"
+                      viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M10.4763 6.16664L6.00634 1.69664L7.18467 0.518311L13.6663 6.99998L7.18467 13.4816L6.00634 12.3033L10.4763 7.83331H0.333008V6.16664H10.4763Z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="project-item px-5 mb-10 w-full lg:w-1/3 web-mobile">
+              <div class="group relative overflow-hidden rounded-lg z-1">
+                <img src="./images/Portfolio/web.png" alt="Project" />
+
+                <div
+                  class="absolute left-0 top-0 translate-y-full ease-linear duration-700 group-hover:translate-y-0 flex flex-col items-center justify-center w-full h-full rounded-lg backdrop-blur bg-white/20 z-10">
+                  <h4 class="font-medium text-2xl text-black mb-0.5">Dashboard for IoT Monitoring</h4>
+                  <p>Web</p>
+                  <a class="group flex items-center justify-center w-10 h-10 rounded-full border border-body ease-in-out duration-300 bg-transparent group-hover:border-primary group- mt-4"
+                    href="#">
+                    <svg class="fill-body group-hover:fill-white ease-in-out duration-300" width="14" height="14"
+                      viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M10.4763 6.16664L6.00634 1.69664L7.18467 0.518311L13.6663 6.99998L7.18467 13.4816L6.00634 12.3033L10.4763 7.83331H0.333008V6.16664H10.4763Z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> -->
+    <!-- ====== Portfolio Section Start -->
+    <section id="portfolio" x-data="
+  {
+  showCards: 'all',
+  activeClasses: 'bg-primary text-white',
+  inactiveClasses: 'text-body-color dark:text-dark-6 ',
+  }
+  " class="pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] dark:bg-dark transition-all mb-5">
+      <div
+        x-data="{ sectionTitle: `Portfolio`, sectionTitleText: `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using.`}">
+        <div class="animate_top mx-auto max-w-1390 text-center px-4 md:px-8 xl:px-0">
+    <h2
+            x-text="sectionTitle"
+            class="font-semibold text-3xl xl:text-title-xl text-black dark:text-white md:w-4/5 xl:w-1/2 mx-auto mb-4.5"
+    >
+    </h2>
+    <p class="mx-auto md:w-4/5 lg:w-3/5 xl:w-[46%]" x-text="sectionTitleText"></p>
+</div>
+
 
       </div>
-    </section><!-- End Counts Section -->
+      <div class="container mx-auto">
 
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Services</h2>
-          <!-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem</p> -->
+        <div class="-mx-4 flex flex-wrap justify-center mt-5">
+          <div class="w-full px-4">
+            <ul class="mb-12 flex flex-wrap justify-center space-x-1">
+              <li class="mb-1">
+                <button @click="showCards = 'all' " :class="showCards == 'all' ? activeClasses : inactiveClasses "
+                  class="inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8">
+                  All Projects
+                </button>
+              </li>
+              <li class="mb-1">
+                <button @click="showCards = 'IoT' " :class="showCards == 'IoT' ? activeClasses : inactiveClasses "
+                  class="inline-block rounded-lg py-2 px-5 text-center text-base font-semibold rounded-full ease-in-out duration-300 md:py-3 lg:px-8">
+                  IoT
+                </button>
+              </li>
+              <li class="mb-1">
+                <button @click="showCards = 'AI/ML' " :class="showCards == 'AI/ML' ? activeClasses : inactiveClasses "
+                  class="inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8">
+                  AI/ML
+                </button>
+              </li>
+              <li class="mb-1">
+                <button @click="showCards = 'Cloud/DevOps' "
+                  :class="showCards == 'Cloud/DevOps' ? activeClasses : inactiveClasses "
+                  class="inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8">
+                  Cloud/DevOps
+                </button>
+              </li>
+              <li class="mb-1">
+                <button @click="showCards = 'Web/MobileApp' "
+                  :class="showCards == 'Web/MobileApp' ? activeClasses : inactiveClasses "
+                  class="inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8">
+                  Web/MobileApp
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <div class="icon-box">
-              <i class="bi bi-briefcase"></i>
-              <h4><a href="#">API development in Java (sprinboot)/Python</a></h4>
-              <p></p>
+        <!-- 
+            
+              <div class="relative mb-12">
+                <div class="overflow-hidden rounded-[10px]">
+                  <img src="./images/Portfolio/Ai-portfolio.png" alt="portfolio" class="w-full" />
+                </div>
+                <div
+                  class="relative z-10 mx-7 -mt-20 rounded-lg bg-white dark:bg-dark-2 py-[34px] px-3 text-center shadow-portfolio dark:shadow-box-dark">
+                  <span class="text-primary mb-2 block text-sm font-medium">
+                    Branding
+                  </span>
+                  <h3 class="text-dark dark:text-white mb-5 text-xl font-bold">
+                    Branding Design
+                  </h3>
+                  <a href="javascript:void(0)"
+                    class="text-body-color dark:text-dark-6 hover:border-primary  inline-block rounded-md border border-stroke dark:border-dark-3 py-[10px] px-7 text-sm font-medium transition hover:text-white">
+                    View Details
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-6 mt-4 mt-lg-0">
-            <div class="icon-box">
-              <i class="bi bi-card-checklist"></i>
-              <h4><a href="#">Full stack development for Web/app</a></h4>
-              <p></p>
+            
+              <div class="relative mb-12">
+                <div class="overflow-hidden rounded-[10px]">
+                  <img src="./images/Portfolio/Cloud-Portfolio.png" alt="portfolio" class="w-full" />
+                </div>
+                <div
+                  class="relative z-10 mx-7 -mt-20 rounded-lg bg-white dark:bg-dark-2 py-[34px] px-3 text-center shadow-portfolio dark:shadow-box-dark">
+                  <span class="text-primary mb-2 block text-sm font-medium">
+                    Marketing
+                  </span>
+                  <h3 class="text-dark dark:text-white mb-5 text-xl font-bold">
+                    Best Marketing tips
+                  </h3>
+                  <a href="javascript:void(0)"
+                    class="text-body-color dark:text-dark-6 hover:border-primary  inline-block rounded-md border border-stroke dark:border-dark-3 py-[10px] px-7 text-sm font-medium transition hover:text-white">
+                    View Details
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-6 mt-4">
-            <div class="icon-box">
-              <i class="bi bi-bar-chart"></i>
-              <h4><a href="#">Performing testing for various applications</a></h4>
-              <p></p>
+            
+              <div class="relative mb-12">
+                <div class="overflow-hidden rounded-[10px]">
+                  <img src="./images/Portfolio/DevOps-Portfolio.png" alt="portfolio" class="w-full" />
+                </div>
+                <div
+                  class="relative z-10 mx-7 -mt-20 rounded-lg bg-white dark:bg-dark-2 py-[34px] px-3 text-center shadow-portfolio dark:shadow-box-dark">
+                  <span class="text-primary mb-2 block text-sm font-medium">
+                    Development
+                  </span>
+                  <h3 class="text-dark dark:text-white mb-5 text-xl font-bold">
+                    Web Design Trend
+                  </h3>
+                  <a href="javascript:void(0)"
+                    class="text-body-color dark:text-dark-6 hover:border-primary  inline-block rounded-md border border-stroke dark:border-dark-3 py-[10px] px-7 text-sm font-medium transition hover:text-white">
+                    View Details
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-6 mt-4">
-            <div class="icon-box">
-              <i class="bi bi-binoculars"></i>
-              <h4><a href="#">Devops and Automation</a></h4>
-              <p></p>
+            
+              <div class="relative mb-12">
+                <div class="overflow-hidden rounded-[10px]">
+                  <img src="./images/Portfolio/IoT-Dashboard.png" alt="portfolio" class="w-full" />
+                </div>
+                <div
+                  class="relative z-10 mx-7 -mt-20 rounded-lg bg-white dark:bg-dark-2 py-[34px] px-3 text-center shadow-portfolio dark:shadow-box-dark">
+                  <span class="text-primary mb-2 block text-sm font-medium">
+                    Design
+                  </span>
+                  <h3 class="text-dark dark:text-white mb-5 text-xl font-bold">
+                    Business Card Design
+                  </h3>
+                  <a href="javascript:void(0)"
+                    class="text-body-color dark:text-dark-6 hover:border-primary  inline-block rounded-md border border-stroke dark:border-dark-3 py-[10px] px-7 text-sm font-medium transition hover:text-white">
+                    View Details
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-          <!-- <div class="col-md-6 mt-4">
-            <div class="icon-box">
-              <i class="bi bi-brightness-high"></i>
-              <h4><a href="#">Android Development</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+            
+              <div class="relative mb-12">
+                <div class="overflow-hidden rounded-[10px]">
+                  <img src="./images/Portfolio/mobile-portfolio.png" alt="portfolio" class="w-full" />
+                </div>
+                <div
+                  class="relative z-10 mx-7 -mt-20 rounded-lg bg-white dark:bg-dark-2 py-[34px] px-3 text-center shadow-portfolio dark:shadow-box-dark">
+                  <span class="text-primary mb-2 block text-sm font-medium">
+                    Marketing
+                  </span>
+                  <h3 class="text-dark dark:text-white mb-5 text-xl font-bold">
+                    Digital marketing
+                  </h3>
+                  <a href="javascript:void(0)"
+                    class="text-body-color dark:text-dark-6 hover:border-primary  inline-block rounded-md border border-stroke dark:border-dark-3 py-[10px] px-7 text-sm font-medium transition hover:text-white">
+                    View Details
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-6 mt-4">
-            <div class="icon-box">
-              <i class="bi bi-calendar4-week"></i>
-              <h4><a href="#">Python Development</a></h4>
-              <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+          
+              <div class="relative mb-12">
+                <div class="overflow-hidden rounded-[10px]">
+                  <img src="./images/Portfolio/web-portfolio.png" alt="portfolio" class="w-full" />
+                </div>
+                <div
+                  class="relative z-10 mx-7 -mt-20 rounded-lg bg-white dark:bg-dark-2 py-[34px] px-3 text-center shadow-portfolio dark:shadow-box-dark">
+                  <span class="text-primary mb-2 block text-sm font-medium">
+                    Branding
+                  </span>
+                  <h3 class="text-dark dark:text-white mb-5 text-xl font-bold">
+                    Creative Agency
+                  </h3>
+                  <a href="javascript:void(0)"
+                    class="text-body-color dark:text-dark-6 hover:border-primary  inline-block rounded-md border border-stroke dark:border-dark-3 py-[10px] px-7 text-sm font-medium transition hover:text-white">
+                    View Details
+                  </a>
+                </div>
+              </div>
             </div>
           </div> -->
-        </div>
+        <div class="-mx-4 flex flex-wrap px-5">
+          <div :class="showCards == 'all' || showCards == 'AI/ML' ? 'block' : 'hidden' "
+            class="w-full px-4 md:w-1/2 xl:w-1/3">
+            <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
+              <div class="group block relative z-1 overflow-hidden">
+                <img class="w-full" src="images/Ai-portfolio.png" alt="Blog" />
 
-      </div>
-    </section><!-- End Services Section -->
+                <div
+                  class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10">
+                  <a href="#"
+                    class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-3 px-7.5">Read
+                    More</a>
+                </div>
+              </div>
 
-    <!-- ======= Portfolio Section ======= -->
-    <!-- 
-    <section id="portfolio" class="portfolio">
-      <div class="container">
+              <div class="p-7.5">
 
-        <div class="section-title">
-          <h2 class="port">Portfolio</h2>
-          <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit</p>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-12">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Android</li>
-              <li data-filter=".filter-web">Web</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="row portfolio-container">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="assets/img/slider/hello.jpg" class="img-fluid" alt="">
-                <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="link-preview portfolio-lightbox" title="Preview"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">App 1</a></h4>
-                <p>App</p>
+                <h4
+                  class="font-medium text-2xl ease-in-out duration-300 text-black dark:text-white hover:text-primary xl:w-[90%] mt-3">
+                  <a href="#">Sentiment Analysis</a>
+                </h4>
               </div>
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-                <a href="assets/img/portfolio/portfolio-2.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-              </figure>
+          <!-- Blog Item -->
+          <div :class="showCards == 'all' || showCards == 'Cloud/DevOps' ? 'block' : 'hidden' "
+            class="w-full px-4 md:w-1/2 xl:w-1/3 mb-10">
+            <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
+              <div class="group block relative z-1 overflow-hidden">
+                <img class="w-full" src="images/Cloud-Portfolio.png" alt="Blog" />
 
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">Web 3</a></h4>
-                <p>Web</p>
+                <div
+                  class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10">
+                  <a href="#"
+                    class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-3 px-7.5">Read
+                    More</a>
+                </div>
+              </div>
+
+              <div class="p-7.5">
+
+                <h4
+                  class="font-medium text-2xl ease-in-out duration-300 text-black dark:text-white hover:text-primary xl:w-[90%] mt-3">
+                  <a href="#">Cloud Hosting</a>
+                </h4>
               </div>
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-                <a href="assets/img/portfolio/portfolio-3.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-              </figure>
+          <!-- Blog Item -->
+          <div :class="showCards == 'all' || showCards == 'Web/MobileApp' ? 'block' : 'hidden' "
+            class="w-full px-4 md:w-1/2 xl:w-1/3">
+            <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
+              <div class="group block relative z-1 overflow-hidden">
+                <img class="w-full" src="images/mobile-portfolio.png" alt="Blog" />
 
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">App 2</a></h4>
-                <p>App</p>
+                <div
+                  class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10">
+                  <a href="#"
+                    class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-3 px-7.5">Read
+                    More</a>
+                </div>
+              </div>
+
+              <div class="p-7.5">
+
+                <h4
+                  class="font-medium text-2xl ease-in-out duration-300 text-black dark:text-white hover:text-primary xl:w-[90%] mt-3">
+                  <a href="#">Mobile App</a>
+                </h4>
               </div>
             </div>
           </div>
+          <div :class="showCards == 'all' || showCards == 'IoT' ? 'block' : 'hidden' "
+            class="w-full px-4 md:w-1/2 xl:w-1/3">
+            <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
+              <div class="group block relative z-1 overflow-hidden">
+                <img class="w-full" src="images/IoT-Dashboard.png" alt="Blog" />
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
-                <a href="assets/img/portfolio/portfolio-4.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-              </figure>
+                <div
+                  class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10">
+                  <a href="#"
+                    class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-3 px-7.5">Read
+                    More</a>
+                </div>
+              </div>
 
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">Card 2</a></h4>
-                <p>Card</p>
+              <div class="p-7.5">
+
+                <h4
+                  class="font-medium text-2xl ease-in-out duration-300 text-black dark:text-white hover:text-primary xl:w-[90%] ">
+                  <a href="#">Power Plant Monitoring</a>
+                </h4>
               </div>
             </div>
           </div>
+          <div :class="showCards == 'all' || showCards == 'Cloud/DevOps' ? 'block' : 'hidden' "
+            class="w-full px-4 md:w-1/2 xl:w-1/3">
+            <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
+              <div class="group block relative z-1 overflow-hidden">
+                <img class="w-full" src="images/DevOps-Portfolio.png" alt="Blog" />
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-                <a href="assets/img/portfolio/portfolio-5.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-              </figure>
+                <div
+                  class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10">
+                  <a href=""
+                    class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-3 px-7.5">Read
+                    More</a>
+                </div>
+              </div>
 
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">Web 2</a></h4>
-                <p>Web</p>
+              <div class="p-7.5">
+
+                <h4
+                  class="font-medium text-2xl ease-in-out duration-300 text-black dark:text-white hover:text-primary xl:w-[90%] ">
+                  <a href="#">CI/CD Pipeline</a>
+                </h4>
               </div>
             </div>
           </div>
+          <div :class="showCards == 'all' || showCards == 'Web/MobileApp' ? 'block' : 'hidden' "
+            class="w-full px-4 md:w-1/2 xl:w-1/3">
+            <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
+              <div class="group block relative z-1 overflow-hidden">
+                <img class="w-full" src="images/web-portfolio.png" alt="Blog" />
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-                <a href="assets/img/portfolio/portfolio-6.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-              </figure>
+                <div
+                  class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10">
+                  <a href="#"
+                    class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-3 px-7.5">Read
+                    More</a>
+                </div>
+              </div>
 
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">App 3</a></h4>
-                <p>App</p>
+              <div class="p-7.5">
+
+                <h4
+                  class="font-medium text-2xl ease-in-out duration-300 text-black dark:text-white hover:text-primary xl:w-[90%] ">
+                  <a href="#">Web</a>
+                </h4>
               </div>
             </div>
           </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-                <a href="assets/img/portfolio/portfolio-7.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">Card 1</a></h4>
-                <p>Card</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp" data-wow-delay="0.1s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-                <a href="assets/img/portfolio/portfolio-8.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">Card 3</a></h4>
-                <p>Card</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.2s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-                <a href="assets/img/portfolio/portfolio-9.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">Web 1</a></h4>
-                <p>Web</p>
-              </div>
-            </div>
-          </div>
-
         </div>
 
       </div>
     </section>
-    -->
+    <!-- ====== Portfolio Section End -->
+    <!-- ===== Testimonials Start ===== -->
+    <section class="pb-20 lg:pb-25 xl:pb-30">
+      <!-- Section Title Start -->
+      <div x-data="{ sectionTitle: `Client’s Testimonials`}">
+        <div class="animate_top mx-auto max-w-1390 text-center px-4 md:px-8 xl:px-0">
+    <h2
+            x-text="sectionTitle"
+            class="font-semibold text-3xl xl:text-title-xl text-black dark:text-white md:w-4/5 xl:w-1/2 mx-auto mb-4.5"
+    >
+    </h2>
+    <p class="mx-auto md:w-4/5 lg:w-3/5 xl:w-[46%]" x-text="sectionTitleText"></p>
+</div>
 
-    <!-- End Portfolio Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    <!-- <section id="testimonials" class="testimonials section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Testimonials</h2>
-          <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem</p>
-        </div>
-
-        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-          <div class="swiper-wrapper">
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                <h3>Saul Goodman</h3>
-                <h4>Ceo &amp; Founder</h4>
-              </div>
-            </div> -->
-            <!-- End testimonial item -->
-
-             <!-- <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                <h3>Sara Wilsson</h3>
-                <h4>Designer</h4>
-              </div>
-            </div> -->
-            <!-- End testimonial item  -->
-
-             <!-- <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                <h3>Jena Karlis</h3>
-                <h4>Store Owner</h4>
-              </div>
-            </div> -->
-            <!-- End testimonial item --> 
-
-            <!-- <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                <h3>Matt Brandon</h3>
-                <h4>Freelancer</h4>
-              </div>
-            </div> -->
-            <!-- End testimonial item -->
-            <!-- <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                <h3>John Larson</h3>
-                <h4>Entrepreneur</h4>
-              </div>
-            </div>  -->
-            <!-- End testimonial item -->
-
-          <!-- </div>
-          <div class="swiper-pagination"></div>
-        </div>
 
       </div>
-    </section>End Testimonials Section -->
+      <!-- Section Title End -->
 
-    <!-- ======= Team Section ======= -->
-    <section id="team" class="team">
-      <div class="container">
+      <div class="mx-auto max-w-1390 px-4 md:px-8 xl:px-30">
+        <div class="animate_top mt-12.5 xl:mt-17.5">
+          <!-- Slider main container -->
+          <div class="swiper testimonial-01">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <div class="swiper-slide">
+                <div class="relative bg-white dark:bg-blacksection rounded-lg shadow-3 dark:shadow-none p-9 pr-10">
+                  <!-- Border Shape -->
+                  <span class="block w-1.5 h-1/2 bg-primary rounded-tr-lg absolute right-0 top-0"></span>
+                  <span class="block w-1.5 h-1/2 bg-secondary rounded-br-lg absolute right-0 bottom-0"></span>
 
-        <div class="section-title">
-          <h2>Team</h2>
-          <p>We always try to bring best people with mixture from industry and education fields, To deliver best services to our clients</p>
+                  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-7.5 lg:gap-12">
+
+
+                    <div>
+                      <img src="images/icon-quote.svg" alt="Quote" />
+                      <p class="font-medium italic text-lg lg:text-2xl mt-5.5 mb-10">
+                        They are smart and know exactly how to successfully complete the task. Definitely going to work
+                        with him again.
+
+                      </p>
+
+                      <div class="flex justify-between items-end">
+                        <div>
+                          <span class="block font-medium text-lg text-black dark:text-white mb-1">Varun Garg</span>
+                          <span class="block">Founder @InfraRed Power</span>
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="relative bg-white dark:bg-blacksection rounded-lg shadow-3 dark:shadow-none p-9 pr-10">
+                  <!-- Border Shape -->
+                  <span class="block w-1.5 h-1/2 bg-primary rounded-tr-lg absolute right-0 top-0"></span>
+                  <span class="block w-1.5 h-1/2 bg-secondary rounded-br-lg absolute right-0 bottom-0"></span>
+
+                  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-7.5 lg:gap-12">
+
+
+                    <div>
+                      <img src="images/icon-quote.svg" alt="Quote" />
+                      <p class="font-medium italic text-lg lg:text-2xl mt-5.5 mb-10">
+                        Thanks for your expertise. Very knowledgeable and provided good advice and insights. Excellent
+                        communication skills. It was a pleasure to work with him.
+
+                      </p>
+
+                      <div class="flex justify-between items-end">
+                        <div>
+                          <span class="block font-medium text-lg text-black dark:text-white mb-1"></span>
+                          <span class="block">Stealth Mode Startup @Detmo skgworks</span>
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- If we need navigation -->
+            <div class="flex items-center justify-center gap-4 mt-12.5">
+              <div
+                class="swiper-button-prev group flex items-center justify-center w-10 h-10 rounded-full border border-body cursor-pointer ease-in-out duratuon-300 bg-white dark:bg-blacksection  dark: hover:border-primary dark:hover:border-primary">
+                <svg class="fill-body group-hover:fill-white" width="14" height="14" viewBox="0 0 14 14" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M3.52366 7.83336L7.99366 12.3034L6.81533 13.4817L0.333663 7.00002L6.81533 0.518357L7.99366 1.69669L3.52366 6.16669L13.667 6.16669L13.667 7.83336L3.52366 7.83336Z"
+                    fill="" />
+                </svg>
+              </div>
+              <div
+                class="swiper-button-next group flex items-center justify-center w-10 h-10 rounded-full border border-body cursor-pointer ease-in-out duratuon-300 bg-white dark:bg-blacksection  dark: hover:border-primary dark:hover:border-primary">
+                <svg class="fill-body group-hover:fill-white" width="14" height="14" viewBox="0 0 14 14" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M10.4763 6.16664L6.00634 1.69664L7.18467 0.518311L13.6663 6.99998L7.18467 13.4816L6.00634 12.3033L10.4763 7.83331H0.333008V6.16664H10.4763Z"
+                    fill="" />
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
+    <!-- ===== Testimonials End ===== -->
 
-        <div class="row">
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <img src="assets/img/teachers/teacher-01.png" class="w-10" alt="">
-              <h4>ARCHIT MEHTA (EX-WALMART)</h4>
-              <span>Software Engineer (Founder)</span>
-              <!-- <p>
-                Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
-              </p> -->
-              <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <!-- <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a> -->
-                <a href=""><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
+    <!-- ===== Counter Start ===== -->
+    <section class="relative overflow-hidden bg-whiten dark:bg-blacksection py-20 lg:py-22.5">
+      <img src="images/shape-11.svg" alt="Shape"
+        class="animate-rotating absolute left-[3%] bottom-[3%] w-14.5" />
+      <img src="images/shape-07.svg" alt="Shape" class="absolute top-[6%] right-[2%] w-21 rotate-90" />
+      <img src="images/shape-14.svg" alt="Shape" class="absolute left-[35%] top-[1%]" />
+      <img src="images/shape-15.svg" alt="Shape" class="absolute right-0 bottom-0" />
+
+      <div class="mx-auto max-w-1390 relative z-10 px-4 md:px-8 xl:px-36.5">
+        <div class="flex flex-wrap md:flex-nowrap md:items-center justify-center md:justify-between gap-8">
+          <div class="animate_top w-2/5 md:w-auto text-center">
+            <h2 class="font-bold text-3xl lg:text-4xl xl:text-title-xxl text-black dark:text-white mb-0.5">3</h2>
+            <p class="font-medium text-base lg:text-title-xsm2">Happy Clients</p>
           </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <img src="assets/img/teachers/teacher-02.png" class="w-20" alt="">
-              <h4>MILIND PANDEY</h4>
-              <span>Software Engineer Lead</span>
-              <!-- <p>
-                Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum temporibus
-              </p> -->
-              <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <!-- <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a> -->
-                <a href=""><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
+          <div class="animate_top w-2/5 md:w-auto text-center">
+            <h2 class="font-bold text-3xl lg:text-4xl xl:text-title-xxl text-black dark:text-white mb-0.5">3</h2>
+            <p class="font-medium text-base lg:text-title-xsm2">Projects</p>
           </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <img src="assets/img/teachers/teacher-03.png" class="w-30" alt="">
-              <h4>Balaji R.</h4>
-              <span>Software Engineer Consultant</span>
-              <!-- <p>
-                Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara
-              </p> -->
-              <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <!-- <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a> -->
-                <a href=""><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
+          <div class="animate_top w-2/5 md:w-auto text-center">
+            <h2 class="font-bold text-3xl lg:text-4xl xl:text-title-xxl text-black dark:text-white mb-0.5">2000</h2>
+            <p class="font-medium text-base lg:text-title-xsm2">Hours of Support</p>
           </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <img src="assets/img/teachers/teacher-04.png" class="w-40" alt="">
-              <h4>DEEPAK MEHTA (M.TECH IIIT-HYDERABAD)</h4>
-              <span>Proffessor</span>
-              <!-- <p>
-                Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara
-              </p> -->
-              <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <!-- <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a> -->
-                <a href=""><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
+          <div class="animate_top w-2/5 md:w-auto text-center">
+            <h2 class="font-bold text-3xl lg:text-4xl xl:text-title-xxl text-black dark:text-white mb-0.5">5</h2>
+            <p class="font-medium text-base lg:text-title-xsm2">Hard Workers</p>
           </div>
-
         </div>
+      </div>
+    </section>
+    <!-- ===== Counter End ===== -->
+
+    <!-- ===== Clients Start ===== -->
+    <section class="pt-20 lg:pt-25 xl:pt-30">
+      <!-- Section Title Start -->
+      <div x-data="{ sectionTitle: `Clients`}">
+        <div class="animate_top mx-auto max-w-1390 text-center px-4 md:px-8 xl:px-0">
+    <h2
+            x-text="sectionTitle"
+            class="font-semibold text-3xl xl:text-title-xl text-black dark:text-white md:w-4/5 xl:w-1/2 mx-auto mb-4.5"
+    >
+    </h2>
+    <p class="mx-auto md:w-4/5 lg:w-3/5 xl:w-[46%]" x-text="sectionTitleText"></p>
+</div>
+
 
       </div>
-    </section><!-- End Team Section -->
+      <!-- Section Title End -->
 
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact section-bg">
-      <div class="container">
+      <div
+        class="mx-auto max-w-1390 border-b border-strokedark dark:border-stroke pb-20 lg:pb-22.5 px-4 md:px-8 2xl:px-49 mt-15">
+        <div class="grid grid-cols-3 md:grid-cols-6 gap-7.5 lg:gap-12.5 xl:gap-17.5 justify-center items-center">
+          <a href="#" class="block animate_top">
+            <img class="opacity-65 ease-in-out duration-300 hover:opacity-100 dark:hidden"
+              src="images/InfraRed-Power.png" alt="Clients" />
+            <img class="hidden opacity-50 ease-in-out duration-300 hover:opacity-100 dark:block"
+              src="images/InfraRed-Power-dark.png" alt="Clients" />
+          </a>
+          <a href="#" class="block animate_top">
+            <img class="opacity-65 ease-in-out duration-300 hover:opacity-100 dark:hidden"
+              src="images/Detmo.png" alt="Clients" />
+            <img class="hidden opacity-50 ease-in-out duration-300 hover:opacity-100 dark:block"
+              src="images/Detmo-dark.png" alt="Clients" />
+          </a>
+          <a href="#" class="block animate_top">
+            <img class="opacity-65 ease-in-out duration-300 hover:opacity-100 dark:hidden"
+              src="images/esecurify.png" alt="Clients" />
+            <img class="hidden opacity-50 ease-in-out duration-300 hover:opacity-100 dark:block"
+              src="images/esecurify-dark.png" alt="Clients" />
+          </a>
 
-        <div class="section-title">
-          <h2>Contact</h2>
-          <p>We would love to hear from you, For inquries please reachout through below channels</p>
         </div>
+      </div>
+    </section>
+    <!-- ===== Clients End ===== -->
 
-        <div class="row mt-5 justify-content-center">
+    <!-- ===== Blog Start ===== -->
+    <!-- <section class="py-20 lg:py-25 xl:py-30"> -->
+    <!-- Section Title Start -->
+    <!-- <div
+        x-data="{ sectionTitle: `Latest Blogs & News`, sectionTitleText: `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using.`}">
+        <div class="animate_top mx-auto max-w-1390 text-center px-4 md:px-8 xl:px-0">
+    <h2
+            x-text="sectionTitle"
+            class="font-semibold text-3xl xl:text-title-xl text-black dark:text-white md:w-4/5 xl:w-1/2 mx-auto mb-4.5"
+    >
+    </h2>
+    <p class="mx-auto md:w-4/5 lg:w-3/5 xl:w-[46%]" x-text="sectionTitleText"></p>
+</div>
 
-          <div class="col-lg-10">
 
-            <div class="info-wrap">
-              <div class="row">
-                <div class="col-lg-4 info">
-                  <i class="bi bi-geo-alt"></i>
-                  <h4>Location:</h4>
-                  <p>G-108, Titanium City Center,<br>Shyamal, Ahmedabad</p>
+      </div> -->
+    <!-- Section Title End -->
+
+    <!-- <div class="mx-auto max-w-1280 px-4 md:px-8 xl:px-0 mt-12.5 lg:mt-17.5">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7.5 xl:gap-10"> -->
+    <!-- Blog Item -->
+    <!-- <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
+            <div class="group block relative z-1 overflow-hidden">
+              <img class="w-full" src="./images/blog/blog-01.png" alt="Blog" />
+
+              <div
+                class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10">
+                <a href="./blog-single.html"
+                  class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-3 px-7.5">Read
+                  More</a>
+              </div>
+            </div>
+
+            <div class="p-7.5">
+              <div class="flex flex-wrap items-center gap-2 xl:gap-5">
+                <div class="flex items-center gap-2">
+                  <img src="./images/icon/icon-man.svg" alt="User" />
+                  <p>Musharof Chy</p>
                 </div>
-
-                <div class="col-lg-4 info mt-4 mt-lg-0">
-                  <i class="bi bi-envelope"></i>
-                  <h4>Email:</h4>
-                  <p>architmehta108@gmail.com</p>
+                <div class="flex items-center gap-2">
+                  <img src="./images/icon/icon-calender.svg" alt="Calender" />
+                  <p>25 Dec, 2025</p>
                 </div>
+              </div>
+              <h4
+                class="font-medium text-2xl ease-in-out duration-300 text-black dark:text-white hover:text-primary xl:w-[90%] mt-3">
+                <a href="blog-single.html">Free advertising for your online business</a>
+              </h4>
+            </div>
+          </div> -->
 
-                <div class="col-lg-4 info mt-4 mt-lg-0">
-                  <i class="bi bi-phone"></i>
-                  <h4>Call:</h4>
-                  <p>(+91) 9428448108</p>
+    <!-- Blog Item -->
+    <!-- <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
+            <div class="group block relative z-1 overflow-hidden">
+              <img class="w-full" src="./images/blog/blog-02.png" alt="Blog" />
+
+              <div
+                class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10">
+                <a href="./blog-single.html"
+                  class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-3 px-7.5">Read
+                  More</a>
+              </div>
+            </div>
+
+            <div class="p-7.5">
+              <div class="flex flex-wrap items-center gap-2 xl:gap-5">
+                <div class="flex items-center gap-2">
+                  <img src="./images/icon/icon-man.svg" alt="User" />
+                  <p>Musharof Chy</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <img src="./images/icon/icon-calender.svg" alt="Calender" />
+                  <p>25 Dec, 2025</p>
+                </div>
+              </div>
+              <h4
+                class="font-medium text-2xl ease-in-out duration-300 text-black dark:text-white hover:text-primary xl:w-[90%] mt-3">
+                <a href="blog-single.html">9 simple ways to improve your design skills</a>
+              </h4>
+            </div>
+          </div> -->
+
+    <!-- Blog Item -->
+    <!-- <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
+            <div class="group block relative z-1 overflow-hidden">
+              <img class="w-full" src="./images/blog/blog-03.png" alt="Blog" />
+
+              <div
+                class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10">
+                <a href="./blog-single.html"
+                  class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-3 px-7.5">Read
+                  More</a>
+              </div>
+            </div>
+
+            <div class="p-7.5">
+              <div class="flex flex-wrap items-center gap-2 xl:gap-5">
+                <div class="flex items-center gap-2">
+                  <img src="./images/icon/icon-man.svg" alt="User" />
+                  <p>Musharof Chy</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <img src="./images/icon/icon-calender.svg" alt="Calender" />
+                  <p>25 Dec, 2025</p>
+                </div>
+              </div>
+              <h4
+                class="font-medium text-2xl ease-in-out duration-300 text-black dark:text-white hover:text-primary xl:w-[90%] mt-3">
+                <a href="blog-single.html">Tips to quickly improve your coding speed.</a>
+              </h4>
+            </div>
+          </div> -->
+    <!-- </div>
+      </div>
+    </section> -->
+    <!-- ===== Blog End ===== -->
+
+    <!-- ===== Team Start ===== -->
+    <section class="relative overflow-hidden py-20 lg:py-25 xl:py-30">
+      <!-- Bg Shapes -->
+      <span class="block absolute left-0 top-0 w-full h-3/5 bg-whiter dark:bg-blacksection"></span>
+      <img src="images/shape-08.svg" alt="Shape Bg" class="absolute right-0 top-0" />
+      <img src="images/shape-09.svg" alt="Shape" class="animate-rotating absolute left-[10%] top-1/2" />
+      <img src="images/shape-10.svg" alt="Shape" class="absolute left-[20%] top-[5%]" />
+      <img src="images/shape-11.svg" alt="Shape" class="animate-rotating absolute right-[15%] top-[15%]" />
+
+      <!-- Section Title Start -->
+      <div
+        x-data="{ sectionTitle: `Meet Our Team`, sectionTitleText: `Meet our dedicated and creative team, ready to bring your vision to life with passion and expertise.`}">
+        <div class="animate_top mx-auto max-w-1390 text-center px-4 md:px-8 xl:px-0">
+    <h2
+            x-text="sectionTitle"
+            class="font-semibold text-3xl xl:text-title-xl text-black dark:text-white md:w-4/5 xl:w-1/2 mx-auto mb-4.5"
+    >
+    </h2>
+    <p class="mx-auto md:w-4/5 lg:w-3/5 xl:w-[46%]" x-text="sectionTitleText"></p>
+</div>
+
+
+      </div>
+      <!-- Section Title End -->
+
+      <div class="mx-auto max-w-1390 relative z-10 px-4 md:px-8 xl:px-26 mt-12.5 lg:mt-17.5">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12.5">
+          <!-- Team Item -->
+          <div class="animate_top text-center">
+            <div class="group relative overflow-hidden z-1">
+              <img class="w-full" src="images/graphic_designer_man.jpg" alt="Team" />
+
+              <div class="translate-y-25 group-hover:translate-y-0 ease-linear duration-300">
+                <span class="absolute -left-5 -bottom-21 block w-[120%] h-37.5 bg-primary rotate-6 z-20"></span>
+                <span class="absolute left-0 bottom-0 block w-full h-17 bg-secondary z-10"></span>
+                <div class="absolute left-0 bottom-0 w-full pt-7.5 pb-5 z-30">
+                  <ul class="flex justify-center items-center gap-8">
+                    <li>
+                      <a href="#">
+                        <svg class="fill-white hover:fill-secondary ease-in-out duration-300" width="10" height="18"
+                          viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M6.66634 10.25H8.74968L9.58301 6.91669H6.66634V5.25002C6.66634 4.39169 6.66634 3.58335 8.33301 3.58335H9.58301V0.783354C9.31134 0.74752 8.28551 0.666687 7.20218 0.666687C4.93968 0.666687 3.33301 2.04752 3.33301 4.58335V6.91669H0.833008V10.25H3.33301V17.3334H6.66634V10.25Z"
+                            fill="" />
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <svg class="fill-white hover:fill-secondary ease-in-out duration-300" width="18" height="14"
+                          viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M17.4683 1.71333C16.8321 1.99475 16.1574 2.17956 15.4666 2.26167C16.1947 1.82619 16.7397 1.14085 16.9999 0.333333C16.3166 0.74 15.5674 1.025 14.7866 1.17917C14.2621 0.617982 13.5669 0.245803 12.809 0.120487C12.0512 -0.00482822 11.2732 0.123742 10.596 0.486211C9.91875 0.848679 9.38024 1.42474 9.06418 2.12483C8.74812 2.82492 8.67221 3.60982 8.84825 4.3575C7.46251 4.28805 6.10686 3.92794 4.86933 3.30055C3.63179 2.67317 2.54003 1.79254 1.66492 0.715833C1.35516 1.24788 1.19238 1.85269 1.19326 2.46833C1.19326 3.67667 1.80826 4.74417 2.74326 5.36917C2.18993 5.35175 1.64878 5.20232 1.16492 4.93333V4.97667C1.16509 5.78142 1.44356 6.56135 1.95313 7.18422C2.46269 7.80709 3.17199 8.23456 3.96075 8.39417C3.4471 8.53337 2.90851 8.55388 2.38576 8.45417C2.60814 9.14686 3.04159 9.75267 3.62541 10.1868C4.20924 10.6209 4.9142 10.8615 5.64159 10.875C4.91866 11.4428 4.0909 11.8625 3.20566 12.1101C2.32041 12.3578 1.39503 12.4285 0.482422 12.3183C2.0755 13.3429 3.93 13.8868 5.82409 13.885C12.2349 13.885 15.7408 8.57417 15.7408 3.96833C15.7408 3.81833 15.7366 3.66667 15.7299 3.51833C16.4123 3.02514 17.0013 2.41418 17.4691 1.71417L17.4683 1.71333Z"
+                            fill="" />
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <svg class="fill-white hover:fill-secondary ease-in-out duration-300" width="17" height="16"
+                          viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M3.78353 2.16665C3.78331 2.60867 3.6075 3.03251 3.29478 3.34491C2.98207 3.65732 2.55806 3.8327 2.11603 3.83248C1.674 3.83226 1.25017 3.65645 0.937761 3.34373C0.625357 3.03102 0.449975 2.60701 0.450196 2.16498C0.450417 1.72295 0.626223 1.29912 0.93894 0.986712C1.25166 0.674307 1.67567 0.498925 2.1177 0.499146C2.55972 0.499367 2.98356 0.675173 3.29596 0.98789C3.60837 1.30061 3.78375 1.72462 3.78353 2.16665V2.16665ZM3.83353 5.06665H0.500195V15.5H3.83353V5.06665ZM9.1002 5.06665H5.78353V15.5H9.06686V10.025C9.06686 6.97498 13.0419 6.69165 13.0419 10.025V15.5H16.3335V8.89165C16.3335 3.74998 10.4502 3.94165 9.06686 6.46665L9.1002 5.06665V5.06665Z"
+                            fill="" />
+                        </svg>
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
 
+            <h4 class="text-xl md:text-title-sm text-black dark:text-white mt-7.5 mb-1">Archit Mehta</h4>
+            <p>Software Engineer (Founder Ex. Walmart)</p>
           </div>
 
-        </div>
+          <!-- Team Item -->
+          <div class="animate_top text-center">
+            <div class="group relative overflow-hidden z-1">
+              <img class="w-full" src="images/graphic_designer_man.jpg" alt="Team" />
 
-        <!-- <div class="row mt-5 justify-content-center">
-          <div class="col-lg-10">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+              <div class="translate-y-25 group-hover:translate-y-0 ease-linear duration-300">
+                <span class="absolute -left-5 -bottom-21 block w-[120%] h-37.5 bg-primary rotate-6 z-20"></span>
+                <span class="absolute left-0 bottom-0 block w-full h-17 bg-secondary z-10"></span>
+                <div class="absolute left-0 bottom-0 w-full pt-7.5 pb-5 z-30">
+                  <ul class="flex justify-center items-center gap-8">
+                    <li>
+                      <a href="#">
+                        <svg class="fill-white hover:fill-secondary ease-in-out duration-300" width="10" height="18"
+                          viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M6.66634 10.25H8.74968L9.58301 6.91669H6.66634V5.25002C6.66634 4.39169 6.66634 3.58335 8.33301 3.58335H9.58301V0.783354C9.31134 0.74752 8.28551 0.666687 7.20218 0.666687C4.93968 0.666687 3.33301 2.04752 3.33301 4.58335V6.91669H0.833008V10.25H3.33301V17.3334H6.66634V10.25Z"
+                            fill="" />
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <svg class="fill-white hover:fill-secondary ease-in-out duration-300" width="18" height="14"
+                          viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M17.4683 1.71333C16.8321 1.99475 16.1574 2.17956 15.4666 2.26167C16.1947 1.82619 16.7397 1.14085 16.9999 0.333333C16.3166 0.74 15.5674 1.025 14.7866 1.17917C14.2621 0.617982 13.5669 0.245803 12.809 0.120487C12.0512 -0.00482822 11.2732 0.123742 10.596 0.486211C9.91875 0.848679 9.38024 1.42474 9.06418 2.12483C8.74812 2.82492 8.67221 3.60982 8.84825 4.3575C7.46251 4.28805 6.10686 3.92794 4.86933 3.30055C3.63179 2.67317 2.54003 1.79254 1.66492 0.715833C1.35516 1.24788 1.19238 1.85269 1.19326 2.46833C1.19326 3.67667 1.80826 4.74417 2.74326 5.36917C2.18993 5.35175 1.64878 5.20232 1.16492 4.93333V4.97667C1.16509 5.78142 1.44356 6.56135 1.95313 7.18422C2.46269 7.80709 3.17199 8.23456 3.96075 8.39417C3.4471 8.53337 2.90851 8.55388 2.38576 8.45417C2.60814 9.14686 3.04159 9.75267 3.62541 10.1868C4.20924 10.6209 4.9142 10.8615 5.64159 10.875C4.91866 11.4428 4.0909 11.8625 3.20566 12.1101C2.32041 12.3578 1.39503 12.4285 0.482422 12.3183C2.0755 13.3429 3.93 13.8868 5.82409 13.885C12.2349 13.885 15.7408 8.57417 15.7408 3.96833C15.7408 3.81833 15.7366 3.66667 15.7299 3.51833C16.4123 3.02514 17.0013 2.41418 17.4691 1.71417L17.4683 1.71333Z"
+                            fill="" />
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <svg class="fill-white hover:fill-secondary ease-in-out duration-300" width="17" height="16"
+                          viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M3.78353 2.16665C3.78331 2.60867 3.6075 3.03251 3.29478 3.34491C2.98207 3.65732 2.55806 3.8327 2.11603 3.83248C1.674 3.83226 1.25017 3.65645 0.937761 3.34373C0.625357 3.03102 0.449975 2.60701 0.450196 2.16498C0.450417 1.72295 0.626223 1.29912 0.93894 0.986712C1.25166 0.674307 1.67567 0.498925 2.1177 0.499146C2.55972 0.499367 2.98356 0.675173 3.29596 0.98789C3.60837 1.30061 3.78375 1.72462 3.78353 2.16665V2.16665ZM3.83353 5.06665H0.500195V15.5H3.83353V5.06665ZM9.1002 5.06665H5.78353V15.5H9.06686V10.025C9.06686 6.97498 13.0419 6.69165 13.0419 10.025V15.5H16.3335V8.89165C16.3335 3.74998 10.4502 3.94165 9.06686 6.46665L9.1002 5.06665V5.06665Z"
+                            fill="" />
+                        </svg>
+                      </a>
+                    </li>
+                  </ul>
                 </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+              </div>
+            </div>
+
+            <h4 class="text-xl md:text-title-sm text-black dark:text-white mt-7.5 mb-1">Vansh Prajapati</h4>
+            <p>AI/ML Engineer</p>
+          </div>
+
+          <!-- Team Item -->
+          <div class="animate_top text-center">
+            <div class="group relative overflow-hidden z-1">
+              <img class="w-full" src="images/graphic_designer_man.jpg" alt="Team" />
+
+              <div class="translate-y-25 group-hover:translate-y-0 ease-linear duration-300">
+                <span class="absolute -left-5 -bottom-21 block w-[120%] h-37.5 bg-primary rotate-6 z-20"></span>
+                <span class="absolute left-0 bottom-0 block w-full h-17 bg-secondary z-10"></span>
+                <div class="absolute left-0 bottom-0 w-full pt-7.5 pb-5 z-30">
+                  <ul class="flex justify-center items-center gap-8">
+                    <li>
+                      <a href="#">
+                        <svg class="fill-white hover:fill-secondary ease-in-out duration-300" width="10" height="18"
+                          viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M6.66634 10.25H8.74968L9.58301 6.91669H6.66634V5.25002C6.66634 4.39169 6.66634 3.58335 8.33301 3.58335H9.58301V0.783354C9.31134 0.74752 8.28551 0.666687 7.20218 0.666687C4.93968 0.666687 3.33301 2.04752 3.33301 4.58335V6.91669H0.833008V10.25H3.33301V17.3334H6.66634V10.25Z"
+                            fill="" />
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <svg class="fill-white hover:fill-secondary ease-in-out duration-300" width="18" height="14"
+                          viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M17.4683 1.71333C16.8321 1.99475 16.1574 2.17956 15.4666 2.26167C16.1947 1.82619 16.7397 1.14085 16.9999 0.333333C16.3166 0.74 15.5674 1.025 14.7866 1.17917C14.2621 0.617982 13.5669 0.245803 12.809 0.120487C12.0512 -0.00482822 11.2732 0.123742 10.596 0.486211C9.91875 0.848679 9.38024 1.42474 9.06418 2.12483C8.74812 2.82492 8.67221 3.60982 8.84825 4.3575C7.46251 4.28805 6.10686 3.92794 4.86933 3.30055C3.63179 2.67317 2.54003 1.79254 1.66492 0.715833C1.35516 1.24788 1.19238 1.85269 1.19326 2.46833C1.19326 3.67667 1.80826 4.74417 2.74326 5.36917C2.18993 5.35175 1.64878 5.20232 1.16492 4.93333V4.97667C1.16509 5.78142 1.44356 6.56135 1.95313 7.18422C2.46269 7.80709 3.17199 8.23456 3.96075 8.39417C3.4471 8.53337 2.90851 8.55388 2.38576 8.45417C2.60814 9.14686 3.04159 9.75267 3.62541 10.1868C4.20924 10.6209 4.9142 10.8615 5.64159 10.875C4.91866 11.4428 4.0909 11.8625 3.20566 12.1101C2.32041 12.3578 1.39503 12.4285 0.482422 12.3183C2.0755 13.3429 3.93 13.8868 5.82409 13.885C12.2349 13.885 15.7408 8.57417 15.7408 3.96833C15.7408 3.81833 15.7366 3.66667 15.7299 3.51833C16.4123 3.02514 17.0013 2.41418 17.4691 1.71417L17.4683 1.71333Z"
+                            fill="" />
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <svg class="fill-white hover:fill-secondary ease-in-out duration-300" width="17" height="16"
+                          viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M3.78353 2.16665C3.78331 2.60867 3.6075 3.03251 3.29478 3.34491C2.98207 3.65732 2.55806 3.8327 2.11603 3.83248C1.674 3.83226 1.25017 3.65645 0.937761 3.34373C0.625357 3.03102 0.449975 2.60701 0.450196 2.16498C0.450417 1.72295 0.626223 1.29912 0.93894 0.986712C1.25166 0.674307 1.67567 0.498925 2.1177 0.499146C2.55972 0.499367 2.98356 0.675173 3.29596 0.98789C3.60837 1.30061 3.78375 1.72462 3.78353 2.16665V2.16665ZM3.83353 5.06665H0.500195V15.5H3.83353V5.06665ZM9.1002 5.06665H5.78353V15.5H9.06686V10.025C9.06686 6.97498 13.0419 6.69165 13.0419 10.025V15.5H16.3335V8.89165C16.3335 3.74998 10.4502 3.94165 9.06686 6.46665L9.1002 5.06665V5.06665Z"
+                            fill="" />
+                        </svg>
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+            </div>
+
+            <h4 class="text-xl md:text-title-sm text-black dark:text-white mt-7.5 mb-1">Shivam Prajapati</h4>
+            <p>Full Stack Developer</p>
+          </div>
+          <div class="animate_top text-center">
+            <div class="group relative overflow-hidden z-1">
+              <img class="w-full" src="images/graphic_designer_man.jpg" alt="Team" />
+
+              <div class="translate-y-25 group-hover:translate-y-0 ease-linear duration-300">
+                <span class="absolute -left-5 -bottom-21 block w-[120%] h-37.5 bg-primary rotate-6 z-20"></span>
+                <span class="absolute left-0 bottom-0 block w-full h-17 bg-secondary z-10"></span>
+                <div class="absolute left-0 bottom-0 w-full pt-7.5 pb-5 z-30">
+                  <ul class="flex justify-center items-center gap-8">
+                    <li>
+                      <a href="#">
+                        <svg class="fill-white hover:fill-secondary ease-in-out duration-300" width="10" height="18"
+                          viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M6.66634 10.25H8.74968L9.58301 6.91669H6.66634V5.25002C6.66634 4.39169 6.66634 3.58335 8.33301 3.58335H9.58301V0.783354C9.31134 0.74752 8.28551 0.666687 7.20218 0.666687C4.93968 0.666687 3.33301 2.04752 3.33301 4.58335V6.91669H0.833008V10.25H3.33301V17.3334H6.66634V10.25Z"
+                            fill="" />
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <svg class="fill-white hover:fill-secondary ease-in-out duration-300" width="18" height="14"
+                          viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M17.4683 1.71333C16.8321 1.99475 16.1574 2.17956 15.4666 2.26167C16.1947 1.82619 16.7397 1.14085 16.9999 0.333333C16.3166 0.74 15.5674 1.025 14.7866 1.17917C14.2621 0.617982 13.5669 0.245803 12.809 0.120487C12.0512 -0.00482822 11.2732 0.123742 10.596 0.486211C9.91875 0.848679 9.38024 1.42474 9.06418 2.12483C8.74812 2.82492 8.67221 3.60982 8.84825 4.3575C7.46251 4.28805 6.10686 3.92794 4.86933 3.30055C3.63179 2.67317 2.54003 1.79254 1.66492 0.715833C1.35516 1.24788 1.19238 1.85269 1.19326 2.46833C1.19326 3.67667 1.80826 4.74417 2.74326 5.36917C2.18993 5.35175 1.64878 5.20232 1.16492 4.93333V4.97667C1.16509 5.78142 1.44356 6.56135 1.95313 7.18422C2.46269 7.80709 3.17199 8.23456 3.96075 8.39417C3.4471 8.53337 2.90851 8.55388 2.38576 8.45417C2.60814 9.14686 3.04159 9.75267 3.62541 10.1868C4.20924 10.6209 4.9142 10.8615 5.64159 10.875C4.91866 11.4428 4.0909 11.8625 3.20566 12.1101C2.32041 12.3578 1.39503 12.4285 0.482422 12.3183C2.0755 13.3429 3.93 13.8868 5.82409 13.885C12.2349 13.885 15.7408 8.57417 15.7408 3.96833C15.7408 3.81833 15.7366 3.66667 15.7299 3.51833C16.4123 3.02514 17.0013 2.41418 17.4691 1.71417L17.4683 1.71333Z"
+                            fill="" />
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <svg class="fill-white hover:fill-secondary ease-in-out duration-300" width="17" height="16"
+                          viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M3.78353 2.16665C3.78331 2.60867 3.6075 3.03251 3.29478 3.34491C2.98207 3.65732 2.55806 3.8327 2.11603 3.83248C1.674 3.83226 1.25017 3.65645 0.937761 3.34373C0.625357 3.03102 0.449975 2.60701 0.450196 2.16498C0.450417 1.72295 0.626223 1.29912 0.93894 0.986712C1.25166 0.674307 1.67567 0.498925 2.1177 0.499146C2.55972 0.499367 2.98356 0.675173 3.29596 0.98789C3.60837 1.30061 3.78375 1.72462 3.78353 2.16665V2.16665ZM3.83353 5.06665H0.500195V15.5H3.83353V5.06665ZM9.1002 5.06665H5.78353V15.5H9.06686V10.025C9.06686 6.97498 13.0419 6.69165 13.0419 10.025V15.5H16.3335V8.89165C16.3335 3.74998 10.4502 3.94165 9.06686 6.46665L9.1002 5.06665V5.06665Z"
+                            fill="" />
+                        </svg>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+            </div>
+
+            <h4 class="text-xl md:text-title-sm text-black dark:text-white mt-7.5 mb-1"> Sparsh Akhaury</h4>
+            <p>Web Designer & Devloper</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===== Team End ===== -->
+
+    <!-- ===== Contact Start ===== -->
+    <section id="contact" class="relative overflow-hidden bg-whiter dark:bg-blacksection py-20 lg:py-25 xl:py-30">
+      <!-- Bg Shapes -->
+      <img src="images/shape-06.svg" alt="Shape" class="absolute top-[5%] left-[10%]" />
+      <img src="images/shape-03.svg" alt="Shape" class="absolute top-[25%] right-[20%]" />
+      <img src="images/shape-07.svg" alt="Shape" class="absolute bottom-[10%] right-[5%] w-25" />
+      <img src="images/shape-12.svg" alt="Shape" class="absolute bottom-0 left-0" />
+      <img src="images/shape-13.svg" alt="Shape" class="absolute top-0 right-0" />
+
+      <!-- Section Title Start -->
+      <div
+        x-data="{ sectionTitle: `Let’s Stay Connected`, sectionTitleText: `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using.`}">
+        <div class="animate_top mx-auto max-w-1390 text-center px-4 md:px-8 xl:px-0">
+    <h2
+            x-text="sectionTitle"
+            class="font-semibold text-3xl xl:text-title-xl text-black dark:text-white md:w-4/5 xl:w-1/2 mx-auto mb-4.5"
+    >
+    </h2>
+    <p class="mx-auto md:w-4/5 lg:w-3/5 xl:w-[46%]" x-text="sectionTitleText"></p>
+</div>
+
+
+      </div>
+      <!-- Section Title End -->
+
+      <div class="relative z-10 mx-auto max-w-1280 px-4 md:px-8 xl:px-9 mt-12.5 lg:mt-20">
+        <div class="flex flex-wrap md:flex-nowrap flex-col-reverse md:flex-row md:justify-between gap-7.5 xl:gap-10">
+          <div
+            class="animate_top w-full md:w-2/5 lg:w-1/3 shadow-3 rounded-lg bg-white dark:bg-black p-7.5 xl:p-12.5 relative overflow-hidden">
+            <!-- Bg Shapes -->
+            <img src="images/shape-03.svg" alt="Shape" class="absolute right-5 top-5 w-7.5" />
+            <img src="images/shape-06.svg" alt="Shape" class="absolute right-5 bottom-5 w-6 rotate-180" />
+
+            <div class="mb-10">
+              <h4 class="text-title-xsm text-black dark:text-white mb-1.5">Email Address</h4>
+              <p><a href="mailto:infor@ekaantik.com">infor@ekaantik.com</a></p>
+              <p><a href="mailto:architmehta108@gmail.com">architmehta108@gmail.com</a></p>
+
+            </div>
+            <div class="mb-10">
+              <h4 class="text-title-xsm text-black dark:text-white mb-1.5">Office Location</h4>
+              <p>G-108, Titanium City Center,
+                Shyamal Ahmedabad, India - 380015</p>
+            </div>
+            <div class="mb-10">
+              <h4 class="text-title-xsm text-black dark:text-white mb-1.5">Phone Number</h4>
+              <p><a href="#"> (+91) 9428448108</a></p>
+            </div>
+
+
+            <span class="block h-[1px] bg-strokedark dark:bg-stroke mt-5 mb-10"></span>
+
+            <div>
+              <h4 class="text-title-xsm text-black dark:text-white mb-7.5">Social Media</h4>
+              <ul class="flex items-center gap-4">
+
+                <li>
+                  <a href="https://twitter.com/ekaantik_" target="_blank"
+                    class="group flex items-center justify-center w-10 h-10 rounded-full ease-in-out duration-300 ">
+                    <svg class="fill-body  ease-in-out duration-300" width="20" height="16" viewBox="0 0 20 16"
+                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M19.3153 2.18484C18.6155 2.4944 17.8733 2.6977 17.1134 2.78801C17.9144 2.30899 18.5138 1.55511 18.8001 0.666844C18.0484 1.11418 17.2244 1.42768 16.3654 1.59726C15.7885 0.979958 15.0238 0.57056 14.1901 0.432713C13.3565 0.294866 12.5007 0.436294 11.7558 0.835009C11.0108 1.23372 10.4185 1.86739 10.0708 2.63749C9.72313 3.40759 9.63963 4.27098 9.83327 5.09343C8.30896 5.01703 6.81775 4.62091 5.45645 3.93079C4.09516 3.24067 2.89423 2.27197 1.93161 1.08759C1.59088 1.67284 1.41182 2.33814 1.41278 3.01534C1.41278 4.34451 2.08928 5.51876 3.11778 6.20626C2.50912 6.1871 1.91386 6.02273 1.38161 5.72685V5.77451C1.38179 6.65974 1.68811 7.51766 2.24864 8.20282C2.80916 8.88797 3.58938 9.3582 4.45703 9.53376C3.89201 9.68688 3.29956 9.70945 2.72453 9.59976C2.96915 10.3617 3.44595 11.0281 4.08815 11.5056C4.73035 11.9831 5.50581 12.2478 6.30594 12.2627C5.51072 12.8872 4.60019 13.3489 3.62642 13.6213C2.65264 13.8938 1.63473 13.9716 0.630859 13.8503C2.38325 14.9773 4.4232 15.5756 6.50669 15.5737C13.5586 15.5737 17.415 9.73176 17.415 4.66535C17.415 4.50035 17.4104 4.33351 17.4031 4.17035C18.1537 3.62783 18.8016 2.95578 19.3162 2.18576L19.3153 2.18484Z"
+                        fill="" />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/company/ekaantik-software-solutions/" target="_blank"
+                    class="group flex items-center justify-center w-10 h-10 rounded-full ease-in-out duration-300 ">
+                    <svg class="fill-body  ease-in-out duration-300" width="19" height="18" viewBox="0 0 19 18"
+                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M4.36198 2.58327C4.36174 3.0695 4.16835 3.53572 3.82436 3.87937C3.48037 4.22301 3.01396 4.41593 2.52773 4.41569C2.0415 4.41545 1.57528 4.22206 1.23164 3.87807C0.887991 3.53408 0.69507 3.06767 0.695313 2.58144C0.695556 2.09521 0.888943 1.62899 1.23293 1.28535C1.57692 0.941701 2.04333 0.748781 2.52956 0.749024C3.01579 0.749267 3.48201 0.942654 3.82566 1.28664C4.1693 1.63063 4.36222 2.09704 4.36198 2.58327ZM4.41698 5.77327H0.750313V17.2499H4.41698V5.77327ZM10.2103 5.77327H6.56198V17.2499H10.1736V11.2274C10.1736 7.87244 14.5461 7.56077 14.5461 11.2274V17.2499H18.167V9.98077C18.167 4.32494 11.6953 4.53577 10.1736 7.31327L10.2103 5.77327Z"
+                        fill="" />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.upwork.com/agencies/1625825920129933312/"
+                    class="group flex items-center justify-center w-10 h-10 rounded-full ease-in-out duration-300 ">
+                    <img src="images/upwork.svg" alt="" width="22" height="22"
+                      class="fill-body  ease-in-out duration-300" style="filter: grayscale(100%);">
+                  </a>
+                </li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+
+          <div class="animate_top w-full md:w-3/5 lg:w-2/3 shadow-3 rounded-lg bg-white dark:bg-black p-7.5 xl:p-14">
+            <form action="https://formbold.com/s/unique_form_id" method="POST">
+              <div class="flex flex-col lg:flex-row lg:justify-between gap-7.5 lg:gap-10 mb-7.5">
+                <div class="w-full lg:w-1/2">
+                  <label class="block mb-4" for="fullname">Full name</label>
+                  <input type="text" name="fullname" id="fullname" placeholder="Devid Wonder"
+                    class="w-full bg-transparent rounded-lg shadow-4 dark:shadow-none border border-strokedark dark:border-stroke focus-visible:outline-none focus:border-primary dark:focus:border-primary focus:shadow-5 placeholder:text-body/50 py-3.5 px-6" />
+                </div>
+
+                <div class="w-full lg:w-1/2">
+                  <label class="block mb-4" for="email">Email address</label>
+                  <input type="email" name="email" id="email" placeholder="example@gmail.com"
+                    class="w-full bg-transparent rounded-lg shadow-4 dark:shadow-none border border-strokedark dark:border-stroke focus-visible:outline-none focus:border-primary dark:focus:border-primary focus:shadow-5 placeholder:text-body/50 py-3.5 px-6" />
+                </div>
               </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+
+              <div class="flex flex-col lg:flex-row lg:justify-between gap-7.5 lg:gap-10 mb-7.5">
+                <div class="w-full lg:w-1/2">
+                  <label class="block mb-4" for="phone">Phone number</label>
+                  <input type="text" name="phone" id="phone" placeholder="+009 3342 3432"
+                    class="w-full bg-transparent rounded-lg shadow-4 dark:shadow-none border border-strokedark dark:border-stroke focus-visible:outline-none focus:border-primary dark:focus:border-primary focus:shadow-5 placeholder:text-body/50 py-3.5 px-6" />
+                </div>
+
+                <div class="w-full lg:w-1/2">
+                  <label class="block mb-4" for="subject">Subject</label>
+                  <input type="text" for="subject" id="subject" placeholder="Type your subject"
+                    class="w-full bg-transparent rounded-lg shadow-4 dark:shadow-none border border-strokedark dark:border-stroke focus-visible:outline-none focus:border-primary dark:focus:border-primary focus:shadow-5 placeholder:text-body/50 py-3.5 px-6" />
+                </div>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+
+              <div class="mb-10">
+                <label class="block mb-4" for="message">Message</label>
+                <textarea placeholder="Message" rows="4" name="message" id="message"
+                  class="w-full bg-transparent rounded-lg shadow-4 dark:shadow-none border border-strokedark dark:border-stroke focus-visible:outline-none focus:border-primary dark:focus:border-primary focus:shadow-5 placeholder:text-body/50 p-6"></textarea>
+              </div>
+
+              <div class="flex justify-center">
+                <button
+                  class="inline-flex rounded-full text-white bg-primary ease-in-out duration-300 px-7.5 py-3 hover:shadow-1">
+                  <a href="mailto:architmehta108@gmail.com">Send
+                    Message</a></button>
+              </div>
             </form>
           </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===== Contact End ===== -->
 
-        </div> -->
+    <!-- ===== CTA Start ===== -->
+    <section class="relative overflow-hidden bg-primary py-20">
+  <!-- Bg Shape -->
+  <img class="absolute bottom-0 right-0" src="images/shape-16.svg" alt="Bg Shape" />
+
+  <div class="mx-auto max-w-1280 relative z-10 px-4 md:px-8 xl:px-5">
+    <div class="flex flex-wrap md:flex-nowrap md:items-center md:justify-between gap-8">
+      <div class="animate_left lg:w-1/2">
+        <h2 class="font-semibold text-3xl lg:text-4xl xl:text-title-xl text-white mb-4">
+          Join us to scale your business
+        </h2>
 
       </div>
-    </section><!-- End Contact Section -->
+      <div class="animate_right flex-shrink-0">
+        <a href="#"
+          class="inline-flex font-medium text-black bg-white rounded-full ease-out duration-300 hover:shadow-xl py-3 px-7.5">
+          Get Started
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+    <!-- ===== CTA End ===== -->
+  </main>
+  <!-- ===== Footer Start ===== -->
+  <!-- <footer>
+  <div class="mx-auto max-w-1390 px-4 md:px-8 2xl:px-0">
 
-  </main><!-- End #main -->
+    <div class="py-20 lg:py-25">
+      <div class="flex flex-wrap lg:justify-between gap-8 lg:gap-0">
+        <div class="animate_top w-1/2 lg:w-1/4">
+          <a href="index.html">
+            <img src="./images/logo/logo.png" alt="Logo" class="dark:hidden w-10" />
+            <p class="mt-2 dark:hidden">Ekaantik Software Solutions</p>
+            <img src="./images/logo/logo-dark.png" alt="Logo" class="hidden dark:block w-10" />
+            <p class="mt-2 hidden dark:block">Ekaantik Software Solutions</p>
+          </a>
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
+          <p class="mt-5 mb-10">To pioneer transformative digital solutions, empowering businesses worldwide to thrive
+            in an ever-evolving technological landscape.</p>
 
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
+          <ul class="flex items-center gap-5">
+            <li>
+              <a href="#">
+                <svg class="fill-[#D1D8E0] hover:fill-primary transition-all duration-300" width="24" height="24"
+                  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_48_1499)">
+                    <path
+                      d="M14 13.5H16.5L17.5 9.5H14V7.5C14 6.47 14 5.5 16 5.5H17.5V2.14C17.174 2.097 15.943 2 14.643 2C11.928 2 10 3.657 10 6.7V9.5H7V13.5H10V22H14V13.5Z"
+                      fill="" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_48_1499">
+                      <rect width="24" height="24" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <svg class="fill-[#D1D8E0] hover:fill-primary transition-all duration-300" width="24" height="24"
+                  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_48_1502)">
+                    <path
+                      d="M22.162 5.65593C21.3985 5.99362 20.589 6.2154 19.76 6.31393C20.6337 5.79136 21.2877 4.96894 21.6 3.99993C20.78 4.48793 19.881 4.82993 18.944 5.01493C18.3146 4.34151 17.4803 3.89489 16.5709 3.74451C15.6615 3.59413 14.7279 3.74842 13.9153 4.18338C13.1026 4.61834 12.4564 5.30961 12.0771 6.14972C11.6978 6.98983 11.6067 7.93171 11.818 8.82893C10.1551 8.74558 8.52832 8.31345 7.04328 7.56059C5.55823 6.80773 4.24812 5.75098 3.19799 4.45893C2.82628 5.09738 2.63095 5.82315 2.63199 6.56193C2.63199 8.01193 3.36999 9.29293 4.49199 10.0429C3.828 10.022 3.17862 9.84271 2.59799 9.51993V9.57193C2.59819 10.5376 2.93236 11.4735 3.54384 12.221C4.15532 12.9684 5.00647 13.4814 5.95299 13.6729C5.33661 13.84 4.6903 13.8646 4.06299 13.7449C4.32986 14.5762 4.85 15.3031 5.55058 15.824C6.25117 16.345 7.09712 16.6337 7.96999 16.6499C7.10247 17.3313 6.10917 17.8349 5.04687 18.1321C3.98458 18.4293 2.87412 18.5142 1.77899 18.3819C3.69069 19.6114 5.91609 20.2641 8.18899 20.2619C15.882 20.2619 20.089 13.8889 20.089 8.36193C20.089 8.18193 20.084 7.99993 20.076 7.82193C20.8949 7.2301 21.6016 6.49695 22.163 5.65693L22.162 5.65593Z"
+                      fill="" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_48_1502">
+                      <rect width="24" height="24" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <svg class="fill-[#D1D8E0] hover:fill-primary transition-all duration-300" width="24" height="24"
+                  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_48_1505)">
+                    <path
+                      d="M6.94 5.00002C6.93974 5.53046 6.72877 6.03906 6.35351 6.41394C5.97825 6.78883 5.46944 6.99929 4.939 6.99902C4.40857 6.99876 3.89997 6.78779 3.52508 6.41253C3.1502 6.03727 2.93974 5.52846 2.94 4.99802C2.94027 4.46759 3.15124 3.95899 3.5265 3.5841C3.90176 3.20922 4.41057 2.99876 4.941 2.99902C5.47144 2.99929 5.98004 3.21026 6.35492 3.58552C6.72981 3.96078 6.94027 4.46959 6.94 5.00002ZM7 8.48002H3V21H7V8.48002ZM13.32 8.48002H9.34V21H13.28V14.43C13.28 10.77 18.05 10.43 18.05 14.43V21H22V13.07C22 6.90002 14.94 7.13002 13.28 10.16L13.32 8.48002Z"
+                      fill="" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_48_1505">
+                      <rect width="24" height="24" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <svg class="fill-[#D1D8E0] hover:fill-primary transition-all duration-300" width="24" height="24"
+                  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_48_1508)">
+                    <path
+                      d="M7.443 5.3501C8.082 5.3501 8.673 5.4001 9.213 5.5481C9.70301 5.63814 10.1708 5.82293 10.59 6.0921C10.984 6.3391 11.279 6.6861 11.475 7.1311C11.672 7.5761 11.77 8.1211 11.77 8.7141C11.77 9.4071 11.623 10.0001 11.279 10.4451C10.984 10.8911 10.492 11.2861 9.902 11.5831C10.738 11.8311 11.377 12.2761 11.77 12.8691C12.164 13.4631 12.41 14.2051 12.41 15.0461C12.41 15.7391 12.262 16.3321 12.016 16.8271C11.77 17.3221 11.377 17.7671 10.934 18.0641C10.4528 18.3825 9.92084 18.6165 9.361 18.7561C8.771 18.9051 8.181 19.0041 7.591 19.0041H1V5.3501H7.443ZM7.049 10.8901C7.59 10.8901 8.033 10.7421 8.377 10.4951C8.721 10.2481 8.869 9.8021 8.869 9.2581C8.869 8.9611 8.819 8.6641 8.721 8.4671C8.623 8.2691 8.475 8.1201 8.279 7.9721C8.082 7.8731 7.885 7.7741 7.639 7.7251C7.393 7.6751 7.148 7.6751 6.852 7.6751H4V10.8911H7.05L7.049 10.8901ZM7.197 16.7281C7.492 16.7281 7.787 16.6781 8.033 16.6291C8.28138 16.5819 8.51628 16.4805 8.721 16.3321C8.92139 16.1873 9.08903 16.002 9.213 15.7881C9.311 15.5411 9.41 15.2441 9.41 14.8981C9.41 14.2051 9.213 13.7101 8.82 13.3641C8.426 13.0671 7.885 12.9191 7.246 12.9191H4V16.7291H7.197V16.7281ZM16.689 16.6781C17.082 17.0741 17.672 17.2721 18.459 17.2721C19 17.2721 19.492 17.1241 19.885 16.8771C20.279 16.5801 20.525 16.2831 20.623 15.9861H23.033C22.639 17.1731 22.049 18.0141 21.263 18.5581C20.475 19.0531 19.541 19.3501 18.41 19.3501C17.6864 19.3523 16.9688 19.2179 16.295 18.9541C15.6887 18.7266 15.148 18.3529 14.721 17.8661C14.2643 17.4107 13.9267 16.8498 13.738 16.2331C13.492 15.5901 13.393 14.8981 13.393 14.1061C13.393 13.3641 13.492 12.6721 13.738 12.0281C13.9745 11.4082 14.3245 10.8378 14.77 10.3461C15.213 9.9011 15.754 9.5061 16.344 9.2581C17.0007 8.99416 17.7022 8.85969 18.41 8.8621C19.246 8.8621 19.984 9.0111 20.623 9.3571C21.263 9.7031 21.754 10.0991 22.148 10.6931C22.5499 11.2636 22.8494 11.8998 23.033 12.5731C23.131 13.2651 23.18 13.9581 23.131 14.7491H16C16 15.5411 16.295 16.2831 16.689 16.6791V16.6781ZM19.787 11.4841C19.443 11.1381 18.902 10.9401 18.262 10.9401C17.82 10.9401 17.475 11.0391 17.18 11.1871C16.885 11.3361 16.689 11.5341 16.492 11.7321C16.311 11.9234 16.1912 12.1643 16.148 12.4241C16.098 12.6721 16.049 12.8691 16.049 13.0671H20.475C20.377 12.3251 20.131 11.8311 19.787 11.4841V11.4841ZM15.459 6.2901H20.967V7.6261H15.46V6.2901H15.459Z" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_48_1508">
+                      <rect width="24" height="24" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
 
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>Ekaantik Software Solutions</h3>
-            <p>
-              G-108, Titanium City Center, <br>    
-              ShyamalAhmedabad<br>
-              <br>
-              <strong>Phone:</strong> (+91) 9428448108 <br>
-              <strong>Email:</strong> architmehta108gmail.com<br>
-            </p>
-          </div>
+        <div class="w-full lg:w-[70%] flex flex-col md:flex-row md:justify-between gap-8 md:gap-0">
+          <div class="animate_top">
+            <h4 class="text-black dark:text-white text-2xl mb-9">Quick Links</h4>
 
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+              <li><a href="#" class="inline-block hover:text-primary mb-3">Home</a></li>
+              <li><a href="#" class="inline-block hover:text-primary mb-3">Product</a></li>
+              <li>
+                <a href="#" class="inline-block hover:text-primary mb-3">
+                  Careers
+                  <span
+                    class="inline-block font-medium text-xs text-white bg-meta-green rounded-full py-0.5 px-3 ml-2.5">Hiring</span>
+                </a>
+              </li>
+              <li><a href="#" class="inline-block hover:text-primary mb-3">Pricing</a></li>
             </ul>
           </div>
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>              
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web/App Development End to End</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">AI/ML Developement</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">DevOps and Automation</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Cloud computing</a></li>
-              <!-- <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li> -->
+          <div class="animate_top">
+            <h4 class="text-black dark:text-white text-2xl mb-9">Services</h4>
+
+            <ul>
+              <li><a href="#" class="inline-block hover:text-primary mb-3">Web Development</a></li>
+              <li><a href="#" class="inline-block hover:text-primary mb-3">Graphics Design</a></li>
+              <li><a href="#" class="inline-block hover:text-primary mb-3">Digital Marketing</a></li>
+              <li><a href="#" class="inline-block hover:text-primary mb-3">Ui/Ux Design</a></li>
             </ul>
           </div>
 
-          <!--<div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Join Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-             <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form> 
-          </div>-->
+          <div class="animate_top">
+            <h4 class="text-black dark:text-white text-2xl mb-9">Support</h4>
 
+            <ul>
+              <li><a href="#" class="inline-block hover:text-primary mb-3">Company</a></li>
+              <li><a href="#" class="inline-block hover:text-primary mb-3">Press media</a></li>
+              <li><a href="#" class="inline-block hover:text-primary mb-3">Our Blog</a></li>
+              <li><a href="#" class="inline-block hover:text-primary mb-3">Contact Us</a></li>
+            </ul>
+          </div>
+
+          <div class="animate_top">
+            <h4 class="text-black dark:text-white text-2xl mb-9">Newsletter</h4>
+            <p class="mb-4 w-[90%]">Subscribe to receive future updates</p>
+
+            <form action="https://formbold.com/s/unique_form_id" method="POST">
+              <div class="relative">
+                <input type="text" placeholder="Email address"
+                  class="w-full dark:bg-black border border-strokedark dark:border-stroke shadow-3 dark:shadow-none rounded-full focus:outline-none focus:border-primary dark:focus:border-primary py-3 px-6" />
+
+                <button class="absolute right-0 p-4">
+                  <svg class="fill-body dark:fill-white hover:fill-primary" width="20" height="20" viewBox="0 0 20 20"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_48_1487)">
+                      <path
+                        d="M3.1175 1.17318L18.5025 9.63484C18.5678 9.67081 18.6223 9.72365 18.6602 9.78786C18.6982 9.85206 18.7182 9.92527 18.7182 9.99984C18.7182 10.0744 18.6982 10.1476 18.6602 10.2118C18.6223 10.276 18.5678 10.3289 18.5025 10.3648L3.1175 18.8265C3.05406 18.8614 2.98262 18.8792 2.91023 18.8781C2.83783 18.8769 2.76698 18.857 2.70465 18.8201C2.64232 18.7833 2.59066 18.7308 2.55478 18.6679C2.51889 18.6051 2.50001 18.5339 2.5 18.4615V1.53818C2.50001 1.46577 2.51889 1.39462 2.55478 1.33174C2.59066 1.26885 2.64232 1.2164 2.70465 1.17956C2.76698 1.14272 2.83783 1.12275 2.91023 1.12163C2.98262 1.12051 3.05406 1.13828 3.1175 1.17318ZM4.16667 10.8332V16.3473L15.7083 9.99984L4.16667 3.65234V9.16651H8.33333V10.8332H4.16667Z"
+                        fill="" />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_48_1487">
+                        <rect width="20" height="20" fill="white" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="container d-md-flex py-4">
-
-      <div class="me-md-auto text-center text-md-start">
-        <div class="copyright">
-          &copy; Copyright <strong><span>Ekaantik Software Solutions</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/lumia-bootstrap-business-template/ -->
-          <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
-        </div>
+    <div
+      class="border-t border-strokedark dark:border-stroke flex flex-wrap flex-col lg:flex-row items-center justify-center lg:justify-between gap-5 lg:gap-0 py-7.5">
+      <div class="animate_top">
+        <ul class="flex items-center gap-8">
+          <li><a href="#" class="hover:text-primary">English</a></li>
+          <li><a href="#" class="hover:text-primary">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-primary">Support</a></li>
+        </ul>
       </div>
-      <div class="social-links text-center text-md-right pt-3 pt-md-0">
-        <!-- <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a> -->
-        <!-- <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a> -->
-        <!-- <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a> -->
-        <!-- <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a> -->
-        <!-- <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a> -->
+
+      <div class="animate_top">
+        <p>&copy; Ekaantik Software Solutions. All Rights Reserved</p>
       </div>
     </div>
-  </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  </div>
+</footer> -->
+  <!-- ===== Footer End ===== -->
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <!-- ====== Back To Top Start ===== -->
+  <button
+  class="hidden items-center justify-center w-10 h-10 rounded-[4px] shadow-solid-5 bg-primary hover:bg-primaryho fixed bottom-8 right-8 z-999"
+  @click="window.scrollTo({top: 0, behavior: 'smooth'})"
+  @scroll.window="scrollTop = (window.pageYOffset > 50) ? true : false"
+  :class="{ '!flex' : scrollTop }"
+>
+  <svg class="fill-white w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <path d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z" />
+  </svg>
+</button>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <!-- ====== Back To Top End ===== -->
 
-</body>
+  <script>
+    //  Pricing Table
+    const setup = () => {
+      return {
+        isNavOpen: false,
+
+        billPlan: 'monthly',
+
+        plans: [
+          {
+            name: 'Starter',
+            price: {
+              monthly: 29,
+              annually: 29 * 12 - 199,
+            },
+            features: ['400 GB Storaget', 'Unlimited Photos & Videos', 'Exclusive Support'],
+          },
+          {
+            name: 'Growth Plan',
+            price: {
+              monthly: 59,
+              annually: 59 * 12 - 100,
+            },
+            features: ['400 GB Storaget', 'Unlimited Photos & Videos', 'Exclusive Support'],
+          },
+          {
+            name: 'Business',
+            price: {
+              monthly: 139,
+              annually: 139 * 12 - 100,
+            },
+            features: ['400 GB Storaget', 'Unlimited Photos & Videos', 'Exclusive Support'],
+          },
+        ],
+      };
+    };
+  </script>
+<script defer src="bundle.js"></script></body>
 
 </html>
