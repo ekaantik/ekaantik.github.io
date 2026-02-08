@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DevOps & Cloud Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #f8fafc;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    section {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-alt {
+      background: #f1f5f9;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: #334155;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero img {
+      max-width: 100%;
+      border-radius: 16px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .cta a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .cta a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(37,99,235,0.3);
+    }
+
+    /* ===== Cards ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, #2563eb, #60a5fa);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    /* ===== Process ===== */
+    .process {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .step {
+      background: #fff;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    .step span {
+      display: inline-flex;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #2563eb;
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    /* ===== Animations ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      h2 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="fade-up">
+      <h1>DevOps & Cloud Services</h1>
+      <p>
+        We help you build, deploy, and scale modern cloud infrastructure using
+        DevOps best practices, automation, and secure cloud-native solutions.
+      </p>
+      <div class="cta">
+        <a href="contact.html">Talk to Our Experts</a>
+      </div>
+    </div>
+
+    <div class="fade-up">
+      <img src="images/Devops.png" alt="DevOps & Cloud">
+    </div>
+  </section>
+
+  <!-- ===== OVERVIEW ===== -->
+  <section class="section-alt">
+    <h2 class="fade-up">Service Overview</h2>
+    <p class="fade-up">
+      Our DevOps & Cloud services are designed to streamline your development lifecycle,
+      improve reliability, and reduce time-to-market using AWS, Azure, and Google Cloud.
+    </p>
+  </section>
+
+  <!-- ===== WHAT WE OFFER ===== -->
+  <section>
+    <h2 class="fade-up">What We Offer</h2>
+
+    <div class="grid">
+      <div class="card fade-up">
+        <h3>CI/CD Pipelines</h3>
+        <p>Automated build, test, and deployment pipelines for faster and safer releases.</p>
+      </div>
+      <div class="card fade-up">
+        <h3>AWS / Azure / GCP</h3>
+        <p>Cloud architecture, migration, and management across major cloud platforms.</p>
+      </div>
+      <div class="card fade-up">
+        <h3>Infrastructure as Code</h3>
+        <p>Automated infrastructure provisioning using Terraform and Cloud templates.</p>
+      </div>
+      <div class="card fade-up">
+        <h3>Docker & Kubernetes</h3>
+        <p>Containerization and orchestration for scalable and resilient applications.</p>
+      </div>
+      <div class="card fade-up">
+        <h3>Monitoring & Logging</h3>
+        <p>Proactive monitoring and logging to ensure performance and system health.</p>
+      </div>
+      <div class="card fade-up">
+        <h3>Security Optimization</h3>
+        <p>Security best practices, audits, and automation to protect your infrastructure.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section class="section-alt">
+    <h2 class="fade-up">Our Process</h2>
+
+    <div class="process">
+      <div class="step fade-up">
+        <span>1</span>
+        <h3>Discovery</h3>
+        <p>We understand your business goals and technical requirements.</p>
+      </div>
+      <div class="step fade-up">
+        <span>2</span>
+        <h3>Design</h3>
+        <p>We design a secure, scalable, and cost-effective cloud architecture.</p>
+      </div>
+      <div class="step fade-up">
+        <span>3</span>
+        <h3>Implementation</h3>
+        <p>We implement automation, CI/CD, and cloud infrastructure.</p>
+      </div>
+      <div class="step fade-up">
+        <span>4</span>
+        <h3>Optimize</h3>
+        <p>We monitor, optimize, and continuously improve performance.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCROLL ANIMATION ===== -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>

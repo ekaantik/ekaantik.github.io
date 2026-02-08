@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Automation Testing Services</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, sans-serif;
+        }
+
+        body {
+            background: #f8fafc;
+            color: #0f172a;
+            line-height: 1.7;
+        }
+
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-alt {
+            background: #f1f5f9;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            color: #334155;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero img {
+            max-width: 100%;
+            border-radius: 16px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-10px)
+            }
+        }
+
+        .cta a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(22, 163, 74, 0.3);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #16a34a, #4ade80);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .process {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .step {
+            background: #fff;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .step span {
+            display: inline-flex;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #16a34a;
+            color: #fff;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-up.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            h2 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="fade-up">
+            <h1>Automation Testing Services</h1>
+            <p>
+                We provide comprehensive automation and performance testing solutions to ensure
+                your software is reliable, scalable, and ready for real-world usage.
+            </p>
+            <div class="cta">
+                <a href="contact.html">Improve Your Quality</a>
+            </div>
+        </div>
+
+        <div class="fade-up">
+            <img src="images/AutomatedTesting.png" alt="Automation Testing">
+        </div>
+    </section>
+
+    <!-- ===== OVERVIEW ===== -->
+    <section class="section-alt">
+        <h2 class="fade-up">Service Overview</h2>
+        <p class="fade-up">
+            Our QA experts deliver automated testing, load testing, and performance testing solutions
+            to detect issues early and improve software quality while reducing release cycles.
+        </p>
+    </section>
+
+    <!-- ===== WHAT WE OFFER ===== -->
+    <section>
+        <h2 class="fade-up">What We Offer</h2>
+
+        <div class="grid">
+            <div class="card fade-up">
+                <h3>Test Automation</h3>
+                <p>Automated test suites to improve coverage and reduce manual effort.</p>
+            </div>
+            <div class="card fade-up">
+                <h3>Performance Testing</h3>
+                <p>Load, stress, and scalability testing for high-traffic systems.</p>
+            </div>
+            <div class="card fade-up">
+                <h3>Regression Testing</h3>
+                <p>Ensure new changes don’t break existing functionality.</p>
+            </div>
+            <div class="card fade-up">
+                <h3>CI/CD Testing Integration</h3>
+                <p>Automated tests integrated into your delivery pipelines.</p>
+            </div>
+            <div class="card fade-up">
+                <h3>Security Testing</h3>
+                <p>Identify vulnerabilities and improve application security.</p>
+            </div>
+            <div class="card fade-up">
+                <h3>Quality Assurance Consulting</h3>
+                <p>Expert guidance to improve your testing strategy and processes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROCESS ===== -->
+    <section class="section-alt">
+        <h2 class="fade-up">Our Process</h2>
+
+        <div class="process">
+            <div class="step fade-up"><span>1</span>
+                <h3>Test Strategy</h3>
+                <p>We define the right testing approach for your product.</p>
+            </div>
+            <div class="step fade-up"><span>2</span>
+                <h3>Test Design</h3>
+                <p>We create test cases and automation frameworks.</p>
+            </div>
+            <div class="step fade-up"><span>3</span>
+                <h3>Execution</h3>
+                <p>We run automated and performance tests across environments.</p>
+            </div>
+            <div class="step fade-up"><span>4</span>
+                <h3>Reporting & Optimization</h3>
+                <p>We analyze results and help you improve quality continuously.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('show');
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+
+</html>
