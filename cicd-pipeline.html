@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Project Details</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#f4f6f9;
+  color:#333;
+}
+
+/* ===== Header Image ===== */
+.project-hero{
+  width:100%;
+  height:320px;
+  object-fit:cover;
+}
+
+/* ===== Title Section ===== */
+.project-title{
+  text-align:center;
+  padding:40px 20px 10px;
+}
+
+.project-title h1{
+  margin:0;
+  font-size:36px;
+  color:#0d47a1;
+}
+
+.project-title p{
+  max-width:800px;
+  margin:15px auto;
+  font-size:18px;
+  color:#555;
+}
+
+/* ===== Steps Grid ===== */
+.steps{
+  max-width:1100px;
+  margin:40px auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+  padding:0 20px 60px;
+}
+
+.step-card{
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+  text-align:center;
+  transition:0.3s;
+}
+
+.step-card:hover{
+  transform:translateY(-5px);
+}
+
+.step-number{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:#0d47a1;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 15px;
+  font-weight:bold;
+}
+
+.step-card h3{
+  margin:10px 0;
+  color:#0d47a1;
+}
+
+.step-card p{
+  font-size:14px;
+  color:#555;
+}
+
+/* ===== Responsive ===== */
+@media(max-width:992px){
+  .steps{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:600px){
+  .steps{
+    grid-template-columns:1fr;
+  }
+  .project-title h1{
+    font-size:26px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Header Image ===== -->
+<img src="images/DevOps-Portfolio1.png" class="project-hero" alt="Project">
+
+<!-- ===== Project Title & Description ===== -->
+<div class="project-title">
+  <h1>CI-CD Pipeline</h1>
+  <p>
+    This project analyzes customer feedback using Machine Learning algorithms to determine
+    positive, negative, and neutral sentiments from text data.
+  </p>
+</div>
+
+<!-- ===== Step by Step Blocks ===== -->
+<div class="steps">
+
+  <div class="step-card">
+    <div class="step-number">1</div>
+<h3>Requirement Analysis</h3>
+    <p>Understanding client needs, defining scope, and planning architecture.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-number">2</div>
+    <h3>Design & Architecture</h3>
+    <p>Designing system flow, database, and UI wireframes for implementation.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-number">3</div>
+<h3>Development</h3>
+    <p>Implementing features using modern technologies and best coding practices.</p>  </div>
+
+  <div class="step-card">
+    <div class="step-number">4</div>
+       <h3>Testing</h3>
+    <p>Unit testing, integration testing, and performance validation.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-number">5</div>
+<h3>Deployment</h3>
+    <p>Deploying application to cloud/server with CI/CD pipeline.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-number">6</div>
+    <h3>Maintenance</h3>
+    <p>Monitoring, updates, and continuous improvement after deployment.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
