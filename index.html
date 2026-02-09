@@ -8,6 +8,8 @@
   <title>Ekaantik Software Solutions</title>
   <link rel="icon" href="favicon.ico">
   <link href="style.css" rel="stylesheet">
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 </head>
 
 <body x-data="{ page: 'home', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
@@ -684,229 +686,234 @@
           </div>
         </div>
       </section> -->
-  <!-- ====== Portfolio Section Start -->
-<section
-  id="portfolio"
-  x-data="{
-    activeTab: 'company',
-    showCards: 'all',
-    activeClasses: 'bg-primary text-white',
-    inactiveClasses: 'text-body-color dark:text-dark-6',
-  }"
-  class="pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] dark:bg-dark transition-all mb-5"
->
-  <div
-    x-data="{ sectionTitle: `Portfolio`, sectionTitleText: `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using.`}"
-  >
-    <div class="animate_top mx-auto max-w-1390 text-center px-4 md:px-8 xl:px-0">
-      <h2
-        x-text="sectionTitle"
-        class="font-semibold text-3xl xl:text-title-xl text-black dark:text-white md:w-4/5 xl:w-1/2 mx-auto mb-4.5"
-      ></h2>
-      <p class="mx-auto md:w-4/5 lg:w-3/5 xl:w-[46%]" x-text="sectionTitleText"></p>
-    </div>
+ 
+<!-- ====== Portfolio Section Start ====== -->
+<section id="portfolio"
+  x-data="{ filter: 'all' }"
+  style="padding:80px 20px; font-family: Arial, sans-serif; background:white; color:black;">
+
+  <!-- Inline CSS only for this section -->
+  <style>
+    #portfolio .title {text-align:center; max-width:900px; margin:0 auto 40px;}
+    #portfolio h2{
+  font-size:48px;
+  font-weight:800;
+  letter-spacing:1px;
+  margin-bottom:12px;
+  color:#0f172a;
+}
+
+   #portfolio p{
+  color:#64748b;
+  font-size:16px;
+  max-width:700px;
+  margin:0 auto;
+}
+
+
+    #portfolio .filters {text-align:center; margin-bottom:40px;}
+    #portfolio .filters button{
+      margin:5px; padding:8px 18px; border:none; border-radius:6px;
+      background:#1e293b; color:#cbd5e1; cursor:pointer; font-weight:600;
+      transition:0.3s;
+    }
+    #portfolio .filters button.active,
+    #portfolio .filters button:hover{
+      background:#3b82f6; color:white;
+    }
+
+    #portfolio .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:30px;
+      max-width:1200px;
+      margin:auto;
+    }
+
+    #portfolio .card{
+      background:white;
+      border-radius:12px;
+      overflow:hidden;
+      position:relative;
+      box-shadow:0 8px 25px rgba(0,0,0,0.08);
+      transition:0.3s;
+    }
+
+    #portfolio .card img{
+      width:100%;
+      height: 220px;
+      object-fit:cover;
+      border-radius: 10px 10px 0 0;
+      display:block;
+    }
+
+    #portfolio .card-content{
+      padding:15px;
+    }
+
+    #portfolio .tags span{
+      font-size:12px;
+      padding:4px 8px;
+      border-radius:4px;
+      margin-right:5px;
+      font-weight:600;
+    }
+
+    .company{background:#dbeafe;color:#1e3a8a;}
+    .student{background:#fef9c3;color:#854d0e;}
+    .aiml{background:#ede9fe;color:#5b21b6;}
+    .cloud{background:#dcfce7;color:#166534;}
+    .iot{background:#ffedd5;color:#9a3412;}
+    .web{background:#fce7f3;color:#9d174d;}
+
+    /* Read More  */
+    #portfolio .overlay{
+      position:absolute;
+      top:0;left:0;width:100%;height:200px;
+      background:rgba(0,0,0,0.6);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      opacity:0;
+      transition:0.3s;
+    }
+
+    #portfolio .card:hover .overlay{opacity:1;}
+
+    #portfolio .overlay a{
+      background:#3b82f6;
+      padding:8px 16px;
+      color:white;
+      border-radius:20px;
+      text-decoration:none;
+      font-weight:bold;
+    }
+
+    @media (max-width: 992px){
+  #portfolio .grid{
+    grid-template-columns:repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px){
+  #portfolio .grid{
+    grid-template-columns:1fr;
+  }
+}
+  </style>
+
+  <!-- Title -->
+  <div class="title">
+    <h2>Portfolio</h2>
+    <p>A collection of company and student projects across AI/ML, Cloud, IoT and Web technologies.</p>
   </div>
 
-  <div class="container mx-auto">
+  <!-- Filters -->
+  <div class="filters">
+    <button :class="filter=='all' && 'active'" @click="filter='all'">All</button>
+    <button :class="filter=='AI/ML' && 'active'" @click="filter='AI/ML'">AI/ML</button>
+    <button :class="filter=='Cloud/DevOps' && 'active'" @click="filter='Cloud/DevOps'">Cloud/DevOps</button>
+    <button :class="filter=='IoT' && 'active'" @click="filter='IoT'">IoT</button>
+    <button :class="filter=='Web/MobileApp' && 'active'" @click="filter='Web/MobileApp'">Web/Mobile</button>
+  </div>
 
-    <!-- Tabs -->
-    <div class="flex justify-center mt-12 mb-8 space-x-3">
-      <button
-        @click="activeTab = 'company'; showCards = 'all'"
-        :class="activeTab == 'company' ? activeClasses : inactiveClasses"
-        class="inline-block rounded-lg py-2 px-6 text-sm font-semibold transition"
-      >
-        Company Projects
-      </button>
-      <button
-        @click="activeTab = 'student'; showCards = 'all'"
-        :class="activeTab == 'student' ? activeClasses : inactiveClasses"
-        class="inline-block rounded-lg py-2 px-6 text-sm font-semibold transition"
-      >
-        Student / Intern Projects
-      </button>
-    </div>
+  <!-- Cards -->
+  <div class="grid">
 
-    <!-- Category Filters -->
-    <div class="-mx-4 flex flex-wrap justify-center mt-4">
-      <div class="w-full px-4">
-        <ul class="mb-10 flex flex-wrap justify-center space-x-1">
-          <li class="mb-1">
-            <button @click="showCards = 'all'" :class="showCards == 'all' ? activeClasses : inactiveClasses"
-              class="inline-block rounded-lg py-1.5 px-4 text-sm font-semibold transition">
-              All Projects
-            </button>
-          </li>
-          <li class="mb-1">
-            <button @click="showCards = 'IoT'" :class="showCards == 'IoT' ? activeClasses : inactiveClasses"
-              class="inline-block rounded-lg py-1.5 px-4 text-sm font-semibold transition">
-              IoT
-            </button>
-          </li>
-          <li class="mb-1">
-            <button @click="showCards = 'AI/ML'" :class="showCards == 'AI/ML' ? activeClasses : inactiveClasses"
-              class="inline-block rounded-lg py-1.5 px-4 text-sm font-semibold transition">
-              AI/ML
-            </button>
-          </li>
-          <li class="mb-1">
-            <button @click="showCards = 'Cloud/DevOps'" :class="showCards == 'Cloud/DevOps' ? activeClasses : inactiveClasses"
-              class="inline-block rounded-lg py-1.5 px-4 text-sm font-semibold transition">
-              Cloud/DevOps
-            </button>
-          </li>
-          <li class="mb-1">
-            <button @click="showCards = 'Web/MobileApp'" :class="showCards == 'Web/MobileApp' ? activeClasses : inactiveClasses"
-              class="inline-block rounded-lg py-1.5 px-4 text-sm font-semibold transition">
-              Web/MobileApp
-            </button>
-          </li>
-        </ul>
+    <!-- Sentiment Analysis -->
+    <div class="card" x-show="filter=='all' || filter=='AI/ML'">
+      <img src="images/Ai-portfolio2.jfif" class="card-img" alt="">
+      <div class="overlay">
+        <a href="sentiment-analysis.html">Read More</a>
+      </div>
+      <div class="card-content">
+        <div class="tags">
+          <span class="company">Company</span>
+          <span class="aiml">AI/ML</span>
+        </div>
+        <h3>Sentiment Analysis</h3>
       </div>
     </div>
 
-    <div class="-mx-4 flex flex-wrap px-5">
-
-      <!-- ================= COMPANY PROJECTS ================= -->
-
-      <!-- Sentiment Analysis -->
-      <div x-show="activeTab == 'company' && (showCards == 'all' || showCards == 'AI/ML')"
-        class="w-full px-4 md:w-1/2 xl:w-1/3 mb-8">
-        <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
-          <div class="group block relative z-1 overflow-hidden">
-            <img class="w-full" src="images/Ai-portfolio.png" alt="Blog" />
-            <div
-              class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10">
-              <a href="#"
-                class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-2 px-5 text-sm">
-                Read More
-              </a>
-            </div>
-          </div>
-          <div class="p-4">
-            <h4 class="font-medium text-lg text-black dark:text-white hover:text-primary mt-2">
-              Sentiment Analysis
-            </h4>
-          </div>
-        </div>
+    <!-- Cloud Hosting -->
+    <div class="card" x-show="filter=='all' || filter=='Cloud/DevOps'">
+      <img src="images/Cloud-Portfolio1.jpg" alt="">
+      <div class="overlay">
+        <a href="cloud-hosting.html">Read More</a>
       </div>
-
-      <!-- Cloud Hosting -->
-      <div x-show="activeTab == 'company' && (showCards == 'all' || showCards == 'Cloud/DevOps')"
-        class="w-full px-4 md:w-1/2 xl:w-1/3 mb-8">
-        <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
-          <div class="group block relative z-1 overflow-hidden">
-            <img class="w-full" src="images/Cloud-Portfolio.png" alt="Blog" />
-            <div
-              class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10">
-              <a href="#"
-                class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-2 px-5 text-sm">
-                Read More
-              </a>
-            </div>
-          </div>
-          <div class="p-4">
-            <h4 class="font-medium text-lg text-black dark:text-white hover:text-primary mt-2">
-              Cloud Hosting
-            </h4>
-          </div>
+      <div class="card-content">
+        <div class="tags">
+          <span class="company">Company</span>
+          <span class="cloud">Cloud</span>
         </div>
+        <h3>Cloud Hosting</h3>
       </div>
-
-      <!-- CI/CD Pipeline -->
-      <div x-show="activeTab == 'company' && (showCards == 'all' || showCards == 'Cloud/DevOps')"
-        class="w-full px-4 md:w-1/2 xl:w-1/3 mb-8">
-        <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
-          <div class="group block relative z-1 overflow-hidden">
-            <img class="w-full" src="images/DevOps-Portfolio.png" alt="Blog" />
-            <div
-              class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10">
-              <a href="#"
-                class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-2 px-5 text-sm">
-                Read More
-              </a>
-            </div>
-          </div>
-          <div class="p-4">
-            <h4 class="font-medium text-lg text-black dark:text-white hover:text-primary mt-2">
-              CI/CD Pipeline
-            </h4>
-          </div>
-        </div>
-      </div>
-
-      <!-- ================= STUDENT PROJECTS ================= -->
-
-      <!-- Mobile App -->
-      <div x-show="activeTab == 'student' && (showCards == 'all' || showCards == 'Web/MobileApp')"
-        class="w-full px-4 md:w-1/2 xl:w-1/3 mb-8">
-        <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
-          <div class="group block relative z-1 overflow-hidden">
-            <img class="w-full" src="images/mobile-portfolio.png" alt="Blog" />
-            <div
-              class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10">
-              <a href="#"
-                class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-2 px-5 text-sm">
-                Read More
-              </a>
-            </div>
-          </div>
-          <div class="p-4">
-            <h4 class="font-medium text-lg text-black dark:text-white hover:text-primary mt-2">
-              Mobile App
-            </h4>
-          </div>
-        </div>
-      </div>
-
-      <!-- Power Plant Monitoring -->
-      <div x-show="activeTab == 'student' && (showCards == 'all' || showCards == 'IoT')"
-        class="w-full px-4 md:w-1/2 xl:w-1/3 mb-8">
-        <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
-          <div class="group block relative z-1 overflow-hidden">
-            <img class="w-full" src="images/IoT-Dashboard.png" alt="Blog" />
-            <div
-              class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10">
-              <a href="#"
-                class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-2 px-5 text-sm">
-                Read More
-              </a>
-            </div>
-          </div>
-          <div class="p-4">
-            <h4 class="font-medium text-lg text-black dark:text-white hover:text-primary mt-2">
-              Power Plant Monitoring
-            </h4>
-          </div>
-        </div>
-      </div>
-
-      <!-- Web -->
-      <div x-show="activeTab == 'student' && (showCards == 'all' || showCards == 'Web/MobileApp')"
-        class="w-full px-4 md:w-1/2 xl:w-1/3 mb-8">
-        <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
-          <div class="group block relative z-1 overflow-hidden">
-            <img class="w-full" src="images/web-portfolio.png" alt="Blog" />
-            <div
-              class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10">
-              <a href="#"
-                class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-2 px-5 text-sm">
-                Read More
-              </a>
-            </div>
-          </div>
-          <div class="p-4">
-            <h4 class="font-medium text-lg text-black dark:text-white hover:text-primary mt-2">
-              Web
-            </h4>
-          </div>
-        </div>
-      </div>
-
     </div>
+
+    <!-- CI/CD -->
+    <div class="card" x-show="filter=='all' || filter=='Cloud/DevOps'">
+      <img src="images/DevOps-Portfolio1.png" alt="">
+      <div class="overlay">
+        <a href="cicd-pipeline.html">Read More</a>
+      </div>
+      <div class="card-content">
+        <div class="tags">
+          <span class="company">Company</span>
+          <span class="cloud">DevOps</span>
+        </div>
+        <h3>CI/CD Pipeline</h3>
+      </div>
+    </div>
+
+    <!-- Mobile App -->
+    <div class="card" x-show="filter=='all' || filter=='Web/MobileApp'">
+      <img src="images/mobile-portfolio2.jfif" alt="">
+      <div class="overlay">
+        <a href="mobile-app.html">Read More</a>
+      </div>
+      <div class="card-content">
+        <div class="tags">
+          <span class="student">Student</span>
+          <span class="web">Web/Mobile</span>
+        </div>
+        <h3>Mobile App</h3>
+      </div>
+    </div>
+
+    <!-- IoT -->
+    <div class="card" x-show="filter=='all' || filter=='IoT'">
+      <img src="images/IoT-Dashboard1.jpg" alt="">
+      <div class="overlay">
+        <a href="iot-dashboard.html">Read More</a>
+      </div>
+      <div class="card-content">
+        <div class="tags">
+          <span class="student">Student</span>
+          <span class="iot">IoT</span>
+        </div>
+        <h3>Power Plant Monitoring</h3>
+      </div>
+    </div>
+
+    <!-- Web -->
+    <div class="card" x-show="filter=='all' || filter=='Web/MobileApp'">
+      <img src="images/web-portfolio1.jpg" alt="">
+      <div class="overlay">
+        <a href="web-project.html">Read More</a>
+      </div>
+      <div class="card-content">
+        <div class="tags">
+          <span class="student">Student</span>
+          <span class="web">Web</span>
+        </div>
+        <h3>Web Application</h3>
+      </div>
+    </div>
+
   </div>
 </section>
-<!-- ====== Portfolio Section End -->
+<!-- ====== Portfolio Section End ====== -->
+
 
         <!-- 
             
