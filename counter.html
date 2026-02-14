@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Counter Section</title>
+
+  <style>
+    /* ===== COUNTER CSS ===== */
+
+    .ultra-counter-section {
+      position: relative;
+      padding: 120px 20px;
+      background: #ffffff;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Background Floating Shapes */
+    .ultra-bg-shape {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,99,235,0.15), transparent 70%);
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .shape1 {
+      width: 300px;
+      height: 300px;
+      top: -80px;
+      left: -80px;
+    }
+
+    .shape2 {
+      width: 250px;
+      height: 250px;
+      bottom: -60px;
+      right: -60px;
+      animation-delay: 3s;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-30px); }
+    }
+
+    /* Container */
+    .ultra-counter-container {
+      position: relative;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .ultra-counter-title {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 70px;
+      color: #1e293b;
+    }
+
+    /* Layout */
+    .ultra-counter-wrapper {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    /* Card */
+    .ultra-counter-box {
+      width: 250px;
+      padding: 55px 35px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(37,99,235,0.15);
+      box-shadow: 0 15px 50px rgba(0,0,0,0.05);
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .ultra-counter-box:nth-child(1){animation-delay:.1s;}
+    .ultra-counter-box:nth-child(2){animation-delay:.3s;}
+    .ultra-counter-box:nth-child(3){animation-delay:.5s;}
+    .ultra-counter-box:nth-child(4){animation-delay:.7s;}
+
+    .ultra-counter-box:hover {
+      transform: translateY(-14px);
+      box-shadow: 0 25px 70px rgba(37,99,235,0.15);
+      border-color: #2563EB;
+    }
+
+    /* Icon */
+    .ultra-counter-icon {
+      width: 75px;
+      height: 75px;
+      margin: 0 auto 25px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2563EB, #3B82F6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .ultra-counter-icon svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    /* Number */
+    .ultra-counter-box h3 {
+      font-size: 38px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #2563EB;
+    }
+
+    /* Text */
+    .ultra-counter-box p {
+      font-size: 16px;
+      color: #64748b;
+      margin: 0;
+    }
+
+    /* Fade animation */
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .ultra-counter-wrapper {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== Counter Section Start ===== -->
+  <section class="ultra-counter-section">
+
+    <!-- Floating Background Shapes -->
+    <div class="ultra-bg-shape shape1"></div>
+    <div class="ultra-bg-shape shape2"></div>
+
+    <div class="ultra-counter-container">
+      <h2 class="ultra-counter-title">Our Achievements</h2>
+
+      <div class="ultra-counter-wrapper">
+
+        <!-- Card 1 -->
+        <div class="ultra-counter-box">
+          <div class="ultra-counter-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M17 20h5v-2a4 4 0 0 0-5-3.87M9 20H4v-2a4 4 0 0 1 5-3.87m8-4a4 4 0 1 0-8 0 4 4 0 0 0 8 0zM12 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"
+                stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <h3>3</h3>
+          <p>Happy Clients</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="ultra-counter-box">
+          <div class="ultra-counter-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M3 7h5l2 3h11v8a2 2 0 0 1-2 2H3V7z"
+                stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <h3>3</h3>
+          <p>Projects</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="ultra-counter-box">
+          <div class="ultra-counter-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="9"
+                stroke="currentColor" stroke-width="1.5"/>
+              <path d="M12 7v5l3 3"
+                stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <h3>2000</h3>
+          <p>Hours of Support</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="ultra-counter-box">
+          <div class="ultra-counter-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 14l9-5-9-5-9 5 9 5zM12 14v7"
+                stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <h3>5</h3>
+          <p>Hard Workers</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- ===== Counter Section End ===== -->
+
+</body>
+</html>

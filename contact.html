@@ -1,0 +1,154 @@
+ <!-- ===== Contact Start ===== -->
+     <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact - Ekaantik Software Solutions</title>
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Alpine.js (because your section uses x-data) -->
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+
+    <section id="contact" class="relative overflow-hidden bg-whiter dark:bg-blacksection py-20 lg:py-25 xl:py-30">
+      
+      <!-- Bg Shapes -->
+      <img src="images/shape-06.svg" alt="Shape" class="absolute top-[5%] left-[10%]" />
+      <img src="images/shape-03.svg" alt="Shape" class="absolute top-[25%] right-[20%]" />
+      <img src="images/shape-07.svg" alt="Shape" class="absolute bottom-[10%] right-[5%] w-25" />
+      <img src="images/shape-12.svg" alt="Shape" class="absolute bottom-0 left-0" />
+      <img src="images/shape-13.svg" alt="Shape" class="absolute top-0 right-0" />
+
+      <!-- Section Title Start -->
+      <div
+        x-data="{ sectionTitle: `Let’s Stay Connected`, sectionTitleText: `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using.`}">
+        <div class="animate_top mx-auto max-w-1390 text-center px-4 md:px-8 xl:px-0">
+          <h2 x-text="sectionTitle"
+            class="font-semibold text-3xl xl:text-title-xl text-black dark:text-white md:w-4/5 xl:w-1/2 mx-auto mb-4.5">
+          </h2>
+          <p class="mx-auto md:w-4/5 lg:w-3/5 xl:w-[46%]" x-text="sectionTitleText"></p>
+        </div>
+
+
+      </div>
+      <!-- Section Title End -->
+
+      <div class="relative z-10 mx-auto max-w-1280 px-4 md:px-8 xl:px-9 mt-12.5 lg:mt-20">
+        <div class="flex flex-wrap md:flex-nowrap flex-col-reverse md:flex-row md:justify-between gap-7.5 xl:gap-10">
+          <div
+            class="animate_top w-full md:w-2/5 lg:w-1/3 shadow-3 rounded-lg bg-white dark:bg-black p-7.5 xl:p-12.5 relative overflow-hidden">
+            <!-- Bg Shapes -->
+            <img src="images/shape-03.svg" alt="Shape" class="absolute right-5 top-5 w-7.5" />
+            <img src="images/shape-06.svg" alt="Shape" class="absolute right-5 bottom-5 w-6 rotate-180" />
+
+            <div class="mb-10">
+              <h4 class="text-title-xsm text-black dark:text-white mb-1.5">Email Address</h4>
+              <p><a href="mailto:infor@ekaantik.com">infor@ekaantik.com</a></p>
+              <p><a href="mailto:architmehta108@gmail.com">architmehta108@gmail.com</a></p>
+
+            </div>
+            <div class="mb-10">
+              <h4 class="text-title-xsm text-black dark:text-white mb-1.5">Office Location</h4>
+              <p>G-108, Titanium City Center,
+                Shyamal Ahmedabad, India - 380015</p>
+            </div>
+            <div class="mb-10">
+              <h4 class="text-title-xsm text-black dark:text-white mb-1.5">Phone Number</h4>
+              <p><a href="#"> (+91) 9428448108</a></p>
+            </div>
+
+
+            <span class="block h-[1px] bg-strokedark dark:bg-stroke mt-5 mb-10"></span>
+
+            <div>
+              <h4 class="text-title-xsm text-black dark:text-white mb-7.5">Social Media</h4>
+              <ul class="flex items-center gap-4">
+
+                <li>
+                  <a href="https://twitter.com/ekaantik_" target="_blank"
+                    class="group flex items-center justify-center w-10 h-10 rounded-full ease-in-out duration-300 ">
+                    <svg class="fill-body  ease-in-out duration-300" width="20" height="16" viewBox="0 0 20 16"
+                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M19.3153 2.18484C18.6155 2.4944 17.8733 2.6977 17.1134 2.78801C17.9144 2.30899 18.5138 1.55511 18.8001 0.666844C18.0484 1.11418 17.2244 1.42768 16.3654 1.59726C15.7885 0.979958 15.0238 0.57056 14.1901 0.432713C13.3565 0.294866 12.5007 0.436294 11.7558 0.835009C11.0108 1.23372 10.4185 1.86739 10.0708 2.63749C9.72313 3.40759 9.63963 4.27098 9.83327 5.09343C8.30896 5.01703 6.81775 4.62091 5.45645 3.93079C4.09516 3.24067 2.89423 2.27197 1.93161 1.08759C1.59088 1.67284 1.41182 2.33814 1.41278 3.01534C1.41278 4.34451 2.08928 5.51876 3.11778 6.20626C2.50912 6.1871 1.91386 6.02273 1.38161 5.72685V5.77451C1.38179 6.65974 1.68811 7.51766 2.24864 8.20282C2.80916 8.88797 3.58938 9.3582 4.45703 9.53376C3.89201 9.68688 3.29956 9.70945 2.72453 9.59976C2.96915 10.3617 3.44595 11.0281 4.08815 11.5056C4.73035 11.9831 5.50581 12.2478 6.30594 12.2627C5.51072 12.8872 4.60019 13.3489 3.62642 13.6213C2.65264 13.8938 1.63473 13.9716 0.630859 13.8503C2.38325 14.9773 4.4232 15.5756 6.50669 15.5737C13.5586 15.5737 17.415 9.73176 17.415 4.66535C17.415 4.50035 17.4104 4.33351 17.4031 4.17035C18.1537 3.62783 18.8016 2.95578 19.3162 2.18576L19.3153 2.18484Z"
+                        fill="" />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/company/ekaantik-software-solutions/" target="_blank"
+                    class="group flex items-center justify-center w-10 h-10 rounded-full ease-in-out duration-300 ">
+                    <svg class="fill-body  ease-in-out duration-300" width="19" height="18" viewBox="0 0 19 18"
+                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M4.36198 2.58327C4.36174 3.0695 4.16835 3.53572 3.82436 3.87937C3.48037 4.22301 3.01396 4.41593 2.52773 4.41569C2.0415 4.41545 1.57528 4.22206 1.23164 3.87807C0.887991 3.53408 0.69507 3.06767 0.695313 2.58144C0.695556 2.09521 0.888943 1.62899 1.23293 1.28535C1.57692 0.941701 2.04333 0.748781 2.52956 0.749024C3.01579 0.749267 3.48201 0.942654 3.82566 1.28664C4.1693 1.63063 4.36222 2.09704 4.36198 2.58327ZM4.41698 5.77327H0.750313V17.2499H4.41698V5.77327ZM10.2103 5.77327H6.56198V17.2499H10.1736V11.2274C10.1736 7.87244 14.5461 7.56077 14.5461 11.2274V17.2499H18.167V9.98077C18.167 4.32494 11.6953 4.53577 10.1736 7.31327L10.2103 5.77327Z"
+                        fill="" />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.upwork.com/agencies/1625825920129933312/"
+                    class="group flex items-center justify-center w-10 h-10 rounded-full ease-in-out duration-300 ">
+                    <img src="images/upwork.svg" alt="" width="22" height="22"
+                      class="fill-body  ease-in-out duration-300" style="filter: grayscale(100%);">
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="animate_top w-full md:w-3/5 lg:w-2/3 shadow-3 rounded-lg bg-white dark:bg-black p-7.5 xl:p-14">
+            <form action="https://formbold.com/s/unique_form_id" method="POST">
+              <div class="flex flex-col lg:flex-row lg:justify-between gap-7.5 lg:gap-10 mb-7.5">
+                <div class="w-full lg:w-1/2">
+                  <label class="block mb-4" for="fullname">Full name</label>
+                  <input type="text" name="fullname" id="fullname" placeholder="Devid Wonder"
+                    class="w-full bg-transparent rounded-lg shadow-4 dark:shadow-none border border-strokedark dark:border-stroke focus-visible:outline-none focus:border-primary dark:focus:border-primary focus:shadow-5 placeholder:text-body/50 py-3.5 px-6" />
+                </div>
+
+                <div class="w-full lg:w-1/2">
+                  <label class="block mb-4" for="email">Email address</label>
+                  <input type="email" name="email" id="email" placeholder="example@gmail.com"
+                    class="w-full bg-transparent rounded-lg shadow-4 dark:shadow-none border border-strokedark dark:border-stroke focus-visible:outline-none focus:border-primary dark:focus:border-primary focus:shadow-5 placeholder:text-body/50 py-3.5 px-6" />
+                </div>
+              </div>
+
+              <div class="flex flex-col lg:flex-row lg:justify-between gap-7.5 lg:gap-10 mb-7.5">
+                <div class="w-full lg:w-1/2">
+                  <label class="block mb-4" for="phone">Phone number</label>
+                  <input type="text" name="phone" id="phone" placeholder="+009 3342 3432"
+                    class="w-full bg-transparent rounded-lg shadow-4 dark:shadow-none border border-strokedark dark:border-stroke focus-visible:outline-none focus:border-primary dark:focus:border-primary focus:shadow-5 placeholder:text-body/50 py-3.5 px-6" />
+                </div>
+
+                <div class="w-full lg:w-1/2">
+                  <label class="block mb-4" for="subject">Subject</label>
+                  <input type="text" for="subject" id="subject" placeholder="Type your subject"
+                    class="w-full bg-transparent rounded-lg shadow-4 dark:shadow-none border border-strokedark dark:border-stroke focus-visible:outline-none focus:border-primary dark:focus:border-primary focus:shadow-5 placeholder:text-body/50 py-3.5 px-6" />
+                </div>
+              </div>
+
+              <div class="mb-10">
+                <label class="block mb-4" for="message">Message</label>
+                <textarea placeholder="Message" rows="4" name="message" id="message"
+                  class="w-full bg-transparent rounded-lg shadow-4 dark:shadow-none border border-strokedark dark:border-stroke focus-visible:outline-none focus:border-primary dark:focus:border-primary focus:shadow-5 placeholder:text-body/50 p-6"></textarea>
+              </div>
+
+              <div class="flex justify-center">
+                <button
+                  class="inline-flex rounded-full text-white bg-primary ease-in-out duration-300 px-7.5 py-3 hover:shadow-1">
+                  <a href="mailto:architmehta108@gmail.com">Send
+                    Message</a></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===== Contact End ===== -->
+     </body>
+</html>
