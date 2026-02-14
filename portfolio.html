@@ -1,139 +1,192 @@
 <!-- ====== Portfolio Section Start ====== -->
-<section id="portfolio"
+<section
+  id="portfolio"
   x-data="{ filter: 'all' }"
-  style="padding:80px 20px; font-family: Arial, sans-serif; background:white; color:black;">
-
+  style="
+    padding: 80px 20px;
+    font-family: Arial, sans-serif;
+    background: white;
+    color: black;
+  "
+>
   <!-- Inline CSS only for this section -->
   <style>
-    #portfolio .title {text-align:center; max-width:900px; margin:0 auto 40px;}
-    #portfolio h2{
-  font-size:48px;
-  font-weight:800;
-  letter-spacing:1px;
-  margin-bottom:12px;
-  color:#0f172a;
-}
+    #portfolio .title {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 40px;
+    }
+    #portfolio h2 {
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      color: #0f172a;
+    }
 
-   #portfolio p{
-  color:#64748b;
-  font-size:16px;
-  max-width:700px;
-  margin:0 auto;
-}
+    #portfolio p {
+      color: #64748b;
+      font-size: 16px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
 
-
-    #portfolio .filters {text-align:center; margin-bottom:40px;}
-    #portfolio .filters button{
-      margin:5px; padding:8px 18px; border:none; border-radius:6px;
-      background:#1e293b; color:#cbd5e1; cursor:pointer; font-weight:600;
-      transition:0.3s;
+    #portfolio .filters {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    #portfolio .filters button {
+      margin: 5px;
+      padding: 8px 18px;
+      border: none;
+      border-radius: 6px;
+      background: #ffffff;
+      color: #000000;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
     }
     #portfolio .filters button.active,
-    #portfolio .filters button:hover{
-      background:#3b82f6; color:white;
+    #portfolio .filters button:hover {
+      background: #3b82f6;
+      color: white;
     }
 
-    #portfolio .grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:30px;
-      max-width:1200px;
-      margin:auto;
+    #portfolio .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
     }
 
-    #portfolio .card{
-      background:white;
-      border-radius:12px;
-      overflow:hidden;
-      position:relative;
-      box-shadow:0 8px 25px rgba(0,0,0,0.08);
-      transition:0.3s;
+    #portfolio .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      transition: 0.4s ease;
     }
 
-    #portfolio .card img{
-      width:100%;
-      height: 220px;
-      object-fit:cover;
+    #portfolio .card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
       border-radius: 10px 10px 0 0;
-      display:block;
+      display: block;
     }
 
-    #portfolio .card-content{
-      padding:15px;
+    #portfolio .card-content {
+      padding: 15px;
     }
 
-    #portfolio .tags span{
-      font-size:12px;
-      padding:4px 8px;
-      border-radius:4px;
-      margin-right:5px;
-      font-weight:600;
+    #portfolio .tags span {
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin-right: 5px;
+      font-weight: 600;
     }
 
-    .company{background:#dbeafe;color:#1e3a8a;}
-    .student{background:#fef9c3;color:#854d0e;}
-    .aiml{background:#ede9fe;color:#5b21b6;}
-    .cloud{background:#dcfce7;color:#166534;}
-    .iot{background:#ffedd5;color:#9a3412;}
-    .web{background:#fce7f3;color:#9d174d;}
+    .company {
+      background: #dbeafe;
+      color: #1e3a8a;
+    }
+    .student {
+      background: #fef9c3;
+      color: #854d0e;
+    }
+    .aiml {
+      background: #ede9fe;
+      color: #5b21b6;
+    }
+    .cloud {
+      background: #dcfce7;
+      color: #166534;
+    }
+    .iot {
+      background: #ffedd5;
+      color: #9a3412;
+    }
+    .web {
+      background: #fce7f3;
+      color: #9d174d;
+    }
 
     /* Read More  */
-    #portfolio .overlay{
-      position:absolute;
-      top:0;left:0;width:100%;height:200px;
-      background:rgba(0,0,0,0.6);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      opacity:0;
-      transition:0.3s;
+    #portfolio .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 200px;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: 0.3s;
     }
 
-    #portfolio .card:hover .overlay{opacity:1;}
-
-    #portfolio .overlay a{
-      background:#3b82f6;
-      padding:8px 16px;
-      color:white;
-      border-radius:20px;
-      text-decoration:none;
-      font-weight:bold;
+    #portfolio .card:hover .overlay {
+      opacity: 1;
+      transform: translateY(-10px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
     }
 
-    @media (max-width: 992px){
-  #portfolio .grid{
-    grid-template-columns:repeat(2, 1fr);
-  }
-}
+    #portfolio .overlay a {
+      background: #3b82f6;
+      padding: 8px 16px;
+      color: white;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-@media (max-width: 600px){
-  #portfolio .grid{
-    grid-template-columns:1fr;
-  }
-}
+    @media (max-width: 1100px) {
+      #portfolio .grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 
   <!-- Title -->
   <div class="title">
     <h2>Portfolio</h2>
-    <p>A collection of company and student projects across AI/ML, Cloud, IoT and Web technologies.</p>
+    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using.</p>
   </div>
 
   <!-- Filters -->
   <div class="filters">
-    <button :class="filter=='all' && 'active'" @click="filter='all'">All</button>
-    <button :class="filter=='AI/ML' && 'active'" @click="filter='AI/ML'">AI/ML</button>
-    <button :class="filter=='Cloud/DevOps' && 'active'" @click="filter='Cloud/DevOps'">Cloud/DevOps</button>
-    <button :class="filter=='IoT' && 'active'" @click="filter='IoT'">IoT</button>
-    <button :class="filter=='Web/MobileApp' && 'active'" @click="filter='Web/MobileApp'">Web/Mobile</button>
+    <button :class="filter=='all' && 'active'" @click="filter='all'">
+      All
+    </button>
+    <button :class="filter=='AI/ML' && 'active'" @click="filter='AI/ML'">
+      AI/ML
+    </button>
+    <button
+      :class="filter=='Cloud/DevOps' && 'active'"
+      @click="filter='Cloud/DevOps'"
+    >
+      Cloud/DevOps
+    </button>
+    <button :class="filter=='IoT' && 'active'" @click="filter='IoT'">
+      IoT
+    </button>
+    <button
+      :class="filter=='Web/MobileApp' && 'active'"
+      @click="filter='Web/MobileApp'"
+    >
+      Web/Mobile
+    </button>
   </div>
 
   <!-- Cards -->
   <div class="grid">
-
     <!-- Sentiment Analysis -->
     <div class="card" x-show="filter=='all' || filter=='AI/ML'">
-      <img src="images/Ai-portfolio2.jfif" class="card-img" alt="">
+      <img src="images/Ai-portfolio2.jfif" class="card-img" alt="" />
       <div class="overlay">
         <a href="sentiment-analysis.html">Read More</a>
       </div>
@@ -148,7 +201,7 @@
 
     <!-- Cloud Hosting -->
     <div class="card" x-show="filter=='all' || filter=='Cloud/DevOps'">
-      <img src="images/Cloud-Portfolio1.jpg" alt="">
+      <img src="images/Cloud-Portfolio1.jpg" alt="" />
       <div class="overlay">
         <a href="cloud-hosting.html">Read More</a>
       </div>
@@ -163,7 +216,7 @@
 
     <!-- CI/CD -->
     <div class="card" x-show="filter=='all' || filter=='Cloud/DevOps'">
-      <img src="images/DevOps-Portfolio1.png" alt="">
+      <img src="images/DevOps-Portfolio1.png" alt="" />
       <div class="overlay">
         <a href="cicd-pipeline.html">Read More</a>
       </div>
@@ -178,7 +231,7 @@
 
     <!-- Mobile App -->
     <div class="card" x-show="filter=='all' || filter=='Web/MobileApp'">
-      <img src="images/mobile-portfolio2.jfif" alt="">
+      <img src="images/mobile-portfolio2.jfif" alt="" />
       <div class="overlay">
         <a href="mobile-app.html">Read More</a>
       </div>
@@ -193,7 +246,7 @@
 
     <!-- IoT -->
     <div class="card" x-show="filter=='all' || filter=='IoT'">
-      <img src="images/IoT-Dashboard1.jpg" alt="">
+      <img src="images/IoT-Dashboard1.jpg" alt="" />
       <div class="overlay">
         <a href="iot-dashboard.html">Read More</a>
       </div>
@@ -208,7 +261,7 @@
 
     <!-- Web -->
     <div class="card" x-show="filter=='all' || filter=='Web/MobileApp'">
-      <img src="images/web-portfolio1.jpg" alt="">
+      <img src="images/web-portfolio1.jpg" alt="" />
       <div class="overlay">
         <a href="web-project.html">Read More</a>
       </div>
@@ -220,10 +273,6 @@
         <h3>Web Application</h3>
       </div>
     </div>
-
   </div>
 </section>
 <!-- ====== Portfolio Section End ====== -->
-
-
-    
