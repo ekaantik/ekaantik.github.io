@@ -2,277 +2,199 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>AI Development Services</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <title>AI Development Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: system-ui, sans-serif;
-        }
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        body {
-            background: #f8fafc;
-            color: #0f172a;
-            line-height: 1.7;
-        }
+  <!-- Inter font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-        section {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: auto;
-        }
+  <style>
+    .fade-down {opacity:0;transform:translateY(-60px);transition:all .9s cubic-bezier(.22,1,.36,1);}
+    .fade-down.show {opacity:1;transform:translateY(0);}
+    .fade-down:nth-child(1){transition-delay:.1s}
+    .fade-down:nth-child(2){transition-delay:.25s}
+    .fade-down:nth-child(3){transition-delay:.4s}
+    .fade-down:nth-child(4){transition-delay:.55s}
+    .fade-down:nth-child(5){transition-delay:.7s}
+    .fade-down:nth-child(6){transition-delay:.85s}
 
-        .section-alt {
-            background: #f1f5f9;
-        }
-
-        h1 {
-            font-size: 42px;
-            margin-bottom: 16px;
-        }
-
-        h2 {
-            font-size: 32px;
-            margin-bottom: 16px;
-        }
-
-        h3 {
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        p {
-            color: #334155;
-        }
-
-        .hero {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .hero img {
-            max-width: 100%;
-            border-radius: 16px;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0)
-            }
-
-            50% {
-                transform: translateY(-10px)
-            }
-        }
-
-        .cta a {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 14px 28px;
-            background: linear-gradient(135deg, #7c3aed, #4f46e5);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .cta a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
-            margin-top: 40px;
-        }
-
-        .card {
-            background: #fff;
-            padding: 24px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, #7c3aed, #a78bfa);
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-        }
-
-        .process {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 24px;
-            margin-top: 40px;
-        }
-
-        .step {
-            background: #fff;
-            padding: 24px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-        }
-
-        .step span {
-            display: inline-flex;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: #7c3aed;
-            color: #fff;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-up.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            h1 {
-                font-size: 32px;
-            }
-
-            h2 {
-                font-size: 26px;
-            }
-        }
-    </style>
+    .hover-lift{transition:transform .35s ease,box-shadow .35s ease;}
+    .hover-lift:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 20px 45px rgba(0,0,0,.12);}
+    .icon-blue{color:#4f6df5;}
+  </style>
 </head>
 
-<body>
+<body class="bg-white text-black dark:bg-black dark:text-white">
 
-    <!-- ===== HERO ===== -->
-    <section class="hero">
-        <div class="fade-up">
-            <h1>AI Development Services</h1>
-            <p>
-                We design and build intelligent AI solutions that help businesses automate processes,
-                gain insights from data, and create smarter digital products.
-            </p>
-            <div class="cta">
-                <a href="contact.html">Build with AI</a>
-            </div>
-        </div>
+<!-- ===== HERO ===== -->
+<section class="max-w-6xl mx-auto px-4 pt-28 pb-16 md:pt-32">
 
-        <div class="fade-up">
-            <img src="images/AI.png" alt="AI Development">
-        </div>
-    </section>
+  <div class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+    <a href="index.html" class="hover:text-primary font-medium">Home</a>
+    <span class="mx-2 text-gray-400">|</span>
+    <span class="text-black font-medium dark:text-white">AI Development</span>
+  </div>
 
-    <!-- ===== OVERVIEW ===== -->
-    <section class="section-alt">
-        <h2 class="fade-up">Service Overview</h2>
-        <p class="fade-up">
-            Our AI development services cover machine learning, natural language processing,
-            computer vision, and intelligent automation to help you stay ahead in the digital era.
-        </p>
-    </section>
+  <div class="grid md:grid-cols-2 gap-10 items-center">
 
-    <!-- ===== WHAT WE OFFER ===== -->
-    <section>
-        <h2 class="fade-up">What We Offer</h2>
+    <div>
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 leading-tight">
+        AI Development Services
+      </h1>
 
-        <div class="grid">
-            <div class="card fade-up">
-                <h3>Machine Learning Solutions</h3>
-                <p>Custom ML models tailored to your business data and use cases.</p>
-            </div>
-            <div class="card fade-up">
-                <h3>Conversational AI</h3>
-                <p>Chatbots and virtual assistants to improve customer engagement.</p>
-            </div>
-            <div class="card fade-up">
-                <h3>Natural Language Processing</h3>
-                <p>Text analysis, sentiment detection, and language understanding systems.</p>
-            </div>
-            <div class="card fade-up">
-                <h3>Computer Vision</h3>
-                <p>Image and video analysis solutions for automation and insights.</p>
-            </div>
-            <div class="card fade-up">
-                <h3>Predictive Analytics</h3>
-                <p>Data-driven forecasting to support better business decisions.</p>
-            </div>
-            <div class="card fade-up">
-                <h3>AI Integration</h3>
-                <p>Seamless integration of AI features into your existing systems.</p>
-            </div>
-        </div>
-    </section>
+      <p class="leading-7 text-sm sm:text-base">
+        We design and build intelligent AI solutions that automate workflows,
+        enhance decision-making, and unlock powerful data insights using
+        machine learning and advanced AI technologies.
+      </p>
 
-    <!-- ===== PROCESS ===== -->
-    <section class="section-alt">
-        <h2 class="fade-up">Our Process</h2>
+      <a href="contact.html"
+        class="inline-block mt-9 bg-blue-600 text-white px-6 py-3 rounded-full text-sm font-medium hover:opacity-90 transition shadow-md">
+        Talk to Our Experts
+      </a>
+    </div>
 
-        <div class="process">
-            <div class="step fade-up"><span>1</span>
-                <h3>Problem Understanding</h3>
-                <p>We analyze your business challenges and define AI use cases.</p>
-            </div>
-            <div class="step fade-up"><span>2</span>
-                <h3>Data Preparation</h3>
-                <p>We collect, clean, and prepare data for model training.</p>
-            </div>
-            <div class="step fade-up"><span>3</span>
-                <h3>Model Development</h3>
-                <p>We build, train, and test AI/ML models.</p>
-            </div>
-            <div class="step fade-up"><span>4</span>
-                <h3>Deployment & Improvement</h3>
-                <p>We deploy models and continuously improve performance.</p>
-            </div>
-        </div>
-    </section>
+    <div>
+      <img src="images/ai.png" alt="AI Development" class="w-full rounded-lg shadow-sm">
+    </div>
 
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('show');
-            });
-        }, { threshold: 0.15 });
+  </div>
+</section>
 
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-    </script>
+<!-- ===== OVERVIEW ===== -->
+<section class="bg-gray-50 py-14 dark:bg-blacksection">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-2xl font-semibold mb-3">Service Overview</h2>
+    <p class="leading-7">
+      Our AI development services help businesses leverage machine learning,
+      NLP, and automation to build smarter systems, deliver personalized
+      experiences, and gain a competitive edge through intelligent technology.
+    </p>
+  </div>
+</section>
+
+<!-- ===== WHAT WE OFFER ===== -->
+<section class="max-w-6xl mx-auto px-4 py-16">
+  <h2 class="text-2xl font-semibold mb-8 text-center">What We Offer</h2>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- Conversational AI -->
+    <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+      <div class="w-10 h-10 mb-4 icon-blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-width="2" d="M8 10h8M8 14h5M21 12c0 4-4 8-9 8a9 9 0 01-4-.9L3 21l1.9-4.1A8 8 0 113 12c0-4 4-8 9-8s9 4 9 8z"/>
+        </svg>
+      </div>
+      <h3 class="font-semibold text-lg mb-2">Conversational AI</h3>
+      <p class="text-sm text-gray-600">AI chatbots and virtual assistants for automation.</p>
+    </div>
+
+    <!-- NLP -->
+    <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+      <div class="w-10 h-10 mb-4 icon-blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-width="2" d="M4 4h16v16H4zM8 8h8M8 12h6M8 16h4"/>
+        </svg>
+      </div>
+      <h3 class="font-semibold text-lg mb-2">Natural Language Processing</h3>
+      <p class="text-sm text-gray-600">Text analytics, sentiment, and language AI.</p>
+    </div>
+
+    <!-- ML -->
+    <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+      <div class="w-10 h-10 mb-4 icon-blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="3" stroke-width="2"/>
+          <path stroke-width="2" d="M19.4 15A7.97 7.97 0 0020 12a8 8 0 10-8 8"/>
+        </svg>
+      </div>
+      <h3 class="font-semibold text-lg mb-2">Machine Learning Models</h3>
+      <p class="text-sm text-gray-600">Custom AI prediction and automation models.</p>
+    </div>
+
+    <!-- Vision -->
+    <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+      <div class="w-10 h-10 mb-4 icon-blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="3" stroke-width="2"/>
+          <path stroke-width="2" d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6-10-6-10-6z"/>
+        </svg>
+      </div>
+      <h3 class="font-semibold text-lg mb-2">Computer Vision</h3>
+      <p class="text-sm text-gray-600">Image recognition and visual intelligence.</p>
+    </div>
+
+    <!-- Automation -->
+    <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+      <div class="w-10 h-10 mb-4 icon-blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-width="2" d="M12 6v6l4 2M12 2a10 10 0 100 20 10 10 0 000-20z"/>
+        </svg>
+      </div>
+      <h3 class="font-semibold text-lg mb-2">AI Automation</h3>
+      <p class="text-sm text-gray-600">Automate workflows using intelligent AI agents.</p>
+    </div>
+
+    <!-- Integration -->
+    <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+      <div class="w-10 h-10 mb-4 icon-blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-width="2" d="M8 12h8M12 8v8M4 4h16v16H4z"/>
+        </svg>
+      </div>
+      <h3 class="font-semibold text-lg mb-2">AI Integration</h3>
+      <p class="text-sm text-gray-600">Seamless AI integration into your systems.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section class="bg-gray-50 py-16">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-2xl font-semibold mb-10 text-center">Our Process</h2>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
+        <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">1</div>
+        <h3 class="font-semibold mb-1">Discovery</h3>
+        <p class="text-sm text-gray-600">Understanding AI opportunities.</p>
+      </div>
+
+      <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
+        <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">2</div>
+        <h3 class="font-semibold mb-1">Data Preparation</h3>
+        <p class="text-sm text-gray-600">Cleaning and structuring datasets.</p>
+      </div>
+
+      <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
+        <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">3</div>
+        <h3 class="font-semibold mb-1">Model Development</h3>
+        <p class="text-sm text-gray-600">Building and training AI models.</p>
+      </div>
+
+      <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
+        <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">4</div>
+        <h3 class="font-semibold mb-1">Deployment</h3>
+        <p class="text-sm text-gray-600">Integrating AI into production systems.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show')}})
+},{threshold:.15,rootMargin:"0px 0px -80px 0px"});
+document.querySelectorAll('.fade-down').forEach(el=>observer.observe(el));
+</script>
 
 </body>
-
 </html>
