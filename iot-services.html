@@ -2,277 +2,208 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>IoT Solutions & Integration</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <title>IoT Solutions & Integration</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: system-ui, sans-serif;
-        }
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        body {
-            background: #f8fafc;
-            color: #0f172a;
-            line-height: 1.7;
-        }
+  <!-- Inter font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-        section {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: auto;
-        }
+  <style>
+    .fade-down {
+      opacity: 0;
+      transform: translateY(-60px);
+      transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
 
-        .section-alt {
-            background: #f1f5f9;
-        }
+    .fade-down.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-        h1 {
-            font-size: 42px;
-            margin-bottom: 16px;
-        }
+    .hover-lift {
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
 
-        h2 {
-            font-size: 32px;
-            margin-bottom: 16px;
-        }
+    .hover-lift:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+    }
 
-        h3 {
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        p {
-            color: #334155;
-        }
-
-        .hero {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .hero img {
-            max-width: 100%;
-            border-radius: 16px;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0)
-            }
-
-            50% {
-                transform: translateY(-10px)
-            }
-        }
-
-        .cta a {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 14px 28px;
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .cta a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
-            margin-top: 40px;
-        }
-
-        .card {
-            background: #fff;
-            padding: 24px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, #10b981, #6ee7b7);
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-        }
-
-        .process {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 24px;
-            margin-top: 40px;
-        }
-
-        .step {
-            background: #fff;
-            padding: 24px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-        }
-
-        .step span {
-            display: inline-flex;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: #10b981;
-            color: #fff;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-up.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            h1 {
-                font-size: 32px;
-            }
-
-            h2 {
-                font-size: 26px;
-            }
-        }
-    </style>
+    .icon-blue {
+      color: #4f6df5;
+    }
+  </style>
 </head>
 
-<body>
+<body class="bg-white text-black dark:bg-black dark:text-white">
 
-    <!-- ===== HERO ===== -->
-    <section class="hero">
-        <div class="fade-up">
-            <h1>IoT Solutions & Integration</h1>
-            <p>
-                We build smart, connected systems that help businesses collect data,
-                automate processes, and make smarter decisions using IoT technologies.
-            </p>
-            <div class="cta">
-                <a href="contact.html">Start Your IoT Project</a>
-            </div>
-        </div>
+  <!-- ===== HERO ===== -->
+  <section class="max-w-6xl mx-auto px-4 pt-28 pb-16 md:pt-32">
 
-        <div class="fade-up">
-            <img src="images/IoT.png" alt="IoT Solutions">
-        </div>
-    </section>
+    <!-- Breadcrumb -->
+    <div class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      <a href="index.html" class="font-medium">Home</a>
+      <span class="mx-2 text-gray-400">|</span>
+      <span class="font-medium">IoT Solutions</span>
+    </div>
 
-    <!-- ===== OVERVIEW ===== -->
-    <section class="section-alt">
-        <h2 class="fade-up">Service Overview</h2>
-        <p class="fade-up">
-            Our IoT services help you connect devices, platforms, and people into one
-            intelligent ecosystem that improves efficiency, visibility, and control.
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+
+      <div>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4">
+          IoT Solutions & Integration
+        </h1>
+
+        <p class="leading-7 text-sm sm:text-base">
+          We build smart, connected IoT ecosystems that enable real-time data collection,
+          automation, and intelligent decision-making across industries.
         </p>
-    </section>
 
-    <!-- ===== WHAT WE OFFER ===== -->
-    <section>
-        <h2 class="fade-up">What We Offer</h2>
+        <a href="contact.html"
+          class="inline-block mt-9 bg-blue-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-md">
+          Talk To Our Experts
+        </a>
+      </div>
 
-        <div class="grid">
-            <div class="card fade-up">
-                <h3>IoT Architecture Design</h3>
-                <p>End-to-end design of scalable and secure IoT systems.</p>
-            </div>
-            <div class="card fade-up">
-                <h3>Device Integration</h3>
-                <p>Seamless integration of sensors, devices, and gateways.</p>
-            </div>
-            <div class="card fade-up">
-                <h3>Cloud IoT Platforms</h3>
-                <p>Deploy and manage IoT solutions on cloud platforms.</p>
-            </div>
-            <div class="card fade-up">
-                <h3>Real-Time Data Analytics</h3>
-                <p>Transform raw device data into actionable insights.</p>
-            </div>
-            <div class="card fade-up">
-                <h3>Security & Compliance</h3>
-                <p>Protect devices and data with enterprise-grade security.</p>
-            </div>
-            <div class="card fade-up">
-                <h3>Monitoring & Automation</h3>
-                <p>Automate operations and monitor systems in real time.</p>
-            </div>
+      <div>
+        <img src="images/IoT.png" alt="IoT" class="w-full rounded-lg shadow-sm">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== OVERVIEW ===== -->
+  <section class="bg-gray-50 py-14">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-semibold mb-3">Service Overview</h2>
+      <p>
+        Our IoT solutions connect devices, cloud platforms, and analytics to create
+        intelligent systems that improve efficiency, monitoring, and automation.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== WHAT WE OFFER ===== -->
+  <section class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-2xl font-semibold mb-8 text-center">What We Offer</h2>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+        <div class="w-10 h-10 mb-4 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="4" stroke-width="2"/>
+            <path stroke-width="2" d="M4 12h4M16 12h4M12 4v4M12 16v4"/>
+          </svg>
         </div>
-    </section>
+        <h3 class="font-semibold text-lg mb-2">IoT Architecture</h3>
+        <p class="text-sm text-gray-600">End-to-end design of scalable IoT ecosystems.</p>
+      </div>
 
-    <!-- ===== PROCESS ===== -->
-    <section class="section-alt">
-        <h2 class="fade-up">Our Process</h2>
-
-        <div class="process">
-            <div class="step fade-up"><span>1</span>
-                <h3>Requirement Analysis</h3>
-                <p>We understand your business goals and technical needs.</p>
-            </div>
-            <div class="step fade-up"><span>2</span>
-                <h3>System Design</h3>
-                <p>We design a secure and scalable IoT architecture.</p>
-            </div>
-            <div class="step fade-up"><span>3</span>
-                <h3>Development & Integration</h3>
-                <p>We connect devices, platforms, and applications.</p>
-            </div>
-            <div class="step fade-up"><span>4</span>
-                <h3>Deployment & Support</h3>
-                <p>We deploy, monitor, and continuously improve your system.</p>
-            </div>
+      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+        <div class="w-10 h-10 mb-4 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-width="2" d="M8 12h8M12 8v8"/>
+            <circle cx="12" cy="12" r="9" stroke-width="2"/>
+          </svg>
         </div>
-    </section>
+        <h3 class="font-semibold text-lg mb-2">Device Integration</h3>
+        <p class="text-sm text-gray-600">Connect sensors, devices, and gateways seamlessly.</p>
+      </div>
 
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('show');
-            });
-        }, { threshold: 0.15 });
+      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+        <div class="w-10 h-10 mb-4 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-width="2" d="M3 15a4 4 0 014-4h1a5 5 0 0110 1h1a3 3 0 010 6H7z"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-2">Cloud IoT Platforms</h3>
+        <p class="text-sm text-gray-600">Deploy IoT on AWS, Azure, and GCP platforms.</p>
+      </div>
 
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-    </script>
+      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+        <div class="w-10 h-10 mb-4 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-width="2" d="M3 3v18h18"/>
+            <path stroke-width="2" d="M7 14l3-3 4 4 5-5"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-2">Real-Time Analytics</h3>
+        <p class="text-sm text-gray-600">Transform device data into actionable insights.</p>
+      </div>
+
+      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+        <div class="w-10 h-10 mb-4 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-width="2" d="M12 3l8 4v5c0 5-3.5 9-8 9s-8-4-8-9V7z"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-2">Security & Compliance</h3>
+        <p class="text-sm text-gray-600">Enterprise-grade protection for devices and data.</p>
+      </div>
+
+      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+        <div class="w-10 h-10 mb-4 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="3" y="4" width="18" height="12" rx="2" stroke-width="2"/>
+            <path stroke-width="2" d="M8 20h8"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-2">Automation & Monitoring</h3>
+        <p class="text-sm text-gray-600">Real-time monitoring and smart automation.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section class="bg-gray-50 py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl font-semibold mb-10 text-center">Our Process</h2>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
+          <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">1</div>
+          <h3 class="font-semibold mb-1">Discovery</h3>
+          <p class="text-sm text-gray-600">Understanding your IoT goals.</p>
+        </div>
+
+        <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
+          <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">2</div>
+          <h3 class="font-semibold mb-1">Design</h3>
+          <p class="text-sm text-gray-600">Design scalable IoT architecture.</p>
+        </div>
+
+        <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
+          <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">3</div>
+          <h3 class="font-semibold mb-1">Integration</h3>
+          <p class="text-sm text-gray-600">Connect devices and platforms.</p>
+        </div>
+
+        <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
+          <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">4</div>
+          <h3 class="font-semibold mb-1">Optimization</h3>
+          <p class="text-sm text-gray-600">Monitor and scale continuously.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    });
+
+    document.querySelectorAll('.fade-down').forEach(el => observer.observe(el));
+  </script>
 
 </body>
-
 </html>
