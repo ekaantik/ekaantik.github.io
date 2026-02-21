@@ -2,276 +2,222 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Automation Testing Services</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <title>Automation Testing Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: system-ui, sans-serif;
-        }
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        body {
-            background: #f8fafc;
-            color: #0f172a;
-            line-height: 1.7;
-        }
+  <!-- Inter font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-        section {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: auto;
-        }
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
 
-        .section-alt {
-            background: #f1f5f9;
-        }
+    /* Scroll animation */
+    .fade-down {
+      opacity: 0;
+      transform: translateY(-50px);
+      transition: all .8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
 
-        h1 {
-            font-size: 42px;
-            margin-bottom: 16px;
-        }
+    .fade-down.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-        h2 {
-            font-size: 32px;
-            margin-bottom: 16px;
-        }
+    /* Hover effect */
+    .hover-lift {
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
 
-        h3 {
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
+    .hover-lift:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+    }
 
-        p {
-            color: #334155;
-        }
-
-        .hero {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .hero img {
-            max-width: 100%;
-            border-radius: 16px;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0)
-            }
-
-            50% {
-                transform: translateY(-10px)
-            }
-        }
-
-        .cta a {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 14px 28px;
-            background: linear-gradient(135deg, #16a34a, #15803d);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .cta a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(22, 163, 74, 0.3);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
-            margin-top: 40px;
-        }
-
-        .card {
-            background: #fff;
-            padding: 24px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, #16a34a, #4ade80);
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-        }
-
-        .process {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 24px;
-            margin-top: 40px;
-        }
-
-        .step {
-            background: #fff;
-            padding: 24px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-        }
-
-        .step span {
-            display: inline-flex;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: #16a34a;
-            color: #fff;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-up.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            h1 {
-                font-size: 32px;
-            }
-
-            h2 {
-                font-size: 26px;
-            }
-        }
-    </style>
+    .icon-blue {
+      color: #4f6df5;
+    }
+  </style>
 </head>
 
-<body>
+<body class="bg-white text-black dark:bg-black dark:text-white">
 
-    <!-- ===== HERO ===== -->
-    <section class="hero">
-        <div class="fade-up">
-            <h1>Automation Testing Services</h1>
-            <p>
-                We provide comprehensive automation and performance testing solutions to ensure
-                your software is reliable, scalable, and ready for real-world usage.
-            </p>
-            <div class="cta">
-                <a href="contact.html">Improve Your Quality</a>
-            </div>
-        </div>
+  <!-- ===== HERO ===== -->
+  <section class="max-w-6xl mx-auto px-4 pt-28 pb-16 md:pt-32">
 
-        <div class="fade-up">
-            <img src="images/AutomatedTesting.png" alt="Automation Testing">
-        </div>
-    </section>
+    <!-- Breadcrumb -->
+    <div class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      <a href="index.html" class="hover:text-primary font-medium">Home</a>
+      <span class="mx-2 text-gray-400">|</span>
+      <span class="text-black font-medium dark:text-white">Automation Testing</span>
+    </div>
 
-    <!-- ===== OVERVIEW ===== -->
-    <section class="section-alt">
-        <h2 class="fade-up">Service Overview</h2>
-        <p class="fade-up">
-            Our QA experts deliver automated testing, load testing, and performance testing solutions
-            to detect issues early and improve software quality while reducing release cycles.
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+
+      <div class="fade-down">
+        <h1 class="text-3xl md:text-4xl font-semibold mb-4 leading-tight">
+          Automation Testing Services
+        </h1>
+        <p class="leading-7 text-sm sm:text-base">
+          We provide comprehensive automation and performance testing solutions to ensure
+          your software is reliable, scalable, and ready for real-world usage.
         </p>
-    </section>
 
-    <!-- ===== WHAT WE OFFER ===== -->
-    <section>
-        <h2 class="fade-up">What We Offer</h2>
+        <a href="contact.html"
+          class="inline-block mt-9 bg-[#4f6df5] text-white px-7 py-3 rounded-full text-sm font-medium hover:opacity-90 transition shadow-md">
+          Improve Your Quality
+        </a>
+      </div>
 
-        <div class="grid">
-            <div class="card fade-up">
-                <h3>Test Automation</h3>
-                <p>Automated test suites to improve coverage and reduce manual effort.</p>
-            </div>
-            <div class="card fade-up">
-                <h3>Performance Testing</h3>
-                <p>Load, stress, and scalability testing for high-traffic systems.</p>
-            </div>
-            <div class="card fade-up">
-                <h3>Regression Testing</h3>
-                <p>Ensure new changes don’t break existing functionality.</p>
-            </div>
-            <div class="card fade-up">
-                <h3>CI/CD Testing Integration</h3>
-                <p>Automated tests integrated into your delivery pipelines.</p>
-            </div>
-            <div class="card fade-up">
-                <h3>Security Testing</h3>
-                <p>Identify vulnerabilities and improve application security.</p>
-            </div>
-            <div class="card fade-up">
-                <h3>Quality Assurance Consulting</h3>
-                <p>Expert guidance to improve your testing strategy and processes.</p>
-            </div>
+      <div class="fade-down">
+        <img src="images/AutomatedTesting.png" alt="Automation Testing" class="w-full rounded-lg shadow-sm">
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== OVERVIEW ===== -->
+  <section class="bg-gray-50 py-14 dark:bg-blacksection">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-semibold mb-3 fade-down">Service Overview</h2>
+      <p class="leading-7 fade-down">
+        Our QA experts deliver automated testing, load testing, and performance testing solutions
+        to detect issues early and improve software quality while reducing release cycles.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== WHAT WE OFFER ===== -->
+  <section class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-2xl font-semibold mb-8 text-center fade-down">What We Offer</h2>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Card -->
+      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+        <div class="w-10 h-10 mb-4 icon-blue">
+          <!-- automation icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-width="2" d="M4 12h16M12 4v16" />
+          </svg>
         </div>
-    </section>
+        <h3 class="font-semibold text-lg mb-2">Test Automation</h3>
+        <p class="text-sm text-gray-600">Automated test suites to improve coverage and reduce manual effort.</p>
+      </div>
 
-    <!-- ===== PROCESS ===== -->
-    <section class="section-alt">
-        <h2 class="fade-up">Our Process</h2>
-
-        <div class="process">
-            <div class="step fade-up"><span>1</span>
-                <h3>Test Strategy</h3>
-                <p>We define the right testing approach for your product.</p>
-            </div>
-            <div class="step fade-up"><span>2</span>
-                <h3>Test Design</h3>
-                <p>We create test cases and automation frameworks.</p>
-            </div>
-            <div class="step fade-up"><span>3</span>
-                <h3>Execution</h3>
-                <p>We run automated and performance tests across environments.</p>
-            </div>
-            <div class="step fade-up"><span>4</span>
-                <h3>Reporting & Optimization</h3>
-                <p>We analyze results and help you improve quality continuously.</p>
-            </div>
+      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+        <div class="w-10 h-10 mb-4 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-width="2" d="M3 3h18v18H3z" />
+          </svg>
         </div>
-    </section>
+        <h3 class="font-semibold text-lg mb-2">Performance Testing</h3>
+        <p class="text-sm text-gray-600">Load, stress, and scalability testing for high-traffic systems.</p>
+      </div>
 
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('show');
-            });
-        }, { threshold: 0.15 });
+      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+        <div class="w-10 h-10 mb-4 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-width="2" d="M9 12l2 2 4-4" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-2">Regression Testing</h3>
+        <p class="text-sm text-gray-600">Ensure new changes don’t break existing functionality.</p>
+      </div>
 
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-    </script>
+      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+        <div class="w-10 h-10 mb-4 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-width="2" d="M4 7h16M4 12h10M4 17h16" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-2">CI/CD Testing Integration</h3>
+        <p class="text-sm text-gray-600">Automated tests integrated into your delivery pipelines.</p>
+      </div>
+
+      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+        <div class="w-10 h-10 mb-4 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-width="2" d="M12 3l8 4v5c0 5-3.5 9-8 9s-8-4-8-9V7l8-4z" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-2">Security Testing</h3>
+        <p class="text-sm text-gray-600">Identify vulnerabilities and improve application security.</p>
+      </div>
+
+      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+        <div class="w-10 h-10 mb-4 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="9" stroke-width="2" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-2">Quality Assurance Consulting</h3>
+        <p class="text-sm text-gray-600">Expert guidance to improve your testing strategy and processes.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section class="bg-gray-50 py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl font-semibold mb-10 text-center fade-down">Our Process</h2>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
+          <div
+            class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">
+            1</div>
+          <h3 class="font-semibold mb-1">Test Strategy</h3>
+          <p class="text-sm text-gray-600">We define the right testing approach for your product.</p>
+        </div>
+
+        <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
+          <div
+            class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">
+            2</div>
+          <h3 class="font-semibold mb-1">Test Design</h3>
+          <p class="text-sm text-gray-600">We create test cases and automation frameworks.</p>
+        </div>
+
+        <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
+          <div
+            class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">
+            3</div>
+          <h3 class="font-semibold mb-1">Execution</h3>
+          <p class="text-sm text-gray-600">We run automated and performance tests across environments.</p>
+        </div>
+
+        <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
+          <div
+            class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">
+            4</div>
+          <h3 class="font-semibold mb-1">Reporting & Optimization</h3>
+          <p class="text-sm text-gray-600">We analyze results and help you improve quality continuously.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -80px 0px" });
+
+    document.querySelectorAll('.fade-down').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 

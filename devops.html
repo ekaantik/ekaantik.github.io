@@ -1,283 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>DevOps & Cloud Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Inter font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-
-    body {
-      background: #f8fafc;
-      color: #0f172a;
-      line-height: 1.7;
-    }
-
-    section {
-      padding: 80px 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .section-alt {
-      background: #f1f5f9;
-    }
-
-    h1 {
-      font-size: 42px;
-      margin-bottom: 16px;
-    }
-
-    h2 {
-      font-size: 32px;
-      margin-bottom: 16px;
-    }
-
-    h3 {
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
-
-    p {
-      color: #334155;
-    }
-
-    /* ===== Hero ===== */
-    .hero {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 50px;
-      align-items: center;
-    }
-
-    .hero img {
-      max-width: 100%;
-      border-radius: 16px;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .cta a {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 14px 28px;
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      color: #fff;
-      text-decoration: none;
-      border-radius: 10px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-
-    .cta a:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(37,99,235,0.3);
-    }
-
-    /* ===== Cards ===== */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 24px;
-      margin-top: 40px;
-    }
-
-    .card {
-      background: #fff;
-      padding: 24px;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(180deg, #2563eb, #60a5fa);
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-    }
-
-    /* ===== Process ===== */
-    .process {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 24px;
-      margin-top: 40px;
-    }
-
-    .step {
-      background: #fff;
-      padding: 24px;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-      position: relative;
-    }
-
-    .step span {
-      display: inline-flex;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: #2563eb;
-      color: #fff;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    /* ===== Animations ===== */
-    .fade-up {
+    /* ===== Scroll Animation (initial state) ===== */
+    .fade-down {
       opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease;
+      transform: translateY(-60px);
+      /* bigger movement */
+      transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .fade-up.show {
+    /* Active when visible */
+    .fade-down.show {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* ===== Responsive ===== */
-    @media (max-width: 768px) {
-      .hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
+    /* Stagger delays for top → bottom effect */
+    .fade-down:nth-child(1) {
+      transition-delay: 0.1s;
+    }
 
-      h1 {
-        font-size: 32px;
-      }
+    .fade-down:nth-child(2) {
+      transition-delay: 0.25s;
+    }
 
-      h2 {
-        font-size: 26px;
-      }
+    .fade-down:nth-child(3) {
+      transition-delay: 0.4s;
+    }
+
+    .fade-down:nth-child(4) {
+      transition-delay: 0.55s;
+    }
+
+    .fade-down:nth-child(5) {
+      transition-delay: 0.7s;
+    }
+
+    .fade-down:nth-child(6) {
+      transition-delay: 0.85s;
+    }
+
+    /* ===== Hover Lift Effect ===== */
+    .hover-lift {
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Brand blue */
+    .icon-blue {
+      color: #4f6df5;
     }
   </style>
+
+
 </head>
-<body>
+
+<body class="bg-white text-black dark:bg-black dark:text-white">
 
   <!-- ===== HERO ===== -->
-  <section class="hero">
-    <div class="fade-up">
-      <h1>DevOps & Cloud Services</h1>
-      <p>
-        We help you build, deploy, and scale modern cloud infrastructure using
-        DevOps best practices, automation, and secure cloud-native solutions.
-      </p>
-      <div class="cta">
-        <a href="contact.html">Talk to Our Experts</a>
-      </div>
+  <section class="max-w-6xl mx-auto px-4 pt-28 pb-16 md:pt-32">
+
+    <!-- Breadcrumb (Top Left Inside Body) -->
+    <div class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      <a href="index.html" class="hover:text-primary font-medium">Home</a>
+      <span class="mx-2 text-gray-400">|</span>
+      <span class="text-black font-medium dark:text-white">DevOps & Cloud</span>
     </div>
 
-    <div class="fade-up">
-      <img src="images/Devops.png" alt="DevOps & Cloud">
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+
+      <!-- Left Content -->
+      <div>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 leading-tight">
+          DevOps & Cloud Services
+        </h1>
+
+        <p class="leading-7 text-sm sm:text-base">
+          We help you build, deploy, and scale modern cloud infrastructure using
+          DevOps best practices, automation, and secure cloud-native solutions.
+        </p>
+
+        <!-- CTA Button -->
+        <a href="contact.html"
+        class="inline-block mt-9 bg-[#4f6df5] text-white px-7 py-3 rounded-full text-sm font-medium hover:opacity-90 transition shadow-md">
+        Talk to Our Experts
+      </a>
+      </div>
+
+      <!-- Image -->
+      <div>
+        <img src="images/Devops.png" alt="DevOps" class="w-full rounded-lg shadow-sm">
+      </div>
+
     </div>
   </section>
 
   <!-- ===== OVERVIEW ===== -->
-  <section class="section-alt">
-    <h2 class="fade-up">Service Overview</h2>
-    <p class="fade-up">
-      Our DevOps & Cloud services are designed to streamline your development lifecycle,
-      improve reliability, and reduce time-to-market using AWS, Azure, and Google Cloud.
-    </p>
+  <section class="bg-gray-50 py-14 dark:bg-blacksection">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-semibold mb-3">Service Overview</h2>
+      <p class="leading-7">
+        Our DevOps & Cloud services streamline your development lifecycle,
+        improve reliability, and reduce time-to-market using AWS, Azure,
+        and Google Cloud technologies.
+      </p>
+    </div>
   </section>
 
   <!-- ===== WHAT WE OFFER ===== -->
-  <section>
-    <h2 class="fade-up">What We Offer</h2>
+  <section class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-2xl font-semibold mb-8 text-center">What We Offer</h2>
 
-    <div class="grid">
-      <div class="card fade-up">
-        <h3>CI/CD Pipelines</h3>
-        <p>Automated build, test, and deployment pipelines for faster and safer releases.</p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Card -->
+      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+        <div class="w-10 h-10 mb-4 icon-blue">
+          <!-- CI/CD Icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-width="2" d="M4 7h16M4 12h10M4 17h16" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-2">CI/CD Pipelines</h3>
+        <p class="text-sm text-gray-600">Automated build, test, and deployment pipelines.</p>
       </div>
-      <div class="card fade-up">
-        <h3>AWS / Azure / GCP</h3>
-        <p>Cloud architecture, migration, and management across major cloud platforms.</p>
+
+      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+        <div class="w-10 h-10 mb-4 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-width="2" d="M3 15a4 4 0 014-4h1a5 5 0 0110 1h1a3 3 0 010 6H7a4 4 0 01-4-3z" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-2">Cloud Platforms</h3>
+        <p class="text-sm text-gray-600">Architecture & migration across AWS, Azure, and GCP.</p>
       </div>
-      <div class="card fade-up">
-        <h3>Infrastructure as Code</h3>
-        <p>Automated infrastructure provisioning using Terraform and Cloud templates.</p>
+
+      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+        <div class="w-10 h-10 mb-4 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-width="2" d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-2">Infrastructure as Code</h3>
+        <p class="text-sm text-gray-600">Provision infrastructure using Terraform.</p>
       </div>
-      <div class="card fade-up">
-        <h3>Docker & Kubernetes</h3>
-        <p>Containerization and orchestration for scalable and resilient applications.</p>
+
+      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+        <div class="w-10 h-10 mb-4 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="3" y="7" width="18" height="13" rx="2" stroke-width="2" />
+            <path stroke-width="2" d="M16 3v4M8 3v4" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-2">Docker & Kubernetes</h3>
+        <p class="text-sm text-gray-600">Containerization and orchestration solutions.</p>
       </div>
-      <div class="card fade-up">
-        <h3>Monitoring & Logging</h3>
-        <p>Proactive monitoring and logging to ensure performance and system health.</p>
+
+      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+        <div class="w-10 h-10 mb-4 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="3" y="4" width="18" height="12" rx="2" stroke-width="2" />
+            <path stroke-width="2" d="M8 20h8M12 16v4" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-2">Monitoring & Logging</h3>
+        <p class="text-sm text-gray-600">Ensure system health with proactive monitoring.</p>
       </div>
-      <div class="card fade-up">
-        <h3>Security Optimization</h3>
-        <p>Security best practices, audits, and automation to protect your infrastructure.</p>
+
+      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+        <div class="w-10 h-10 mb-4 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-width="2" d="M12 3l8 4v5c0 5-3.5 9-8 9s-8-4-8-9V7l8-4z" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-2">Security Optimization</h3>
+        <p class="text-sm text-gray-600">Best practices to protect infrastructure.</p>
       </div>
+
     </div>
   </section>
 
-  <!-- ===== PROCESS ===== -->
-  <section class="section-alt">
-    <h2 class="fade-up">Our Process</h2>
+  <!-- ===== OUR PROCESS (MATCHING STYLE) ===== -->
+  <section class="bg-gray-50 py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl font-semibold mb-10 text-center">Our Process</h2>
 
-    <div class="process">
-      <div class="step fade-up">
-        <span>1</span>
-        <h3>Discovery</h3>
-        <p>We understand your business goals and technical requirements.</p>
-      </div>
-      <div class="step fade-up">
-        <span>2</span>
-        <h3>Design</h3>
-        <p>We design a secure, scalable, and cost-effective cloud architecture.</p>
-      </div>
-      <div class="step fade-up">
-        <span>3</span>
-        <h3>Implementation</h3>
-        <p>We implement automation, CI/CD, and cloud infrastructure.</p>
-      </div>
-      <div class="step fade-up">
-        <span>4</span>
-        <h3>Optimize</h3>
-        <p>We monitor, optimize, and continuously improve performance.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
+          <div
+            class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">
+            1</div>
+          <h3 class="font-semibold mb-1">Discovery</h3>
+          <p class="text-sm text-gray-600">Understanding your business needs.</p>
+        </div>
+
+        <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
+          <div
+            class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">
+            2</div>
+          <h3 class="font-semibold mb-1">Design</h3>
+          <p class="text-sm text-gray-600">Creating scalable architecture.</p>
+        </div>
+
+        <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
+          <div
+            class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">
+            3</div>
+          <h3 class="font-semibold mb-1">Implementation</h3>
+          <p class="text-sm text-gray-600">Deploying CI/CD & automation.</p>
+        </div>
+
+        <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
+          <div
+            class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">
+            4</div>
+          <h3 class="font-semibold mb-1">Optimize</h3>
+          <p class="text-sm text-gray-600">Continuous monitoring & improvement.</p>
+        </div>
+
       </div>
     </div>
   </section>
-
-  <!-- ===== SCROLL ANIMATION ===== -->
+  
   <script>
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('show');
         }
       });
-    }, { threshold: 0.15 });
+    }, {
+      threshold: 0.15,   // trigger earlier
+      rootMargin: "0px 0px -80px 0px" // makes effect visible while scrolling
+    });
 
-    document.querySelectorAll('.fade-up').forEach(el => {
+    document.querySelectorAll('.fade-down').forEach(el => {
       observer.observe(el);
     });
   </script>
 
 </body>
+
 </html>

@@ -2,278 +2,210 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Web Application Development</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <title>Web Application Development</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <style>
-        /* ===== SAME BASE STYLES AS DEVOPS PAGE ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: system-ui, sans-serif;
-        }
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        body {
-            background: #f8fafc;
-            color: #0f172a;
-            line-height: 1.7;
-        }
+  <!-- Inter font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-        section {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: auto;
-        }
+  <style>
+    body { font-family: 'Inter', sans-serif; }
 
-        .section-alt {
-            background: #f1f5f9;
-        }
+    .fade-down {
+      opacity: 0;
+      transform: translateY(-60px);
+      transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
 
-        h1 {
-            font-size: 42px;
-            margin-bottom: 16px;
-        }
+    .fade-down.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-        h2 {
-            font-size: 32px;
-            margin-bottom: 16px;
-        }
+    .hover-lift {
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
 
-        h3 {
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
+    .hover-lift:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
 
-        p {
-            color: #334155;
-        }
-
-        .hero {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .hero img {
-            max-width: 100%;
-            border-radius: 16px;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0)
-            }
-
-            50% {
-                transform: translateY(-10px)
-            }
-        }
-
-        .cta a {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 14px 28px;
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .cta a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
-            margin-top: 40px;
-        }
-
-        .card {
-            background: #fff;
-            padding: 24px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, #2563eb, #60a5fa);
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-        }
-
-        .process {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 24px;
-            margin-top: 40px;
-        }
-
-        .step {
-            background: #fff;
-            padding: 24px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-        }
-
-        .step span {
-            display: inline-flex;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: #2563eb;
-            color: #fff;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-up.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            h1 {
-                font-size: 32px;
-            }
-
-            h2 {
-                font-size: 26px;
-            }
-        }
-    </style>
+    .icon-blue { color: #4f6df5; }
+  </style>
 </head>
 
-<body>
+<body class="bg-white text-black dark:bg-black dark:text-white">
 
-    <!-- ===== HERO ===== -->
-    <section class="hero">
-        <div class="fade-up">
-            <h1>Web Application Development</h1>
-            <p>
-                We design and develop modern, secure, and scalable web applications
-                that help businesses grow their digital presence and deliver great user experiences.
-            </p>
-            <div class="cta">
-                <a href="contact.html">Start Your Project</a>
-            </div>
-        </div>
+  <!-- ===== HERO ===== -->
+  <section class="max-w-6xl mx-auto px-4 pt-28 pb-16 md:pt-32">
 
-        <div class="fade-up">
-            <img src="images/WebApp.png" alt="Web Application Development">
-        </div>
-    </section>
+    <!-- Breadcrumb -->
+    <div class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      <a href="index.html" class="hover:text-primary font-medium">Home</a>
+      <span class="mx-2 text-gray-400">|</span>
+      <span class="text-black font-medium dark:text-white">Web Applications</span>
+    </div>
 
-    <!-- ===== OVERVIEW ===== -->
-    <section class="section-alt">
-        <h2 class="fade-up">Service Overview</h2>
-        <p class="fade-up">
-            We build high-performance web applications using modern technologies and best practices,
-            focusing on usability, security, and scalability to meet your business needs.
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+
+      <div>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 leading-tight">
+          Web Application Development
+        </h1>
+
+        <p class="leading-7 text-sm sm:text-base">
+          We design and develop modern, secure, and scalable web applications
+          that help businesses grow their digital presence and deliver great user experiences.
         </p>
-    </section>
 
-    <!-- ===== WHAT WE OFFER ===== -->
-    <section>
-        <h2 class="fade-up">What We Offer</h2>
+        <a href="contact.html"
+          class="inline-block mt-9 bg-[#4f6df5] text-white px-7 py-3 rounded-full text-sm font-medium hover:opacity-90 transition shadow-md">
+          Start Your Project
+        </a>
+      </div>
 
-        <div class="grid">
-            <div class="card fade-up">
-                <h3>Custom Web Applications</h3>
-                <p>Tailor-made solutions designed to match your business workflows.</p>
-            </div>
-            <div class="card fade-up">
-                <h3>Responsive UI/UX</h3>
-                <p>Beautiful, user-friendly interfaces that work perfectly on all devices.</p>
-            </div>
-            <div class="card fade-up">
-                <h3>Scalable Architecture</h3>
-                <p>Future-ready systems that grow with your business.</p>
-            </div>
-            <div class="card fade-up">
-                <h3>Secure Development</h3>
-                <p>Best practices to protect your data and applications.</p>
-            </div>
-            <div class="card fade-up">
-                <h3>API Integration</h3>
-                <p>Seamless integration with third-party services and platforms.</p>
-            </div>
-            <div class="card fade-up">
-                <h3>Performance Optimization</h3>
-                <p>Fast-loading, optimized applications for better user experience.</p>
-            </div>
+      <div>
+        <img src="images/WebApp.png" alt="Web Application Development" class="w-full rounded-lg shadow-sm">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== OVERVIEW ===== -->
+  <section class="bg-gray-50 py-14">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-semibold mb-3">Service Overview</h2>
+      <p class="leading-7">
+        We build high-performance web applications using modern technologies and best practices,
+        focusing on usability, security, and scalability to meet your business needs.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== WHAT WE OFFER ===== -->
+  <section class="max-w-6xl mx-auto px-4 py-14">
+    <h2 class="text-2xl font-semibold mb-8 text-center">What We Offer</h2>
+
+    <!-- 🔹 Compact Cards Grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <!-- Card -->
+      <div class="fade-down hover-lift border rounded-xl p-5 bg-white shadow-sm">
+        <div class="w-8 h-8 mb-3 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-width="2" d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
+          </svg>
         </div>
-    </section>
+        <h3 class="font-semibold text-base mb-1">Custom Web Applications</h3>
+        <p class="text-sm text-gray-600 leading-6">Tailor-made solutions designed to match your business workflows.</p>
+      </div>
 
-    <!-- ===== PROCESS ===== -->
-    <section class="section-alt">
-        <h2 class="fade-up">Our Process</h2>
-
-        <div class="process">
-            <div class="step fade-up"><span>1</span>
-                <h3>Planning</h3>
-                <p>We understand your goals and define the right solution.</p>
-            </div>
-            <div class="step fade-up"><span>2</span>
-                <h3>Design</h3>
-                <p>We create intuitive UI/UX designs for your users.</p>
-            </div>
-            <div class="step fade-up"><span>3</span>
-                <h3>Development</h3>
-                <p>We build secure, scalable, and high-quality applications.</p>
-            </div>
-            <div class="step fade-up"><span>4</span>
-                <h3>Launch & Support</h3>
-                <p>We deploy and provide continuous support and improvements.</p>
-            </div>
+      <div class="fade-down hover-lift border rounded-xl p-5 bg-white shadow-sm">
+        <div class="w-8 h-8 mb-3 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="3" y="4" width="18" height="12" rx="2" stroke-width="2"/>
+            <path stroke-width="2" d="M8 20h8M12 16v4"/>
+          </svg>
         </div>
-    </section>
+        <h3 class="font-semibold text-base mb-1">Responsive UI/UX</h3>
+        <p class="text-sm text-gray-600 leading-6">Beautiful, user-friendly interfaces that work perfectly on all devices.</p>
+      </div>
 
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('show');
-            });
-        }, { threshold: 0.15 });
+      <div class="fade-down hover-lift border rounded-xl p-5 bg-white shadow-sm">
+        <div class="w-8 h-8 mb-3 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <polygon stroke-width="2" points="12 2 2 7 12 12 22 7 12 2"/>
+            <polyline stroke-width="2" points="2 17 12 22 22 17"/>
+            <polyline stroke-width="2" points="2 12 12 17 22 12"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-base mb-1">Scalable Architecture</h3>
+        <p class="text-sm text-gray-600 leading-6">Future-ready systems that grow with your business.</p>
+      </div>
 
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-    </script>
+      <div class="fade-down hover-lift border rounded-xl p-5 bg-white shadow-sm">
+        <div class="w-8 h-8 mb-3 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-width="2" d="M12 3l8 4v5c0 5-3.5 9-8 9s-8-4-8-9V7l8-4z"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-base mb-1">Secure Development</h3>
+        <p class="text-sm text-gray-600 leading-6">Best practices to protect your data and applications.</p>
+      </div>
+
+      <div class="fade-down hover-lift border rounded-xl p-5 bg-white shadow-sm">
+        <div class="w-8 h-8 mb-3 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-width="2" d="M10 13a5 5 0 007.07 0l2.83-2.83a5 5 0 00-7.07-7.07L10 5"/>
+            <path stroke-width="2" d="M14 11a5 5 0 00-7.07 0L4.1 13.83a5 5 0 007.07 7.07L14 19"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-base mb-1">API Integration</h3>
+        <p class="text-sm text-gray-600 leading-6">Seamless integration with third-party services and platforms.</p>
+      </div>
+
+      <div class="fade-down hover-lift border rounded-xl p-5 bg-white shadow-sm">
+        <div class="w-8 h-8 mb-3 icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="9" stroke-width="2"/>
+            <path stroke-width="2" d="M12 7v5l3 3"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-base mb-1">Performance Optimization</h3>
+        <p class="text-sm text-gray-600 leading-6">Fast-loading, optimized applications for better user experience.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section class="bg-gray-50 py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl font-semibold mb-10 text-center">Our Process</h2>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- steps unchanged -->
+        <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
+          <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">1</div>
+          <h3 class="font-semibold mb-1">Planning</h3>
+          <p class="text-sm text-gray-600">We understand your goals and define the right solution.</p>
+        </div>
+
+        <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
+          <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">2</div>
+          <h3 class="font-semibold mb-1">Design</h3>
+          <p class="text-sm text-gray-600">We create intuitive UI/UX designs for your users.</p>
+        </div>
+
+        <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
+          <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">3</div>
+          <h3 class="font-semibold mb-1">Development</h3>
+          <p class="text-sm text-gray-600">We build secure, scalable, and high-quality applications.</p>
+        </div>
+
+        <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
+          <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">4</div>
+          <h3 class="font-semibold mb-1">Launch & Support</h3>
+          <p class="text-sm text-gray-600">We deploy and provide continuous support and improvements.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-down').forEach(el => observer.observe(el));
+  </script>
 
 </body>
-
 </html>

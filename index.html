@@ -17,7 +17,7 @@
           $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
   :class="{'dark bg-black': darkMode === true}">
 
-  <!-- ====== Section Containers (NO CONTENT HERE) ====== -->
+  <!-- ====== Section Containers ====== -->
   <section id="header" data-include="header.html"></section>
   <section id="hero" data-include="hero.html"></section>
   <section id="features" data-include="small-features.html"></section>
@@ -32,7 +32,7 @@
   <section id="contact" data-include="contact.html"></section>
   <section id="footer" data-include="footer.html"></section>
 
-  <!-- ====== Back To Top Button (YOUR CODE - UNTOUCHED) ====== -->
+  <!-- ====== Back To Top Button  ====== -->
   <button
     class="hidden items-center justify-center w-10 h-10 rounded-[4px] shadow-solid-5 bg-primary hover:bg-primaryho fixed bottom-8 right-8 z-999"
     @click="window.scrollTo({top: 0, behavior: 'smooth'})"

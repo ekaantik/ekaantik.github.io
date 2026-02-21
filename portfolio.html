@@ -1,14 +1,10 @@
 <!-- ====== Portfolio Section Start ====== -->
-<section
-  id="portfolio"
-  x-data="{ filter: 'all' }"
-  style="
+<section id="portfolio" x-data="{ filter: 'all' }" style="
     padding: 80px 20px;
     font-family: Arial, sans-serif;
     background: white;
     color: black;
-  "
->
+  ">
   <!-- Inline CSS only for this section -->
   <style>
     #portfolio .title {
@@ -16,6 +12,7 @@
       max-width: 900px;
       margin: 0 auto 40px;
     }
+
     #portfolio h2 {
       font-size: 48px;
       font-weight: 800;
@@ -35,6 +32,7 @@
       text-align: center;
       margin-bottom: 40px;
     }
+
     #portfolio .filters button {
       margin: 5px;
       padding: 8px 18px;
@@ -46,6 +44,7 @@
       font-weight: 600;
       transition: 0.3s;
     }
+
     #portfolio .filters button.active,
     #portfolio .filters button:hover {
       background: #3b82f6;
@@ -93,22 +92,27 @@
       background: #dbeafe;
       color: #1e3a8a;
     }
+
     .student {
       background: #fef9c3;
       color: #854d0e;
     }
+
     .aiml {
       background: #ede9fe;
       color: #5b21b6;
     }
+
     .cloud {
       background: #dcfce7;
       color: #166534;
     }
+
     .iot {
       background: #ffedd5;
       color: #9a3412;
     }
+
     .web {
       background: #fce7f3;
       color: #9d174d;
@@ -154,7 +158,8 @@
   <!-- Title -->
   <div class="title">
     <h2>Portfolio</h2>
-    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using.</p>
+    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at
+      its layout. The point of using.</p>
   </div>
 
   <!-- Filters -->
@@ -165,19 +170,13 @@
     <button :class="filter=='AI/ML' && 'active'" @click="filter='AI/ML'">
       AI/ML
     </button>
-    <button
-      :class="filter=='Cloud/DevOps' && 'active'"
-      @click="filter='Cloud/DevOps'"
-    >
+    <button :class="filter=='Cloud/DevOps' && 'active'" @click="filter='Cloud/DevOps'">
       Cloud/DevOps
     </button>
     <button :class="filter=='IoT' && 'active'" @click="filter='IoT'">
       IoT
     </button>
-    <button
-      :class="filter=='Web/MobileApp' && 'active'"
-      @click="filter='Web/MobileApp'"
-    >
+    <button :class="filter=='Web/MobileApp' && 'active'" @click="filter='Web/MobileApp'">
       Web/Mobile
     </button>
   </div>
@@ -186,7 +185,7 @@
   <div class="grid">
     <!-- Sentiment Analysis -->
     <div class="card" x-show="filter=='all' || filter=='AI/ML'">
-      <img src="images/Ai-portfolio2.jfif" class="card-img" alt="" />
+      <img src="images/sentiment.avif" class="card-img" alt="" />
       <div class="overlay">
         <a href="sentiment-analysis.html">Read More</a>
       </div>
@@ -201,7 +200,7 @@
 
     <!-- Cloud Hosting -->
     <div class="card" x-show="filter=='all' || filter=='Cloud/DevOps'">
-      <img src="images/Cloud-Portfolio1.jpg" alt="" />
+      <img src="images/cloud hosting.jpg" alt="" />
       <div class="overlay">
         <a href="cloud-hosting.html">Read More</a>
       </div>
@@ -216,7 +215,7 @@
 
     <!-- CI/CD -->
     <div class="card" x-show="filter=='all' || filter=='Cloud/DevOps'">
-      <img src="images/DevOps-Portfolio1.png" alt="" />
+      <img src="images/DevOps-Portfolio.png" alt="" />
       <div class="overlay">
         <a href="cicd-pipeline.html">Read More</a>
       </div>
@@ -231,7 +230,7 @@
 
     <!-- Mobile App -->
     <div class="card" x-show="filter=='all' || filter=='Web/MobileApp'">
-      <img src="images/mobile-portfolio2.jfif" alt="" />
+      <img src="images/mobile app.avif" alt="" />
       <div class="overlay">
         <a href="mobile-app.html">Read More</a>
       </div>
@@ -246,10 +245,13 @@
 
     <!-- IoT -->
     <div class="card" x-show="filter=='all' || filter=='IoT'">
-      <img src="images/IoT-Dashboard1.jpg" alt="" />
+      <img src="images/power plant monitoring.jpg" alt=""
+        style="width:87%; height:auto; display:block; margin:32px auto;" />
+
       <div class="overlay">
         <a href="iot-dashboard.html">Read More</a>
       </div>
+
       <div class="card-content">
         <div class="tags">
           <span class="student">Student</span>
@@ -261,9 +263,9 @@
 
     <!-- Web -->
     <div class="card" x-show="filter=='all' || filter=='Web/MobileApp'">
-      <img src="images/web-portfolio1.jpg" alt="" />
+      <img src="images/app development.jpg " alt="" />
       <div class="overlay">
-        <a href="web-project.html">Read More</a>
+        <a href="web-projects.html">Read More</a>
       </div>
       <div class="card-content">
         <div class="tags">

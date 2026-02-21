@@ -1,188 +1,155 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- ===== Footer Start ===== -->
+<footer id="mainFooter" class="py-10">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Footer - Ekaantik Software Solutions</title>
+  <style>
+    #mainFooter {
+      background-image: url(images/shape-16.svg);
+      background: #2e61f0 url("images/shape-16.svg") no-repeat right center;
+      background-size: 1550px;
+      color: #ffffff;
+      position: relative;
+      padding-top: 40px;
+    }
 
-  <!-- Main CSS -->
-  <link rel="stylesheet" href="style.css">
+    #mainFooter .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
 
-</head>
+    #mainFooter h4 {
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
 
-<body>
-  <main>
+    #mainFooter ul li {
+      margin-bottom: 10px;
+    }
 
-    <!-- ===== Footer Start ===== -->
-    <footer id="mainFooter" class="pt-20 pb-6">
+    #mainFooter ul li a {
+      color: #ffffff;
+      transition: 0.3s;
+      text-decoration: none;
+    }
 
-      <style>
-        #mainFooter {
-          background-image: url(images/shape-16.svg);
-          background: #2e61f0 url("images/shape-16.svg") no-repeat right center;
-          background-size: 1550px;
-          /* control svg size */
-          color: #ffffff;
-          position: relative;
-        }
+    #mainFooter ul li a:hover {
+      color: #ffffff;
+    }
 
-        #mainFooter .footer-logo {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-        }
+    /* Social Icons */
+    #mainFooter .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      transition: 0.3s;
+      color: #ffffff;
+    }
 
-        #mainFooter h4 {
-          font-weight: 600;
-          margin-bottom: 20px;
-        }
+    #mainFooter .social-icons a:hover {
+      background: #ffffff;
+      color: #2e61f0;
+    }
 
-        #mainFooter ul li {
-          margin-bottom: 10px;
-        }
+    #mainFooter .social-icons svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
 
-        #mainFooter ul li a {
-          color: #ffffff;
-          transition: 0.3s;
-          text-decoration: none;
-        }
+    /* Bottom Bar */
+    #mainFooter .bottom-bar {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      font-size: 14px;
+      color: #ffffff;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      #mainFooter {
+        background-position: right bottom;
+        background-size: 300px;
+      }
+    }
 
-        #mainFooter ul li a:hover {
-          color: #ffffff;
-        }
+    @media (max-width: 600px) {
+      #mainFooter {
+        background: #2e61f0;
+      }
+    }
+  </style>
 
-        /* Social Icons */
-        #mainFooter .social-icons a {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 36px;
-          height: 36px;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.1);
-          transition: 0.3s;
-          color: #ffffff;
-        }
+  <div class="mx-auto max-w-1390 px-4 md:px-8 2xl:px-0">
 
-        #mainFooter .social-icons a:hover {
-          background: #ffffff;
-          color: #2e61f0;
-        }
+    <div class="flex flex-col lg:flex-row lg:justify-between gap-12">
 
-        #mainFooter .social-icons svg {
-          width: 18px;
-          height: 18px;
-          fill: currentColor;
-        }
+      <!-- Left Side -->
+      <div class="lg:w-1/3">
 
-        /* Bottom Bar */
-        #mainFooter .bottom-bar {
-          margin-top: 60px;
-          padding-top: 20px;
-          border-top: 1px solid rgba(255, 255, 255, 0.2);
-          text-align: center;
-          font-size: 14px;
-          color: #ffffff;
-        }
+        <a href="index.html" class="footer-logo mb-6">
+          <img src="images/logo-dark.png" alt="Logo" class="w-10">
+          <span class="text-xl font-semibold">Ekaantik</span>
+        </a>
 
-        /* Responsive */
-        @media (max-width: 992px) {
-          #mainFooter {
-            background-position: right bottom;
-            background-size: 300px;
-          }
-        }
+        <p class="text-gray-200 mb-6 leading-relaxed">
+          We are a technology-driven company delivering scalable solutions in
+          Web, Mobile, Cloud, AI, and IoT. We help businesses grow with secure,
+          modern, and future-ready software.
+        </p>
 
-        @media (max-width: 600px) {
-          #mainFooter {
-            background: #2e61f0;
-            /* remove svg on small screens */
-          }
-        }
-      </style>
-     </head>
+        <div class="social-icons flex gap-4">
+          <!-- Social icons remain same -->
+        </div>
 
-        <body>
+      </div>
 
-          <main>
+      <!-- Right Columns -->
+      <div class="flex flex-wrap lg:flex-nowrap gap-12 lg:w-2/3 justify-between">
 
-            <footer id="mainFooter" class="pt-20 pb-6">
+        <div>
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#">Web Applications</a></li>
+            <li><a href="#">Mobile Apps</a></li>
+            <li><a href="#">Cloud & DevOps</a></li>
+            <li><a href="#">AI & Data Engineering</a></li>
+            <li><a href="#">IoT Solutions</a></li>
+          </ul>
+        </div>
 
-     
-              <div class="mx-auto max-w-1390 px-4 md:px-8 2xl:px-0">
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
 
-                <div class="flex flex-col lg:flex-row lg:justify-between gap-12">
+        <div>
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+          </ul>
+        </div>
 
-                  <!-- Left Side -->
-                  <div class="lg:w-1/3">
+      </div>
 
-                    <a href="index.html" class="footer-logo mb-6">
-                      <img src="images/logo-dark.png" alt="Logo" class="w-10">
-                      <span class="text-xl font-semibold">Ekaantik</span>
-                    </a>
+    </div>
 
-                    <p class="text-gray-200 mb-6 leading-relaxed">
-                      We are a technology-driven company delivering scalable solutions in
-                      Web, Mobile, Cloud, AI, and IoT. We help businesses grow with secure,
-                      modern, and future-ready software.
-                    </p>
+    <div class="bottom-bar">
+      © 2026 Ekaantik Software Solutions. All Rights Reserved.
+    </div>
 
-                    <div class="social-icons flex gap-4">
-                      <!-- Social icons remain same -->
-                    </div>
+  </div>
 
-                  </div>
-
-                  <!-- Right Columns -->
-
-                  <div class="flex flex-wrap lg:flex-nowrap gap-12 lg:w-2/3 justify-between">
-
-                    <div>
-                      <h4>Services</h4>
-                      <ul>
-                        <li><a href="#">Web Applications</a></li>
-                        <li><a href="#">Mobile Apps</a></li>
-                        <li><a href="#">Cloud & DevOps</a></li>
-                        <li><a href="#">AI & Data Engineering</a></li>
-                        <li><a href="#">IoT Solutions</a></li>
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h4>Company</h4>
-                      <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Portfolio</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Careers</a></li>
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h4>Support</h4>
-                      <ul>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
-                      </ul>
-                    </div>
-
-                  </div>
-
-                </div>
-
-                <div class="bottom-bar">
-                  © 2026 Ekaantik Software Solutions. All Rights Reserved.
-                </div>
-
-              </div>
-
-            </footer>
-
-          </main>
-
-        </body>
-
-</html>
+</footer>
