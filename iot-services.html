@@ -8,6 +8,8 @@
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="style.css" rel="stylesheet">
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
   <!-- Inter font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -39,26 +41,33 @@
   </style>
 </head>
 
-<body class="bg-white text-black dark:bg-black dark:text-white">
+<body x-data="{ page: 'services', darkMode: true, stickyMenu: false, navigationOpen: false }"
+x-init="
+darkMode = JSON.parse(localStorage.getItem('darkMode'));
+$watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
+"
+:class="{'dark bg-black': darkMode === true}">
+
+<section id="header" data-include="header.html"></section> 
 
   <!-- ===== HERO ===== -->
   <section class="max-w-6xl mx-auto px-4 pt-28 pb-16 md:pt-32">
 
     <!-- Breadcrumb -->
-    <div class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+    <div class="text-sm text-gray-700 dark:text-gray-300 mb-4">
       <a href="index.html" class="font-medium">Home</a>
       <span class="mx-2 text-gray-400">|</span>
-      <span class="font-medium">IoT Solutions</span>
+      <span class="text-gray-900 font-medium dark:text-white">IoT Solutions</span>
     </div>
 
     <div class="grid md:grid-cols-2 gap-10 items-center">
 
       <div>
-        <h1 class="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 leading-tight  text-gray-900 dark:text-white">
           IoT Solutions & Integration
         </h1>
 
-        <p class="leading-7 text-sm sm:text-base">
+        <p class="leading-7 text-sm sm:text-base text-gray-700 dark:text-gray-300">
           We build smart, connected IoT ecosystems that enable real-time data collection,
           automation, and intelligent decision-making across industries.
         </p>
@@ -77,10 +86,10 @@
   </section>
 
   <!-- ===== OVERVIEW ===== -->
-  <section class="bg-gray-50 py-14">
+  <section class="bg-gray-50 py-14 dark:bg-blacksection">
     <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-2xl font-semibold mb-3">Service Overview</h2>
-      <p>
+      <h2 class="text-2xl font-semibold mb-3 text-gray-900 dark:text-white fade-down">Service Overview</h2>
+      <p class="leading-7 fade-down text-gray-700 dark:text-gray-300">
         Our IoT solutions connect devices, cloud platforms, and analytics to create
         intelligent systems that improve efficiency, monitoring, and automation.
       </p>
@@ -88,20 +97,20 @@
   </section>
 
   <!-- ===== WHAT WE OFFER ===== -->
-  <section class="max-w-6xl mx-auto px-4 py-16">
-    <h2 class="text-2xl font-semibold mb-8 text-center">What We Offer</h2>
+  <section class="max-w-6xl mx-auto px-4 pb-16">
+    <h2 class="text-2xl font-semibold mb-8 text-center text-gray-900 dark:text-white fade-down">What We Offer</h2>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
+      <div class="fade-down hover-lift border rounded-xl p-6 bg-white  dark:bg-blacksection">
         <div class="w-10 h-10 mb-4 icon-blue">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <circle cx="12" cy="12" r="4" stroke-width="2"/>
             <path stroke-width="2" d="M4 12h4M16 12h4M12 4v4M12 16v4"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-lg mb-2">IoT Architecture</h3>
-        <p class="text-sm text-gray-600">End-to-end design of scalable IoT ecosystems.</p>
+        <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">IoT Architecture</h3>
+        <p class="text-sm text-gray-700 dark:text-gray-300">End-to-end design of scalable IoT ecosystems.</p>
       </div>
 
       <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
@@ -111,8 +120,8 @@
             <circle cx="12" cy="12" r="9" stroke-width="2"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-lg mb-2">Device Integration</h3>
-        <p class="text-sm text-gray-600">Connect sensors, devices, and gateways seamlessly.</p>
+        <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">Device Integration</h3>
+        <p class="text-sm text-gray-700 dark:text-gray-300">Connect sensors, devices, and gateways seamlessly.</p>
       </div>
 
       <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
@@ -121,8 +130,8 @@
             <path stroke-width="2" d="M3 15a4 4 0 014-4h1a5 5 0 0110 1h1a3 3 0 010 6H7z"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-lg mb-2">Cloud IoT Platforms</h3>
-        <p class="text-sm text-gray-600">Deploy IoT on AWS, Azure, and GCP platforms.</p>
+        <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">Cloud IoT Platforms</h3>
+        <p class="text-sm text-gray-700 dark:text-gray-300">Deploy IoT on AWS, Azure, and GCP platforms.</p>
       </div>
 
       <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
@@ -132,8 +141,8 @@
             <path stroke-width="2" d="M7 14l3-3 4 4 5-5"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-lg mb-2">Real-Time Analytics</h3>
-        <p class="text-sm text-gray-600">Transform device data into actionable insights.</p>
+        <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">Real-Time Analytics</h3>
+        <p class="text-sm text-gray-700 dark:text-gray-300">Transform device data into actionable insights.</p>
       </div>
 
       <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
@@ -142,8 +151,8 @@
             <path stroke-width="2" d="M12 3l8 4v5c0 5-3.5 9-8 9s-8-4-8-9V7z"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-lg mb-2">Security & Compliance</h3>
-        <p class="text-sm text-gray-600">Enterprise-grade protection for devices and data.</p>
+        <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">Security & Compliance</h3>
+        <p class="text-sm text-gray-700 dark:text-gray-300">Enterprise-grade protection for devices and data.</p>
       </div>
 
       <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
@@ -153,42 +162,42 @@
             <path stroke-width="2" d="M8 20h8"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-lg mb-2">Automation & Monitoring</h3>
-        <p class="text-sm text-gray-600">Real-time monitoring and smart automation.</p>
+        <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">Automation & Monitoring</h3>
+        <p class="text-sm text-gray-700 dark:text-gray-300">Real-time monitoring and smart automation.</p>
       </div>
 
     </div>
   </section>
 
   <!-- ===== PROCESS ===== -->
-  <section class="bg-gray-50 py-16">
+  <section class="bg-gray-50 py-16 dark:bg-blacksection">
     <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-2xl font-semibold mb-10 text-center">Our Process</h2>
+      <h2 class="text-2xl font-semibold mb-10 text-center text-gray-900 dark:text-white fade-down">Our Process</h2>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
         <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
           <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">1</div>
-          <h3 class="font-semibold mb-1">Discovery</h3>
-          <p class="text-sm text-gray-600">Understanding your IoT goals.</p>
+          <h3 class="font-semibold mb-1 text-gray-900 dark:text-white">Discovery</h3>
+          <p class="text-sm text-gray-700 dark:text-gray-300">Understanding your IoT goals.</p>
         </div>
 
         <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
           <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">2</div>
-          <h3 class="font-semibold mb-1">Design</h3>
-          <p class="text-sm text-gray-600">Design scalable IoT architecture.</p>
+          <h3 class="font-semibold mb-1 text-gray-900 dark:text-white">Design</h3>
+          <p class="text-sm text-gray-700 dark:text-gray-300">Design scalable IoT architecture.</p>
         </div>
 
         <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
           <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">3</div>
-          <h3 class="font-semibold mb-1">Integration</h3>
-          <p class="text-sm text-gray-600">Connect devices and platforms.</p>
+          <h3 class="font-semibold mb-1 text-gray-900 dark:text-white">Integration</h3>
+          <p class="text-sm text-gray-700 dark:text-gray-300">Connect devices and platforms.</p>
         </div>
 
         <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
           <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">4</div>
-          <h3 class="font-semibold mb-1">Optimization</h3>
-          <p class="text-sm text-gray-600">Monitor and scale continuously.</p>
+          <h3 class="font-semibold mb-1 text-gray-900 dark:text-white">Optimization</h3>
+          <p class="text-sm text-gray-700 dark:text-gray-300">Monitor and scale continuously.</p>
         </div>
 
       </div>
@@ -203,6 +212,12 @@
     });
 
     document.querySelectorAll('.fade-down').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('[data-include]').forEach(async (el) => {
+  const file = el.getAttribute('data-include');
+  const res = await fetch(file);
+  el.innerHTML = await res.text();
+});
   </script>
 
 </body>

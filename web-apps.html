@@ -8,6 +8,8 @@
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="style.css" rel="stylesheet">
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
   <!-- Inter font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -39,26 +41,33 @@
   </style>
 </head>
 
-<body class="bg-white text-black dark:bg-black dark:text-white">
+<body x-data="{ page: 'services', darkMode: true, stickyMenu: false, navigationOpen: false }"
+x-init="
+darkMode = JSON.parse(localStorage.getItem('darkMode'));
+$watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
+"
+:class="{'dark bg-black': darkMode === true}">
+
+<section id="header" data-include="header.html"></section>
 
   <!-- ===== HERO ===== -->
   <section class="max-w-6xl mx-auto px-4 pt-28 pb-16 md:pt-32">
 
     <!-- Breadcrumb -->
-    <div class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+    <div class="text-sm text-gray-700 dark:text-gray-300 mb-4">
       <a href="index.html" class="hover:text-primary font-medium">Home</a>
       <span class="mx-2 text-gray-400">|</span>
-      <span class="text-black font-medium dark:text-white">Web Applications</span>
+      <span class="text-gray-900 font-medium dark:text-white">Web Applications</span>
     </div>
 
     <div class="grid md:grid-cols-2 gap-10 items-center">
 
       <div>
-        <h1 class="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 leading-tight">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 leading-tight text-gray-900 dark:text-white">
           Web Application Development
         </h1>
 
-        <p class="leading-7 text-sm sm:text-base">
+        <p class="leading-7 text-sm sm:text-base text-gray-700 dark:text-gray-300">
           We design and develop modern, secure, and scalable web applications
           that help businesses grow their digital presence and deliver great user experiences.
         </p>
@@ -79,8 +88,8 @@
   <!-- ===== OVERVIEW ===== -->
   <section class="bg-gray-50 py-14">
     <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-2xl font-semibold mb-3">Service Overview</h2>
-      <p class="leading-7">
+      <h2 class="text-2xl font-semibold mb-3 text-gray-900 dark:text-white">Service Overview</h2>
+      <p class="leading-7 fade-down text-gray-700 dark:text-gray-300">
         We build high-performance web applications using modern technologies and best practices,
         focusing on usability, security, and scalability to meet your business needs.
       </p>
@@ -88,21 +97,21 @@
   </section>
 
   <!-- ===== WHAT WE OFFER ===== -->
-  <section class="max-w-6xl mx-auto px-4 py-14">
-    <h2 class="text-2xl font-semibold mb-8 text-center">What We Offer</h2>
+  <section class="max-w-6xl mx-auto px-4 pb-14">
+    <h2 class="text-2xl font-semibold mb-8 text-center text-gray-900 dark:text-white fade-down">What We Offer</h2>
 
     <!-- 🔹 Compact Cards Grid -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
       <!-- Card -->
-      <div class="fade-down hover-lift border rounded-xl p-5 bg-white shadow-sm">
+      <div class="fade-down hover-lift border rounded-xl p-5 bg-white dark:bg-blacksection shadow-sm">
         <div class="w-8 h-8 mb-3 icon-blue">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path stroke-width="2" d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-base mb-1">Custom Web Applications</h3>
-        <p class="text-sm text-gray-600 leading-6">Tailor-made solutions designed to match your business workflows.</p>
+        <h3 class="font-semibold text-base mb-1 text-gray-900 dark:text-white">Custom Web Applications</h3>
+        <p class="text-sm text-gray-700 dark:text-gray-300 leading-6">Tailor-made solutions designed to match your business workflows.</p>
       </div>
 
       <div class="fade-down hover-lift border rounded-xl p-5 bg-white shadow-sm">
@@ -112,8 +121,8 @@
             <path stroke-width="2" d="M8 20h8M12 16v4"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-base mb-1">Responsive UI/UX</h3>
-        <p class="text-sm text-gray-600 leading-6">Beautiful, user-friendly interfaces that work perfectly on all devices.</p>
+        <h3 class="font-semibold text-base mb-1 text-gray-900 dark:text-white">Responsive UI/UX</h3>
+        <p class="text-sm text-gray-700 dark:text-gray-300 leading-6">Beautiful, user-friendly interfaces that work perfectly on all devices.</p>
       </div>
 
       <div class="fade-down hover-lift border rounded-xl p-5 bg-white shadow-sm">
@@ -124,8 +133,8 @@
             <polyline stroke-width="2" points="2 12 12 17 22 12"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-base mb-1">Scalable Architecture</h3>
-        <p class="text-sm text-gray-600 leading-6">Future-ready systems that grow with your business.</p>
+        <h3 class="font-semibold text-base mb-1 text-gray-900 dark:text-white">Scalable Architecture</h3>
+        <p class="text-sm text-gray-700 dark:text-gray-300 leading-6">Future-ready systems that grow with your business.</p>
       </div>
 
       <div class="fade-down hover-lift border rounded-xl p-5 bg-white shadow-sm">
@@ -134,8 +143,8 @@
             <path stroke-width="2" d="M12 3l8 4v5c0 5-3.5 9-8 9s-8-4-8-9V7l8-4z"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-base mb-1">Secure Development</h3>
-        <p class="text-sm text-gray-600 leading-6">Best practices to protect your data and applications.</p>
+        <h3 class="font-semibold text-base mb-1 text-gray-900 dark:text-white">Secure Development</h3>
+        <p class="text-sm text-gray-700 dark:text-gray-300 leading-6">Best practices to protect your data and applications.</p>
       </div>
 
       <div class="fade-down hover-lift border rounded-xl p-5 bg-white shadow-sm">
@@ -145,8 +154,8 @@
             <path stroke-width="2" d="M14 11a5 5 0 00-7.07 0L4.1 13.83a5 5 0 007.07 7.07L14 19"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-base mb-1">API Integration</h3>
-        <p class="text-sm text-gray-600 leading-6">Seamless integration with third-party services and platforms.</p>
+        <h3 class="font-semibold text-base mb-1 text-gray-900 dark:text-white">API Integration</h3>
+        <p class="text-sm text-gray-700 dark:text-gray-300 leading-6">Seamless integration with third-party services and platforms.</p>
       </div>
 
       <div class="fade-down hover-lift border rounded-xl p-5 bg-white shadow-sm">
@@ -156,42 +165,42 @@
             <path stroke-width="2" d="M12 7v5l3 3"/>
           </svg>
         </div>
-        <h3 class="font-semibold text-base mb-1">Performance Optimization</h3>
-        <p class="text-sm text-gray-600 leading-6">Fast-loading, optimized applications for better user experience.</p>
+        <h3 class="font-semibold text-base mb-1 text-gray-900 dark:text-white">Performance Optimization</h3>
+        <p class="text-sm text-gray-700 dark:text-gray-300 leading-6">Fast-loading, optimized applications for better user experience.</p>
       </div>
 
     </div>
   </section>
 
   <!-- ===== PROCESS ===== -->
-  <section class="bg-gray-50 py-16">
+  <section class="bg-gray-50 py-16 dark:bg-blacksection">
     <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-2xl font-semibold mb-10 text-center">Our Process</h2>
+      <h2 class="text-2xl font-semibold mb-10 text-center text-gray-900 dark:text-white fade-down">Our Process</h2>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- steps unchanged -->
         <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
           <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">1</div>
-          <h3 class="font-semibold mb-1">Planning</h3>
-          <p class="text-sm text-gray-600">We understand your goals and define the right solution.</p>
+          <h3 class="font-semibold mb-1 text-gray-900 dark:text-white">Planning</h3>
+          <p class="text-sm text-gray-700 dark:text-gray-300">We understand your goals and define the right solution.</p>
         </div>
 
         <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
           <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">2</div>
-          <h3 class="font-semibold mb-1">Design</h3>
-          <p class="text-sm text-gray-600">We create intuitive UI/UX designs for your users.</p>
+          <h3 class="font-semibold mb-1 text-gray-900 dark:text-white">Design</h3>
+          <p class="text-sm text-gray-700 dark:text-gray-300">We create intuitive UI/UX designs for your users.</p>
         </div>
 
         <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
           <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">3</div>
-          <h3 class="font-semibold mb-1">Development</h3>
-          <p class="text-sm text-gray-600">We build secure, scalable, and high-quality applications.</p>
+          <h3 class="font-semibold mb-1 text-gray-900 dark:text-white">Development</h3>
+          <p class="text-sm text-gray-700 dark:text-gray-300">We build secure, scalable, and high-quality applications.</p>
         </div>
 
         <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
           <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">4</div>
-          <h3 class="font-semibold mb-1">Launch & Support</h3>
-          <p class="text-sm text-gray-600">We deploy and provide continuous support and improvements.</p>
+          <h3 class="font-semibold mb-1 text-gray-900 dark:text-white">Launch & Support</h3>
+          <p class="text-sm text-gray-700 dark:text-gray-300">We deploy and provide continuous support and improvements.</p>
         </div>
       </div>
     </div>
@@ -205,6 +214,12 @@
     }, { threshold: 0.15 });
 
     document.querySelectorAll('.fade-down').forEach(el => observer.observe(el));
+
+        document.querySelectorAll('[data-include]').forEach(async (el) => {
+  const file = el.getAttribute('data-include');
+  const res = await fetch(file);
+  el.innerHTML = await res.text();
+});
   </script>
 
 </body>

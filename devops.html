@@ -8,51 +8,31 @@
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="style.css" rel="stylesheet">
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
   <!-- Inter font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    /* ===== Scroll Animation (initial state) ===== */
     .fade-down {
       opacity: 0;
       transform: translateY(-60px);
-      /* bigger movement */
       transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    /* Active when visible */
     .fade-down.show {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* Stagger delays for top → bottom effect */
-    .fade-down:nth-child(1) {
-      transition-delay: 0.1s;
-    }
+    .fade-down:nth-child(1) { transition-delay: 0.1s; }
+    .fade-down:nth-child(2) { transition-delay: 0.25s; }
+    .fade-down:nth-child(3) { transition-delay: 0.4s; }
+    .fade-down:nth-child(4) { transition-delay: 0.55s; }
+    .fade-down:nth-child(5) { transition-delay: 0.7s; }
+    .fade-down:nth-child(6) { transition-delay: 0.85s; }
 
-    .fade-down:nth-child(2) {
-      transition-delay: 0.25s;
-    }
-
-    .fade-down:nth-child(3) {
-      transition-delay: 0.4s;
-    }
-
-    .fade-down:nth-child(4) {
-      transition-delay: 0.55s;
-    }
-
-    .fade-down:nth-child(5) {
-      transition-delay: 0.7s;
-    }
-
-    .fade-down:nth-child(6) {
-      transition-delay: 0.85s;
-    }
-
-    /* ===== Hover Lift Effect ===== */
     .hover-lift {
       transition: transform .35s ease, box-shadow .35s ease;
     }
@@ -62,200 +42,222 @@
       box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
     }
 
-    /* Brand blue */
     .icon-blue {
       color: #4f6df5;
     }
   </style>
-
-
 </head>
 
-<body class="bg-white text-black dark:bg-black dark:text-white">
+<body x-data="{ page: 'services', darkMode: true, stickyMenu: false, navigationOpen: false }"
+x-init="
+darkMode = JSON.parse(localStorage.getItem('darkMode'));
+$watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
+"
+:class="{'dark bg-black': darkMode === true}">
 
-  <!-- ===== HERO ===== -->
-  <section class="max-w-6xl mx-auto px-4 pt-28 pb-16 md:pt-32">
+<section id="header" data-include="header.html"></section>
 
-    <!-- Breadcrumb (Top Left Inside Body) -->
-    <div class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-      <a href="index.html" class="hover:text-primary font-medium">Home</a>
-      <span class="mx-2 text-gray-400">|</span>
-      <span class="text-black font-medium dark:text-white">DevOps & Cloud</span>
-    </div>
+<!-- ===== HERO ===== -->
+<section class="max-w-6xl mx-auto px-4 pt-28 pb-16 md:pt-32">
 
-    <div class="grid md:grid-cols-2 gap-10 items-center">
+  <div class="text-sm text-gray-700 dark:text-gray-300 mb-4">
+    <a href="index.html" class="hover:text-primary font-medium">Home</a>
+    <span class="mx-2 text-gray-400">|</span>
+    <span class="text-gray-900 dark:text-white font-medium">DevOps & Cloud</span>
+  </div>
 
-      <!-- Left Content -->
-      <div>
-        <h1 class="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 leading-tight">
-          DevOps & Cloud Services
-        </h1>
+  <div class="grid md:grid-cols-2 gap-10 items-center">
 
-        <p class="leading-7 text-sm sm:text-base">
-          We help you build, deploy, and scale modern cloud infrastructure using
-          DevOps best practices, automation, and secure cloud-native solutions.
-        </p>
+    <div>
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 leading-tight text-gray-900 dark:text-white">
+        DevOps & Cloud Services
+      </h1>
 
-        <!-- CTA Button -->
-        <a href="contact.html"
+      <p class="leading-7 text-sm sm:text-base text-gray-700 dark:text-gray-300">
+        We help you build, deploy, and scale modern cloud infrastructure using
+        DevOps best practices, automation, and secure cloud-native solutions.
+      </p>
+
+      <a href="contact.html"
         class="inline-block mt-9 bg-[#4f6df5] text-white px-7 py-3 rounded-full text-sm font-medium hover:opacity-90 transition shadow-md">
         Talk to Our Experts
       </a>
-      </div>
-
-      <!-- Image -->
-      <div>
-        <img src="images/Devops.png" alt="DevOps" class="w-full rounded-lg shadow-sm">
-      </div>
-
     </div>
-  </section>
 
-  <!-- ===== OVERVIEW ===== -->
-  <section class="bg-gray-50 py-14 dark:bg-blacksection">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-2xl font-semibold mb-3">Service Overview</h2>
-      <p class="leading-7">
-        Our DevOps & Cloud services streamline your development lifecycle,
-        improve reliability, and reduce time-to-market using AWS, Azure,
-        and Google Cloud technologies.
+    <div>
+      <img src="images/Devops.png" alt="DevOps" class="w-full rounded-lg shadow-sm">
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== OVERVIEW ===== -->
+<section class="bg-gray-50 py-14 dark:bg-blacksection">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-2xl font-semibold mb-3 text-gray-900 dark:text-white">
+      Service Overview
+    </h2>
+    <p class="leading-7 text-gray-700 dark:text-gray-300">
+      Our DevOps & Cloud services streamline your development lifecycle,
+      improve reliability, and reduce time-to-market using AWS, Azure,
+      and Google Cloud technologies.
+    </p>
+  </div>
+</section>
+
+<!-- ===== WHAT WE OFFER ===== -->
+<section class="max-w-6xl mx-auto px-4 pt-0 pb-16">
+  <h2 class="text-2xl font-semibold mb-8 text-center text-gray-900 dark:text-white">
+    What We Offer
+  </h2>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- Cards -->
+    <div class="fade-down hover-lift border rounded-xl p-6 bg-white dark:bg-blacksection">
+      <div class="w-10 h-10 mb-4 icon-blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-width="2" d="M4 7h16M4 12h10M4 17h16" />
+        </svg>
+      </div>
+      <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">CI/CD Pipelines</h3>
+      <p class="text-sm text-gray-700 dark:text-gray-300">
+        Automated build, test, and deployment pipelines.
       </p>
     </div>
-  </section>
 
-  <!-- ===== WHAT WE OFFER ===== -->
-  <section class="max-w-6xl mx-auto px-4 py-16">
-    <h2 class="text-2xl font-semibold mb-8 text-center">What We Offer</h2>
+    <div class="fade-down hover-lift border rounded-xl p-6 bg-white dark:bg-blacksection">
+      <div class="w-10 h-10 mb-4 icon-blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-width="2" d="M3 15a4 4 0 014-4h1a5 5 0 0110 1h1a3 3 0 010 6H7a4 4 0 01-4-3z" />
+        </svg>
+      </div>
+      <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">Cloud Platforms</h3>
+      <p class="text-sm text-gray-700 dark:text-gray-300">
+        Architecture & migration across AWS, Azure, and GCP.
+      </p>
+    </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="fade-down hover-lift border rounded-xl p-6 bg-white dark:bg-blacksection">
+      <div class="w-10 h-10 mb-4 icon-blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-width="2" d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
+        </svg>
+      </div>
+      <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">
+        Infrastructure as Code
+      </h3>
+      <p class="text-sm text-gray-700 dark:text-gray-300">
+        Provision infrastructure using Terraform.
+      </p>
+    </div>
 
-      <!-- Card -->
-      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
-        <div class="w-10 h-10 mb-4 icon-blue">
-          <!-- CI/CD Icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path stroke-width="2" d="M4 7h16M4 12h10M4 17h16" />
-          </svg>
-        </div>
-        <h3 class="font-semibold text-lg mb-2">CI/CD Pipelines</h3>
-        <p class="text-sm text-gray-600">Automated build, test, and deployment pipelines.</p>
+    <div class="fade-down hover-lift border rounded-xl p-6 bg-white dark:bg-blacksection">
+      <div class="w-10 h-10 mb-4 icon-blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <rect x="3" y="7" width="18" height="13" rx="2" stroke-width="2" />
+          <path stroke-width="2" d="M16 3v4M8 3v4" />
+        </svg>
+      </div>
+      <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">
+        Docker & Kubernetes
+      </h3>
+      <p class="text-sm text-gray-700 dark:text-gray-300">
+        Containerization and orchestration solutions.
+      </p>
+    </div>
+
+    <div class="fade-down hover-lift border rounded-xl p-6 bg-white dark:bg-blacksection">
+      <div class="w-10 h-10 mb-4 icon-blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <rect x="3" y="4" width="18" height="12" rx="2" stroke-width="2" />
+          <path stroke-width="2" d="M8 20h8M12 16v4" />
+        </svg>
+      </div>
+      <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">
+        Monitoring & Logging
+      </h3>
+      <p class="text-sm text-gray-700 dark:text-gray-300">
+        Ensure system health with proactive monitoring.
+      </p>
+    </div>
+
+    <div class="fade-down hover-lift border rounded-xl p-6 bg-white dark:bg-blacksection">
+      <div class="w-10 h-10 mb-4 icon-blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-width="2" d="M12 3l8 4v5c0 5-3.5 9-8 9s-8-4-8-9V7l8-4z" />
+        </svg>
+      </div>
+      <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">
+        Security Optimization
+      </h3>
+      <p class="text-sm text-gray-700 dark:text-gray-300">
+        Best practices to protect infrastructure.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== OUR PROCESS ===== -->
+<section class="bg-gray-50 py-16 dark:bg-blacksection">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-2xl font-semibold mb-10 text-center text-gray-900 dark:text-white">
+      Our Process
+    </h2>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white dark:bg-blacksection">
+        <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">1</div>
+        <h3 class="font-semibold mb-1 text-gray-900 dark:text-white">Discovery</h3>
+        <p class="text-sm text-gray-700 dark:text-gray-300">Understanding your business needs.</p>
       </div>
 
-      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
-        <div class="w-10 h-10 mb-4 icon-blue">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path stroke-width="2" d="M3 15a4 4 0 014-4h1a5 5 0 0110 1h1a3 3 0 010 6H7a4 4 0 01-4-3z" />
-          </svg>
-        </div>
-        <h3 class="font-semibold text-lg mb-2">Cloud Platforms</h3>
-        <p class="text-sm text-gray-600">Architecture & migration across AWS, Azure, and GCP.</p>
+      <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white dark:bg-blacksection">
+        <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">2</div>
+        <h3 class="font-semibold mb-1 text-gray-900 dark:text-white">Design</h3>
+        <p class="text-sm text-gray-700 dark:text-gray-300">Creating scalable architecture.</p>
       </div>
 
-      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
-        <div class="w-10 h-10 mb-4 icon-blue">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path stroke-width="2" d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
-          </svg>
-        </div>
-        <h3 class="font-semibold text-lg mb-2">Infrastructure as Code</h3>
-        <p class="text-sm text-gray-600">Provision infrastructure using Terraform.</p>
+      <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white dark:bg-blacksection">
+        <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">3</div>
+        <h3 class="font-semibold mb-1 text-gray-900 dark:text-white">Implementation</h3>
+        <p class="text-sm text-gray-700 dark:text-gray-300">Deploying CI/CD & automation.</p>
       </div>
 
-      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
-        <div class="w-10 h-10 mb-4 icon-blue">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <rect x="3" y="7" width="18" height="13" rx="2" stroke-width="2" />
-            <path stroke-width="2" d="M16 3v4M8 3v4" />
-          </svg>
-        </div>
-        <h3 class="font-semibold text-lg mb-2">Docker & Kubernetes</h3>
-        <p class="text-sm text-gray-600">Containerization and orchestration solutions.</p>
-      </div>
-
-      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
-        <div class="w-10 h-10 mb-4 icon-blue">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <rect x="3" y="4" width="18" height="12" rx="2" stroke-width="2" />
-            <path stroke-width="2" d="M8 20h8M12 16v4" />
-          </svg>
-        </div>
-        <h3 class="font-semibold text-lg mb-2">Monitoring & Logging</h3>
-        <p class="text-sm text-gray-600">Ensure system health with proactive monitoring.</p>
-      </div>
-
-      <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
-        <div class="w-10 h-10 mb-4 icon-blue">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path stroke-width="2" d="M12 3l8 4v5c0 5-3.5 9-8 9s-8-4-8-9V7l8-4z" />
-          </svg>
-        </div>
-        <h3 class="font-semibold text-lg mb-2">Security Optimization</h3>
-        <p class="text-sm text-gray-600">Best practices to protect infrastructure.</p>
+      <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white dark:bg-blacksection">
+        <div class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">4</div>
+        <h3 class="font-semibold mb-1 text-gray-900 dark:text-white">Optimize</h3>
+        <p class="text-sm text-gray-700 dark:text-gray-300">Continuous monitoring & improvement.</p>
       </div>
 
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== OUR PROCESS (MATCHING STYLE) ===== -->
-  <section class="bg-gray-50 py-16">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-2xl font-semibold mb-10 text-center">Our Process</h2>
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+}, {
+  threshold: 0.15,
+  rootMargin: "0px 0px -80px 0px"
+});
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+document.querySelectorAll('.fade-down').forEach(el => {
+  observer.observe(el);
+});
 
-        <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
-          <div
-            class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">
-            1</div>
-          <h3 class="font-semibold mb-1">Discovery</h3>
-          <p class="text-sm text-gray-600">Understanding your business needs.</p>
-        </div>
-
-        <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
-          <div
-            class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">
-            2</div>
-          <h3 class="font-semibold mb-1">Design</h3>
-          <p class="text-sm text-gray-600">Creating scalable architecture.</p>
-        </div>
-
-        <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
-          <div
-            class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">
-            3</div>
-          <h3 class="font-semibold mb-1">Implementation</h3>
-          <p class="text-sm text-gray-600">Deploying CI/CD & automation.</p>
-        </div>
-
-        <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
-          <div
-            class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">
-            4</div>
-          <h3 class="font-semibold mb-1">Optimize</h3>
-          <p class="text-sm text-gray-600">Continuous monitoring & improvement.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-  
-  <script>
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-        }
-      });
-    }, {
-      threshold: 0.15,   // trigger earlier
-      rootMargin: "0px 0px -80px 0px" // makes effect visible while scrolling
-    });
-
-    document.querySelectorAll('.fade-down').forEach(el => {
-      observer.observe(el);
-    });
-  </script>
+document.querySelectorAll('[data-include]').forEach(async (el) => {
+  const file = el.getAttribute('data-include');
+  const res = await fetch(file);
+  el.innerHTML = await res.text();
+});
+</script>
 
 </body>
-
 </html>
