@@ -1,294 +1,517 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mobile App Development Project Showcase</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mobile App Development Project Showcase</title>
 
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="style.css" rel="stylesheet">
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="style.css" rel="stylesheet" />
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
-<style>
-body { font-family: 'Inter', sans-serif; }
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
 
-.dot { width: 8px; height: 8px; border-radius: 9999px; background: rgba(0,0,0,0.3); transition: all .3s ease; cursor: pointer; }
-.dot.active { width: 22px; background: #4f6df5; }
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 9999px;
+        background: rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
 
-.hover-lift { transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s cubic-bezier(.4,0,.2,1); }
-.hover-lift:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 20px 45px rgba(0,0,0,0.12); }
+      .dot.active {
+        width: 22px;
+        background: #4f6df5;
+      }
 
-.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-.faq-item.active .faq-answer { max-height: 200px; }
+      .hover-lift {
+        transition:
+          transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+          box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      }
 
-.fade-down { opacity: 0; transform: translateY(-40px); transition: all 0.9s cubic-bezier(.4,0,.2,1); }
-.fade-down.show { opacity: 1; transform: translateY(0); }
-</style>
+      .hover-lift:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+      }
 
-</head>
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+      }
 
-<body x-data="{ page: 'portfolio', darkMode: true, stickyMenu: false, navigationOpen: false }"
-x-init="
+      .faq-item.active .faq-answer {
+        max-height: 200px;
+      }
+
+      .fade-down {
+        opacity: 0;
+        transform: translateY(-40px);
+        transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .fade-down.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 1.75rem;
+        letter-spacing: -0.01em;
+      }
+
+      .dark .section-title {
+        color: #f9fafb;
+      }
+
+      /* Card Titles */
+      .card-title {
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 0.4rem;
+      }
+
+      .dark .card-title {
+        color: #f3f4f6;
+      }
+
+      /* Card Text */
+      .card-text {
+        font-size: 0.875rem;
+        color: #121213;
+        line-height: 1.65;
+      }
+
+      .dark .card-text {
+        color: #9ca3af;
+      }
+
+      .card-bg {
+        background: #ffffff;
+      }
+
+      .dark .card-bg {
+        background: #111827;
+      }
+
+      .chart-box {
+        background: #f9fafb;
+      }
+
+      .dark .chart-box {
+        background: #111827;
+      }
+
+      .slider-tight {
+        margin-bottom: 1.5rem;
+      }
+
+      section {
+        scroll-margin-top: 100px;
+      }
+    </style>
+  </head>
+
+  <body
+    x-data="{ page: 'portfolio', darkMode: true, stickyMenu: false, navigationOpen: false }"
+    x-init="
 darkMode = JSON.parse(localStorage.getItem('darkMode'));
 $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
 "
-:class="{'dark bg-black': darkMode === true}">
+    :class="{'dark bg-black': darkMode === true}"
+  >
+    <section id="header" data-include="header.html"></section>
+    <div class="pt-28"></div>
+    <div class="flex flex-col lg:flex-row">
+      <!-- Sidebar -->
 
-<section id="header" data-include="header.html"></section>
-<div class="pt-28"></div>
-<div class="flex flex-col lg:flex-row">
-
-  <!-- Sidebar -->
-
-  <div class="lg:w-[220px] w-full bg-[#4f6df5] text-white p-6 flex lg:flex-col flex-row gap-4 lg:sticky lg:top-0 lg:h-screen overflow-x-auto">
-    <h2 class="text-lg font-semibold text-center w-full lg:mb-6">Mobile Apps</h2>
-<button onclick="showProject(1)" class="bg-white/20 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project 1</button>
-<button onclick="showProject(2)" class="bg-white/10 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project 2</button>
-<button onclick="showProject(3)" class="bg-white/10 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project 3</button>
-<button onclick="showProject(4)" class="bg-white/10 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project 4</button>
-  </div>
-
-  <!-- Main Content -->
-
-  
-
- <div class="flex-1 p-6 sm:p-8 lg:p-10 space-y-16">
-
-  <!-- PROJECT 1 -->
-  <div id="project1">
-<!-- SLIDER -->
-    <div class="relative w-full overflow-hidden rounded-xl shadow-md fade-down">
-      <div id="slides" class="flex transition-transform duration-700 ease-in-out">
-
-        <div class="min-w-full">
-          <a href="https://www.myntra.com" target="_blank">
-            <img src="images/myntra.png" class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
-          </a>
-        </div>
-      
-        <div class="min-w-full">
-          <a href="https://www.myntra.com" target="_blank">
-            <img src="images/myntra1.png" class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
-          </a>
-        </div>
-
-        <div class="min-w-full">
-          <a href="https://www.myntra.com" target="_blank">
-            <img src="images/myntra2.png" class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
-          </a>
-        </div>
-
-        <div class="min-w-full">
-          <a href="https://www.myntra.com" target="_blank">
-            <img src="images/myntra3.png" class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
-          </a>
-        </div>
-
-        <div class="min-w-full">
-          <a href="https://www.myntra.com" target="_blank">
-            <img src="images/myntra4.png" class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
-          </a>
-        </div>
-
+      <div
+        class="lg:w-[220px] w-full bg-[#2e61f0] text-white p-6 flex lg:flex-col flex-row gap-4 lg:sticky lg:top-0 lg:h-screen overflow-x-auto"
+      >
+        <h2 class="text-lg font-semibold text-center w-full lg:mb-6">
+          Mobile Apps
+        </h2>
+        <button
+          onclick="showProject(1)"
+          class="bg-white/20 px-4 py-2 rounded-lg text-left whitespace-nowrap"
+        >
+          Project 1
+        </button>
+        <button
+          onclick="showProject(2)"
+          class="bg-white/10 px-4 py-2 rounded-lg text-left whitespace-nowrap"
+        >
+          Project 2
+        </button>
+        <button
+          onclick="showProject(3)"
+          class="bg-white/10 px-4 py-2 rounded-lg text-left whitespace-nowrap"
+        >
+          Project 3
+        </button>
+        <button
+          onclick="showProject(4)"
+          class="bg-white/10 px-4 py-2 rounded-lg text-left whitespace-nowrap"
+        >
+          Project 4
+        </button>
       </div>
 
-      <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-        <div class="dot active"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
+      <!-- Main Content -->
+
+      <div class="flex-1 p-6 sm:p-8 lg:p-10 space-y-16">
+        <!-- PROJECT 1 -->
+        <div id="project1">
+          <!-- SLIDER -->
+          <div
+            class="relative w-full overflow-hidden rounded-xl shadow-md fade-down"
+          >
+            <div
+              id="slides"
+              class="flex transition-transform duration-700 ease-in-out"
+            >
+              <div class="min-w-full">
+                <a href="https://www.myntra.com" target="_blank">
+                  <img
+                    src="images/myntra.png"
+                    class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer"
+                  />
+                </a>
+              </div>
+
+              <div class="min-w-full">
+                <a href="https://www.myntra.com" target="_blank">
+                  <img
+                    src="images/myntra1.png"
+                    class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer"
+                  />
+                </a>
+              </div>
+
+              <div class="min-w-full">
+                <a href="https://www.myntra.com" target="_blank">
+                  <img
+                    src="images/myntra2.png"
+                    class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer"
+                  />
+                </a>
+              </div>
+
+              <div class="min-w-full">
+                <a href="https://www.myntra.com" target="_blank">
+                  <img
+                    src="images/myntra3.png"
+                    class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer"
+                  />
+                </a>
+              </div>
+
+              <div class="min-w-full">
+                <a href="https://www.myntra.com" target="_blank">
+                  <img
+                    src="images/myntra4.png"
+                    class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer"
+                  />
+                </a>
+              </div>
+            </div>
+
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+              <div class="dot active"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+          </div>
+
+          <section class="fade-down">
+            <h2 class="section-title">Mobile App Development Steps</h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div
+                class="border rounded-xl p-6 shadow-sm text-center hover-lift"
+              >
+                <div
+                  class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold"
+                >
+                  1
+                </div>
+                <h3 class="card-title">UI/UX Design</h3>
+                <p class="card-text">
+                  Designing intuitive interfaces optimized for mobile usability.
+                </p>
+              </div>
+
+              <div
+                class="border rounded-xl p-6 shadow-sm text-center hover-lift"
+              >
+                <div
+                  class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold"
+                >
+                  2
+                </div>
+                <h3 class="card-title">App Development</h3>
+                <p class="card-text">
+                  Building apps using Flutter, React Native, or native
+                  technologies.
+                </p>
+              </div>
+
+              <div
+                class="border rounded-xl p-6 shadow-sm text-center hover-lift"
+              >
+                <div
+                  class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold"
+                >
+                  3
+                </div>
+                <h3 class="card-title">API Integration</h3>
+                <p class="card-text">
+                  Connecting apps with backend services and cloud databases.
+                </p>
+              </div>
+
+              <div
+                class="border rounded-xl p-6 shadow-sm text-center hover-lift"
+              >
+                <div
+                  class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold"
+                >
+                  4
+                </div>
+                <h3 class="card-title">Testing & Launch</h3>
+                <p class="card-text">
+                  Testing across devices and publishing to app stores.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- CHALLENGES -->
+          <section class="fade-down">
+            <h2 class="section-title">Mobile Development Challenges</h2>
+
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="border rounded-xl p-6 shadow-sm hover-lift">
+                <h3 class="card-title">Device Fragmentation</h3>
+                <p class="card-text">
+                  Supporting multiple screen sizes and OS versions.
+                </p>
+              </div>
+
+              <div class="border rounded-xl p-6 shadow-sm hover-lift">
+                <h3 class="card-title">Performance Optimization</h3>
+                <p class="card-text">
+                  Ensuring smooth animations and low memory usage.
+                </p>
+              </div>
+
+              <div class="border rounded-xl p-6 shadow-sm hover-lift">
+                <h3 class="card-title">App Store Compliance</h3>
+                <p class="card-text">
+                  Meeting strict publishing guidelines and security standards.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- RESULTS CHART -->
+          <section class="fade-down">
+            <h2 class="section-title">App Performance Results</h2>
+
+            <div class="chart-box p-6 rounded-xl shadow-sm max-w-md hover-lift">
+              <canvas id="resultChart" height="150"></canvas>
+            </div>
+          </section>
+          <section class="fade-down">
+            <h2 class="section-title">Client Feedback</h2>
+
+            <div class="space-y-4">
+              <div
+                class="faq-item border rounded-xl p-4 cursor-pointer hover-lift"
+              >
+                <div class="flex justify-between items-center">
+                  <h3 class="font-medium text-gray-800 dark:text-gray-100">
+                    Is the app cross-platform?
+                  </h3>
+                  <span class="text-gray-800 dark:text-gray-100">+</span>
+                </div>
+                <div
+                  class="faq-answer mt-2 text-sm text-gray-600 dark:text-gray-300"
+                >
+                  Yes, apps are built using cross-platform frameworks for
+                  Android and iOS.
+                </div>
+              </div>
+
+              <div
+                class="faq-item border rounded-xl p-4 cursor-pointer hover-lift"
+              >
+                <div class="flex justify-between items-center">
+                  <h3 class="font-medium text-gray-800 dark:text-gray-100">
+                    Do you support real-time features?
+                  </h3>
+                  <span class="text-gray-800 dark:text-gray-100">+</span>
+                </div>
+                <div
+                  class="faq-answer mt-2 text-sm text-gray-600 dark:text-gray-300"
+                >
+                  Real-time chat, notifications, and live sync are fully
+                  supported.
+                </div>
+              </div>
+
+              <div
+                class="faq-item border rounded-xl p-4 cursor-pointer hover-lift"
+              >
+                <div class="flex justify-between items-center">
+                  <h3 class="font-medium text-gray-800 dark:text-gray-100">
+                    Can the app scale to millions of users?
+                  </h3>
+                  <span class="text-gray-800 dark:text-gray-100">+</span>
+                </div>
+                <div
+                  class="faq-answer mt-2 text-sm text-gray-600 dark:text-gray-300"
+                >
+                  Cloud-backed architecture ensures high scalability and
+                  reliability.
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <!-- PROJECT 2 EMPTY -->
+      <div id="project2" class="hidden text-center py-20">
+        <h2 class="text-2xl font-semibold mb-4">Project 2</h2>
+        <p class="text-gray-500">Content coming soon...</p>
+      </div>
+
+      <!-- PROJECT 3 EMPTY -->
+      <div id="project3" class="hidden text-center py-20">
+        <h2 class="text-2xl font-semibold mb-4">Project 3</h2>
+        <p class="text-gray-500">Content coming soon...</p>
+      </div>
+
+      <!-- PROJECT 4 EMPTY -->
+      <div id="project4" class="hidden text-center py-20">
+        <h2 class="text-2xl font-semibold mb-4">Project 4</h2>
+        <p class="text-gray-500">Content coming soon...</p>
       </div>
     </div>
+    <section id="footer" data-include="footer.html"></section>
+    <script>
+      const fadeObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("show");
+          });
+        },
+        { threshold: 0.2 },
+      );
+      document
+        .querySelectorAll(".fade-down")
+        .forEach((el) => fadeObserver.observe(el));
 
-<!-- DEVELOPMENT STEPS -->
-<section class="fade-down">
-  <h2 class="text-2xl font-semibold mb-8">Mobile App Development Steps</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      const slidesContainer = document.getElementById("slides");
+      const dots = document.querySelectorAll(".dot");
+      let slides = slidesContainer.children;
+      let index = 0;
+      const totalSlides = dots.length;
+      const firstClone = slides[0].cloneNode(true);
+      slidesContainer.appendChild(firstClone);
 
-    <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
-      <div class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">1</div>
-      <h3 class="font-semibold mb-2">UI/UX Design</h3>
-      <p class="text-sm text-gray-600">Designing intuitive interfaces optimized for mobile usability.</p>
-    </div>
+      function showSlide() {
+        slidesContainer.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach((dot) => dot.classList.remove("active"));
+        if (index < totalSlides) dots[index].classList.add("active");
+      }
 
-    <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
-      <div class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">2</div>
-      <h3 class="font-semibold mb-2">App Development</h3>
-      <p class="text-sm text-gray-600">Building apps using Flutter, React Native, or native technologies.</p>
-    </div>
+      function nextSlide() {
+        index++;
+        showSlide();
+        if (index === totalSlides) {
+          setTimeout(() => {
+            slidesContainer.style.transition = "none";
+            index = 0;
+            slidesContainer.style.transform = `translateX(0%)`;
+            setTimeout(() => {
+              slidesContainer.style.transition = "transform 0.7s ease-in-out";
+            }, 50);
+          }, 700);
+        }
+      }
+      setInterval(nextSlide, 4000);
 
-    <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
-      <div class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">3</div>
-      <h3 class="font-semibold mb-2">API Integration</h3>
-      <p class="text-sm text-gray-600">Connecting apps with backend services and cloud databases.</p>
-    </div>
+      let chartInitialized = false;
+      const chartObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !chartInitialized) {
+              chartInitialized = true;
+              new Chart(document.getElementById("resultChart"), {
+                type: "bar",
+                data: {
+                  labels: ["Performance", "Stability", "User Satisfaction"],
+                  datasets: [
+                    {
+                      data: [94, 97, 91],
+                      backgroundColor: "#4f6df5",
+                      borderRadius: 6,
+                    },
+                  ],
+                },
+                options: {
+                  responsive: true,
+                  plugins: { legend: { display: false } },
+                  scales: { y: { beginAtZero: true } },
+                },
+              });
+            }
+          });
+        },
+        { threshold: 0.4 },
+      );
+      chartObserver.observe(document.getElementById("resultChart"));
 
-    <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
-      <div class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">4</div>
-      <h3 class="font-semibold mb-2">Testing & Launch</h3>
-      <p class="text-sm text-gray-600">Testing across devices and publishing to app stores.</p>
-    </div>
-  </div>
-</section>
-
-<!-- CHALLENGES -->
-<section class="fade-down">
-  <h2 class="text-2xl font-semibold mb-8">Mobile Development Challenges</h2>
-  <div class="grid md:grid-cols-3 gap-6">
-
-    <div class="border rounded-xl p-6 shadow-sm hover-lift">
-      <h3 class="font-semibold mb-2">Device Fragmentation</h3>
-      <p class="text-sm text-gray-600">Supporting multiple screen sizes and OS versions.</p>
-    </div>
-
-    <div class="border rounded-xl p-6 shadow-sm hover-lift">
-      <h3 class="font-semibold mb-2">Performance Optimization</h3>
-      <p class="text-sm text-gray-600">Ensuring smooth animations and low memory usage.</p>
-    </div>
-
-    <div class="border rounded-xl p-6 shadow-sm hover-lift">
-      <h3 class="font-semibold mb-2">App Store Compliance</h3>
-      <p class="text-sm text-gray-600">Meeting strict publishing guidelines and security standards.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- RESULTS CHART -->
-<section class="fade-down">
-  <h2 class="text-2xl font-semibold mb-8">App Performance Results</h2>
-  <div class="bg-gray-50 p-6 rounded-xl shadow-sm max-w-md hover-lift">
-    <canvas id="resultChart" height="150"></canvas>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="fade-down">
-  <h2 class="text-2xl font-semibold mb-8">Client Feedback</h2>
-  <div class="space-y-4">
-
-    <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">
-      <div class="flex justify-between items-center">
-        <h3 class="font-medium">Is the app cross-platform?</h3>
-        <span>+</span>
-      </div>
-      <div class="faq-answer mt-2 text-sm text-gray-600">Yes, apps are built using cross-platform frameworks for Android and iOS.</div>
-    </div>
-
-    <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">
-      <div class="flex justify-between items-center">
-        <h3 class="font-medium">Do you support real-time features?</h3>
-        <span>+</span>
-      </div>
-      <div class="faq-answer mt-2 text-sm text-gray-600">Real-time chat, notifications, and live sync are fully supported.</div>
-    </div>
-
-    <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">
-      <div class="flex justify-between items-center">
-        <h3 class="font-medium">Can the app scale to millions of users?</h3>
-        <span>+</span>
-      </div>
-      <div class="faq-answer mt-2 text-sm text-gray-600">Cloud-backed architecture ensures high scalability and reliability.</div>
-    </div>
-
-  </div>
-</section>
-
-  </div>
-</div>
-<!-- PROJECT 2 EMPTY -->
-  <div id="project2" class="hidden text-center py-20">
-    <h2 class="text-2xl font-semibold mb-4">Project 2</h2>
-    <p class="text-gray-500">Content coming soon...</p>
-  </div>
-
-  <!-- PROJECT 3 EMPTY -->
-  <div id="project3" class="hidden text-center py-20">
-    <h2 class="text-2xl font-semibold mb-4">Project 3</h2>
-    <p class="text-gray-500">Content coming soon...</p>
-  </div>
-
-  <!-- PROJECT 4 EMPTY -->
-  <div id="project4" class="hidden text-center py-20">
-    <h2 class="text-2xl font-semibold mb-4">Project 4</h2>
-    <p class="text-gray-500">Content coming soon...</p>
-  </div>
-
-  </div>
-<script>
-
-const fadeObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
-}, { threshold: 0.2 });
-document.querySelectorAll('.fade-down').forEach(el => fadeObserver.observe(el));
-
-const slidesContainer = document.getElementById("slides");
-const dots = document.querySelectorAll(".dot");
-let slides = slidesContainer.children;
-let index = 0;
-const totalSlides = dots.length;
-const firstClone = slides[0].cloneNode(true);
-slidesContainer.appendChild(firstClone);
-
-function showSlide() {
-  slidesContainer.style.transform = `translateX(-${index * 100}%)`;
-  dots.forEach(dot => dot.classList.remove("active"));
-  if (index < totalSlides) dots[index].classList.add("active");
-}
-
-function nextSlide() {
-  index++; showSlide();
-  if (index === totalSlides) {
-    setTimeout(() => {
-      slidesContainer.style.transition = "none";
-      index = 0;
-      slidesContainer.style.transform = `translateX(0%)`;
-      setTimeout(() => { slidesContainer.style.transition = "transform 0.7s ease-in-out"; }, 50);
-    }, 700);
-  }
-}
-setInterval(nextSlide, 4000);
-
-let chartInitialized = false;
-const chartObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting && !chartInitialized) {
-      chartInitialized = true;
-      new Chart(document.getElementById('resultChart'), {
-        type: 'bar',
-        data: { labels: ['Performance', 'Stability', 'User Satisfaction'], datasets: [{ data: [94, 97, 91], backgroundColor: '#4f6df5', borderRadius: 6 }] },
-        options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+      document.querySelectorAll(".faq-item").forEach((item) => {
+        item.addEventListener("click", () => item.classList.toggle("active"));
       });
-    }
-  });
-}, { threshold: 0.4 });
-chartObserver.observe(document.getElementById('resultChart'));
+      function showProject(num) {
+        // hide all
+        for (let i = 1; i <= 4; i++) {
+          document.getElementById("project" + i).classList.add("hidden");
+        }
 
-document.querySelectorAll(".faq-item").forEach(item => {
-  item.addEventListener("click", () => item.classList.toggle("active"));
-});
-function showProject(num) {
-  // hide all
-  for (let i = 1; i <= 4; i++) {
-    document.getElementById("project" + i).classList.add("hidden");
-  }
+        // show selected
+        document.getElementById("project" + num).classList.remove("hidden");
+      }
 
-  // show selected
-  document.getElementById("project" + num).classList.remove("hidden");
-}
-
-document.querySelectorAll('[data-include]').forEach(async (el) => {
-  const file = el.getAttribute('data-include');
-  const res = await fetch(file);
-  el.innerHTML = await res.text();
-});
-</script>
-
-</body>
+      document.querySelectorAll("[data-include]").forEach(async (el) => {
+        const file = el.getAttribute("data-include");
+        const res = await fetch(file);
+        el.innerHTML = await res.text();
+      });
+    </script>
+  </body>
 </html>

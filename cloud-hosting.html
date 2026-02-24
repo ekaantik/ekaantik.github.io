@@ -1,285 +1,371 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cloud Hosting Project Showcase</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud Hosting Project Showcase</title>
 
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="style.css" rel="stylesheet">
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="style.css" rel="stylesheet">
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-<style>
-body { font-family: 'Inter', sans-serif; }
+  <style>
+    /* ================= GLOBAL ================= */
 
-/* DOTS */
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 9999px;
-  background: rgba(0,0,0,0.3);
-  transition: all .3s ease;
-  cursor: pointer;
-}
-.dot.active {
-  width: 22px;
-  background: #4f6df5;
-}
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
 
-/* HOVER EFFECT */
-.hover-lift {
-  transition: transform .35s cubic-bezier(.4,0,.2,1),
-              box-shadow .35s cubic-bezier(.4,0,.2,1);
-}
-.hover-lift:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 20px 45px rgba(0,0,0,0.12);
-}
+    /* ================= DOTS (SLIDER) ================= */
 
-/* FAQ */
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-}
-.faq-item.active .faq-answer {
-  max-height: 200px;
-}
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 9999px;
+      background: rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
 
-/* FADE */
-.fade-down {
-  opacity: 0;
-  transform: translateY(-40px);
-  transition: all 0.9s cubic-bezier(.4,0,.2,1);
-}
-.fade-down.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-</style>
+    .dot.active {
+      width: 22px;
+      background: #4f6df5;
+    }
+
+    /* ================= HOVER LIFT EFFECT ================= */
+
+    .hover-lift {
+      transition: transform 0.35s cubic-bezier(.4, 0, .2, 1),
+        box-shadow 0.35s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+    }
+
+    /* ================= FAQ ACCORDION ================= */
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+    }
+
+    /* ================= FADE DOWN ANIMATION ================= */
+
+    .fade-down {
+      opacity: 0;
+      transform: translateY(-40px);
+      transition: all 0.9s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .fade-down.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ================= TYPOGRAPHY SYSTEM ================= */
+
+    /* Section Titles */
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 1.75rem;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .dark .section-title {
+      color: #f9fafb;
+    }
+
+    /* Card Titles */
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 0.4rem;
+      line-height: 1.4;
+    }
+
+    .dark .card-title {
+      color: #f3f4f6;
+    }
+
+    /* Card Text */
+    .card-text {
+      font-size: 0.875rem;
+      color: #101010;
+      line-height: 1.65;
+    }
+
+    .dark .card-text {
+      color: #9ca3af;
+    }
+
+
+    section.fade-down {
+      margin-bottom: 2.5rem;
+    }
+
+    .card {
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      background: #ffffff;
+    }
+
+    .dark .card {
+      background: #111827;
+    }
+  </style>
 
 </head>
 
-<body x-data="{ page: 'portfolio', darkMode: true, stickyMenu: false, navigationOpen: false }"
-x-init="
+<body x-data="{ page: 'portfolio', darkMode: true, stickyMenu: false, navigationOpen: false }" x-init="
 darkMode = JSON.parse(localStorage.getItem('darkMode'));
 $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
-"
-:class="{'dark bg-black': darkMode === true}">
+" :class="{'dark bg-black': darkMode === true}">
 
-<section id="header" data-include="header.html"></section>
+  <section id="header" data-include="header.html"></section>
 
-<div class="pt-28"></div>
+  <div class="pt-28"></div>
 
-<div class="flex flex-col lg:flex-row">
+  <div class="flex flex-col lg:flex-row">
 
-  <!-- Responsive Sidebar -->
+    <!-- Responsive Sidebar -->
 
-  <div class="lg:w-[220px] w-full bg-[#4f6df5] text-white p-6 flex lg:flex-col flex-row gap-4 lg:sticky lg:top-0 lg:h-screen overflow-x-auto">
-    <h2 class="text-lg font-semibold text-center w-full lg:mb-6">Cloud Projects</h2>
-<button onclick="showProject(1)" class="bg-white/20 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project 1</button>
-<button onclick="showProject(2)" class="bg-white/10 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project 2</button>
-<button onclick="showProject(3)" class="bg-white/10 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project 3</button>
-<button onclick="showProject(4)" class="bg-white/10 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project 4</button>
-  </div>
-
-  <!-- Main Content -->
-
-  <div class="flex-1 p-6 sm:p-8 lg:p-10 space-y-16">
-
-  <!-- PROJECT 1 -->
-  <div id="project1">
-
-
-<!-- SLIDER -->
-    <div class="relative w-full overflow-hidden rounded-xl shadow-md fade-down">
-      <div id="slides" class="flex transition-transform duration-700 ease-in-out">
-
-        <div class="min-w-full">
-          <a href="https://www.myntra.com" target="_blank">
-            <img src="images/myntra.png" class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
-          </a>
-        </div>
-      
-        <div class="min-w-full">
-          <a href="https://www.myntra.com" target="_blank">
-            <img src="images/myntra1.png" class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
-          </a>
-        </div>
-
-        <div class="min-w-full">
-          <a href="https://www.myntra.com" target="_blank">
-            <img src="images/myntra2.png" class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
-          </a>
-        </div>
-
-        <div class="min-w-full">
-          <a href="https://www.myntra.com" target="_blank">
-            <img src="images/myntra3.png" class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
-          </a>
-        </div>
-
-        <div class="min-w-full">
-          <a href="https://www.myntra.com" target="_blank">
-            <img src="images/myntra4.png" class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
-          </a>
-        </div>
-
-      </div>
-
-      <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-        <div class="dot active"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
+    <div
+      class="lg:w-[220px] w-full bg-[#2e61f0] text-white p-6 flex lg:flex-col flex-row gap-4 lg:sticky lg:top-0 lg:h-screen overflow-x-auto">
+      <h2 class="text-lg font-semibold text-center w-full lg:mb-6">Cloud Projects</h2>
+      <button onclick="showProject(1)" class="bg-white/20 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project
+        1</button>
+      <button onclick="showProject(2)" class="bg-white/10 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project
+        2</button>
+      <button onclick="showProject(3)" class="bg-white/10 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project
+        3</button>
+      <button onclick="showProject(4)" class="bg-white/10 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project
+        4</button>
     </div>
 
-<!-- APPROACH -->
-<section class="fade-down">
-  <h2 class="text-2xl font-semibold mb-8">Cloud Hosting Development Steps</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Main Content -->
 
-      <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
-        <div class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">1</div>
-        <h3 class="font-semibold mb-2">Infrastructure Planning</h3>
-        <p class="text-sm text-gray-600">Analyzing workload requirements and selecting suitable cloud architecture.</p>
+    <div class="flex-1 p-6 sm:p-8 lg:p-10 space-y-16">
+
+      <!-- PROJECT 1 -->
+      <div id="project1">
+
+
+        <!-- SLIDER -->
+        <div class="relative w-full overflow-hidden rounded-xl shadow-md fade-down">
+          <div id="slides" class="flex transition-transform duration-700 ease-in-out">
+
+            <div class="min-w-full">
+              <a href="https://www.myntra.com" target="_blank">
+                <img src="images/myntra.png"
+                  class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
+              </a>
+            </div>
+
+            <div class="min-w-full">
+              <a href="https://www.myntra.com" target="_blank">
+                <img src="images/myntra1.png"
+                  class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
+              </a>
+            </div>
+
+            <div class="min-w-full">
+              <a href="https://www.myntra.com" target="_blank">
+                <img src="images/myntra2.png"
+                  class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
+              </a>
+            </div>
+
+            <div class="min-w-full">
+              <a href="https://www.myntra.com" target="_blank">
+                <img src="images/myntra3.png"
+                  class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
+              </a>
+            </div>
+
+            <div class="min-w-full">
+              <a href="https://www.myntra.com" target="_blank">
+                <img src="images/myntra4.png"
+                  class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
+              </a>
+            </div>
+
+          </div>
+
+          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+
+        <!-- APPROACH -->
+        <section class="fade-down">
+          <h2 class="section-title">Cloud Hosting Development Steps</h2>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
+              <div
+                class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">
+                1</div>
+              <h3 class="card-title">Infrastructure Planning</h3>
+              <p class="card-text">
+                Analyzing workload requirements and selecting suitable cloud architecture.
+              </p>
+            </div>
+
+            <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
+              <div
+                class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">
+                2</div>
+              <h3 class="card-title">Cloud Architecture Design</h3>
+              <p class="card-text">
+                Designing scalable and fault-tolerant infrastructure using modern cloud services.
+              </p>
+            </div>
+
+            <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
+              <div
+                class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">
+                3</div>
+              <h3 class="card-title">Deployment & Automation</h3>
+              <p class="card-text">
+                Implementing CI/CD pipelines and automated deployments for reliability.
+              </p>
+            </div>
+
+            <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
+              <div
+                class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">
+                4</div>
+              <h3 class="card-title">Monitoring & Optimization</h3>
+              <p class="card-text">
+                Continuous monitoring, scaling, and cost optimization post deployment.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- CHALLENGES -->
+        <section class="fade-down">
+          <h2 class="section-title">Cloud Hosting Challenges</h2>
+
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="border rounded-xl p-6 shadow-sm hover-lift">
+              <div class="mb-4 text-[#4f6df5]">
+                <!-- icon -->
+              </div>
+              <h3 class="card-title">Scalability Management</h3>
+              <p class="card-text">
+                Handling dynamic traffic spikes while maintaining high availability.
+              </p>
+            </div>
+
+            <div class="border rounded-xl p-6 shadow-sm hover-lift">
+              <div class="mb-4 text-[#4f6df5]"></div>
+              <h3 class="card-title">Cost Optimization</h3>
+              <p class="card-text">
+                Balancing performance with optimized cloud resource usage.
+              </p>
+            </div>
+
+            <div class="border rounded-xl p-6 shadow-sm hover-lift">
+              <div class="mb-4 text-[#4f6df5]"></div>
+              <h3 class="card-title">Security Compliance</h3>
+              <p class="card-text">
+                Ensuring data protection with encryption and compliance standards.
+              </p>
+            </div>
+          </div>
+        </section>
+        <!-- RESULTS -->
+        <section class="fade-down">
+          <h2 class="section-title">Cloud Results</h2>
+
+          <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-xl shadow-sm max-w-md hover-lift">
+            <canvas id="resultChart" height="150"></canvas>
+          </div>
+        </section>
+        <!-- FAQ -->
+        <section class="fade-down">
+          <h2 class="section-title">Client Feedback</h2>
+
+          <div class="space-y-4">
+            <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">
+              <div class="flex justify-between items-center">
+                <h3 class="card-title">How reliable is the cloud infrastructure?</h3>
+                <span>+</span>
+              </div>
+              <div class="faq-answer mt-2 card-text">
+                Built with multi-region redundancy ensuring maximum uptime and reliability.
+              </div>
+            </div>
+
+            <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">
+              <div class="flex justify-between items-center">
+                <h3 class="card-title">Can the system scale automatically?</h3>
+                <span>+</span>
+              </div>
+              <div class="faq-answer mt-2 card-text">
+                Yes, auto-scaling is enabled to dynamically adjust resources based on demand.
+              </div>
+            </div>
+
+            <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">
+              <div class="flex justify-between items-center">
+                <h3 class="card-title">Is data secure in the cloud?</h3>
+                <span>+</span>
+              </div>
+              <div class="faq-answer mt-2 card-text">
+                End-to-end encryption and secure access controls ensure complete data protection.
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
 
-      <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
-        <div class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">2</div>
-        <h3 class="font-semibold mb-2">Cloud Architecture Design</h3>
-        <p class="text-sm text-gray-600">Designing scalable and fault-tolerant infrastructure using modern cloud services.</p>
-      </div>
 
-      <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
-        <div class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">3</div>
-        <h3 class="font-semibold mb-2">Deployment & Automation</h3>
-        <p class="text-sm text-gray-600">Implementing CI/CD pipelines and automated deployments for reliability.</p>
-      </div>
-
-      <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
-        <div class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">4</div>
-        <h3 class="font-semibold mb-2">Monitoring & Optimization</h3>
-        <p class="text-sm text-gray-600">Continuous monitoring, scaling, and cost optimization post deployment.</p>
-      </div>
     </div>
-  </section>
-
-  <!-- CHALLENGES -->
-  <section class="fade-down">
-    <h2 class="text-2xl font-semibold mb-8">Cloud Hosting Challenges</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-
-      <div class="border rounded-xl p-6 shadow-sm hover-lift">
-        <div class="mb-4 text-[#4f6df5]">
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-            <path d="M3 12h18M12 3v18" />
-          </svg>
-        </div>
-        <h3 class="font-semibold mb-2">Scalability Management</h3>
-        <p class="text-sm text-gray-600">Handling dynamic traffic spikes while maintaining high availability.</p>
-      </div>
-
-      <div class="border rounded-xl p-6 shadow-sm hover-lift">
-        <div class="mb-4 text-[#4f6df5]">
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-            <rect x="3" y="4" width="18" height="16" rx="2" />
-          </svg>
-        </div>
-        <h3 class="font-semibold mb-2">Cost Optimization</h3>
-        <p class="text-sm text-gray-600">Balancing performance with optimized cloud resource usage.</p>
-      </div>
-
-      <div class="border rounded-xl p-6 shadow-sm hover-lift">
-        <div class="mb-4 text-[#4f6df5]">
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-            <path d="M12 2l7 4v6c0 5-7 10-7 10S5 17 5 12V6l7-4z" />
-          </svg>
-        </div>
-        <h3 class="font-semibold mb-2">Security Compliance</h3>
-        <p class="text-sm text-gray-600">Ensuring data protection with encryption and compliance standards.</p>
-      </div>
-
+    <!-- PROJECT 2 EMPTY -->
+    <div id="project2" class="hidden text-center py-20">
+      <h2 class="text-2xl font-semibold mb-4">Project 2</h2>
+      <p class="text-gray-500">Content coming soon...</p>
     </div>
-  </section>
 
-  <!-- RESULTS -->
-  <section class="fade-down">
-    <h2 class="text-2xl font-semibold mb-8">Cloud Results</h2>
-    <div class="bg-gray-50 p-6 rounded-xl shadow-sm max-w-md hover-lift">
-      <canvas id="resultChart" height="150"></canvas>
+    <!-- PROJECT 3 EMPTY -->
+    <div id="project3" class="hidden text-center py-20">
+      <h2 class="text-2xl font-semibold mb-4">Project 3</h2>
+      <p class="text-gray-500">Content coming soon...</p>
     </div>
-  </section>
 
-  <!-- FAQ -->
-  <section class="fade-down">
-    <h2 class="text-2xl font-semibold mb-8">Client Feedback</h2>
-    <div class="space-y-4">
-
-      <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">
-        <div class="flex justify-between items-center">
-          <h3 class="font-medium">How reliable is the cloud infrastructure?</h3>
-          <span>+</span>
-        </div>
-        <div class="faq-answer mt-2 text-sm text-gray-600">
-          Built with multi-region redundancy ensuring maximum uptime and reliability.
-        </div>
-      </div>
-
-      <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">
-        <div class="flex justify-between items-center">
-          <h3 class="font-medium">Can the system scale automatically?</h3>
-          <span>+</span>
-        </div>
-        <div class="faq-answer mt-2 text-sm text-gray-600">
-          Yes, auto-scaling is enabled to dynamically adjust resources based on demand.
-        </div>
-      </div>
-
-      <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">
-        <div class="flex justify-between items-center">
-          <h3 class="font-medium">Is data secure in the cloud?</h3>
-          <span>+</span>
-        </div>
-        <div class="faq-answer mt-2 text-sm text-gray-600">
-          End-to-end encryption and secure access controls ensure complete data protection.
-        </div>
-      </div>
-
+    <!-- PROJECT 4 EMPTY -->
+    <div id="project4" class="hidden text-center py-20">
+      <h2 class="text-2xl font-semibold mb-4">Project 4</h2>
+      <p class="text-gray-500">Content coming soon...</p>
     </div>
-  </section>
-
-</div>
-
 
   </div>
-  <!-- PROJECT 2 EMPTY -->
-  <div id="project2" class="hidden text-center py-20">
-    <h2 class="text-2xl font-semibold mb-4">Project 2</h2>
-    <p class="text-gray-500">Content coming soon...</p>
-  </div>
-
-  <!-- PROJECT 3 EMPTY -->
-  <div id="project3" class="hidden text-center py-20">
-    <h2 class="text-2xl font-semibold mb-4">Project 3</h2>
-    <p class="text-gray-500">Content coming soon...</p>
-  </div>
-
-  <!-- PROJECT 4 EMPTY -->
-  <div id="project4" class="hidden text-center py-20">
-    <h2 class="text-2xl font-semibold mb-4">Project 4</h2>
-    <p class="text-gray-500">Content coming soon...</p>
-  </div>
-
-  </div>
-
+  <section id="footer" data-include="footer.html"></section>
   <script>
 
     /* FADE DOWN ANIMATION */
@@ -369,21 +455,22 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
       });
     });
     function showProject(num) {
-  // hide all
-  for (let i = 1; i <= 4; i++) {
-    document.getElementById("project" + i).classList.add("hidden");
-  }
+      // hide all
+      for (let i = 1; i <= 4; i++) {
+        document.getElementById("project" + i).classList.add("hidden");
+      }
 
-  // show selected
-  document.getElementById("project" + num).classList.remove("hidden");
-}
+      // show selected
+      document.getElementById("project" + num).classList.remove("hidden");
+    }
 
-document.querySelectorAll('[data-include]').forEach(async (el) => {
-  const file = el.getAttribute('data-include');
-  const res = await fetch(file);
-  el.innerHTML = await res.text();
-});
+    document.querySelectorAll('[data-include]').forEach(async (el) => {
+      const file = el.getAttribute('data-include');
+      const res = await fetch(file);
+      el.innerHTML = await res.text();
+    });
   </script>
 
 </body>
+
 </html>

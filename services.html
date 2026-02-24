@@ -1,78 +1,78 @@
 <!-- ===== Services Start ===== -->
- <style>
+<style>
   /* Make service icons smaller */
   .services-section img {
-    width: 70px;      /* adjust if you want more small */
+    width: 70px;
+    /* adjust if you want more small */
     height: 70px;
     object-fit: contain;
   }
-</style><section class="services-section pb-7.5 lg:pb-12.5 xl:pb-17.5">
-      <!-- Section Title Start -->
+</style>
+<section class="services-section pb-7.5 lg:pb-12.5 xl:pb-17.5">
+  <!-- Section Title Start -->
+  <div
+    x-data="{ sectionTitle: `We Offer The Best Quality Service for You`, sectionTitleText: `We deliver unparalleled quality services tailored just for you, ensuring your satisfaction every step of the way.`}">
+    <div class="animate_top mx-auto max-w-1390 text-center px-4 md:px-8 xl:px-0">
+      <h2 x-text="sectionTitle"
+        class="font-semibold text-3xl xl:text-title-xl text-black dark:text-white md:w-4/5 xl:w-1/2 mx-auto mb-4.5">
+      </h2>
+      <p class="mx-auto md:w-4/5 lg:w-3/5 xl:w-[46%]" x-text="sectionTitleText"></p>
+    </div>
+
+
+  </div>
+  <!-- Section Title End -->
+
+  <div class="mx-auto max-w-1390 px-4 md:px-8 xl:px-21 mt-10 md:mt-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-0">
+      <!-- Service Item -->
       <div
-        x-data="{ sectionTitle: `We Offer The Best Quality Service for You`, sectionTitleText: `We deliver unparalleled quality services tailored just for you, ensuring your satisfaction every step of the way.`}">
-        <div class="animate_top mx-auto max-w-1390 text-center px-4 md:px-8 xl:px-0">
-    <h2
-            x-text="sectionTitle"
-            class="font-semibold text-3xl xl:text-title-xl text-black dark:text-white md:w-4/5 xl:w-1/2 mx-auto mb-4.5"
-    >
-    </h2>
-    <p class="mx-auto md:w-4/5 lg:w-3/5 xl:w-[46%]" x-text="sectionTitleText"></p>
-</div>
-
-
+        class="animate_top rounded-lg py-12.5 px-8 xl:px-12.5 ease-in-out duration-300 hover:shadow-2 dark:hover:shadow-none dark:hover:bg-blacksection">
+        <img src="images/icon-04.svg" alt="Icon" />
+        <h4 class="font-medium text-title-sm text-black dark:text-white mt-11 mb-4.5">Crafted for Startups</h4>
+        <p>Crafted specifically for startups, ensuring tailored solutions.</p>
       </div>
-      <!-- Section Title End -->
 
-      <div class="mx-auto max-w-1390 px-4 md:px-8 xl:px-21 mt-10 md:mt-5">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-0">
-          <!-- Service Item -->
-          <div
-            class="animate_top rounded-lg py-12.5 px-8 xl:px-12.5 ease-in-out duration-300 hover:shadow-2 dark:hover:shadow-none dark:hover:bg-blacksection">
-            <img src="images/icon-04.svg" alt="Icon" />
-            <h4 class="font-medium text-title-sm text-black dark:text-white mt-11 mb-4.5">Crafted for Startups</h4>
-            <p>Crafted specifically for startups, ensuring tailored solutions.</p>
-          </div>
-
-          <!-- Service Item -->
-          <div
-            class="animate_top rounded-lg py-12.5 px-8 xl:px-12.5 ease-in-out duration-300 hover:shadow-2 dark:hover:shadow-none dark:hover:bg-blacksection">
-            <img src="images/icon-05.svg" alt="Icon" />
-            <h4 class="font-medium text-title-sm text-black dark:text-white mt-11 mb-4.5">High-quality Design</h4>
-            <p>Delivering high-quality design to elevate your brand image.</p>
-          </div>
-
-          <!-- Service Item -->
-          <div
-            class="animate_top rounded-lg py-12.5 px-8 xl:px-12.5 ease-in-out duration-300 hover:shadow-2 dark:hover:shadow-none dark:hover:bg-blacksection">
-            <img src="images/icon-06.svg" alt="Icon" />
-            <h4 class="font-medium text-title-sm text-black dark:text-white mt-11 mb-4.5">All Essential Sections</h4>
-            <p>Providing all essential sections for a comprehensive user experience.</p>
-          </div>
-
-          <!-- Service Item -->
-          <div
-            class="animate_top rounded-lg py-12.5 px-8 xl:px-12.5 ease-in-out duration-300 hover:shadow-2 dark:hover:shadow-none dark:hover:bg-blacksection">
-            <img src="images/icon-07.svg" alt="Icon" />
-            <h4 class="font-medium text-title-sm text-black dark:text-white mt-11 mb-4.5">Speed Optimized</h4>
-            <p>Ensuring speed optimization for enhanced performance.</p>
-          </div>
-
-          <!-- Service Item -->
-          <div
-            class="animate_top rounded-lg py-12.5 px-8 xl:px-12.5 ease-in-out duration-300 hover:shadow-2 dark:hover:shadow-none dark:hover:bg-blacksection">
-            <img src="images/icon-05.svg" alt="Icon" />
-            <h4 class="font-medium text-title-sm text-black dark:text-white mt-11 mb-4.5">Fully Customizable</h4>
-            <p>Offering fully customizable solutions to meet your unique requirements.</p>
-          </div>
-
-          <!-- Service Item -->
-          <div
-            class="animate_top rounded-lg py-12.5 px-8 xl:px-12.5 ease-in-out duration-300 hover:shadow-2 dark:hover:shadow-none dark:hover:bg-blacksection">
-            <img src="images/icon-06.svg" alt="Icon" />
-            <h4 class="font-medium text-title-sm text-black dark:text-white mt-11 mb-4.5">Regular Updates</h4>
-            <p>Committing to regular updates to keep your platform up-to-date.</p>
-          </div>
-        </div>
+      <!-- Service Item -->
+      <div
+        class="animate_top rounded-lg py-12.5 px-8 xl:px-12.5 ease-in-out duration-300 hover:shadow-2 dark:hover:shadow-none dark:hover:bg-blacksection">
+        <img src="images/icon-05.svg" alt="Icon" />
+        <h4 class="font-medium text-title-sm text-black dark:text-white mt-11 mb-4.5">High-quality Design</h4>
+        <p>Delivering high-quality design to elevate your brand image.</p>
       </div>
-    </section>
-    <!-- ===== Services End ===== -->
+
+      <!-- Service Item -->
+      <div
+        class="animate_top rounded-lg py-12.5 px-8 xl:px-12.5 ease-in-out duration-300 hover:shadow-2 dark:hover:shadow-none dark:hover:bg-blacksection">
+        <img src="images/icon-06.svg" alt="Icon" />
+        <h4 class="font-medium text-title-sm text-black dark:text-white mt-11 mb-4.5">All Essential Sections</h4>
+        <p>Providing all essential sections for a comprehensive user experience.</p>
+      </div>
+
+      <!-- Service Item -->
+      <div
+        class="animate_top rounded-lg py-12.5 px-8 xl:px-12.5 ease-in-out duration-300 hover:shadow-2 dark:hover:shadow-none dark:hover:bg-blacksection">
+        <img src="images/icon-07.svg" alt="Icon" />
+        <h4 class="font-medium text-title-sm text-black dark:text-white mt-11 mb-4.5">Speed Optimized</h4>
+        <p>Ensuring speed optimization for enhanced performance.</p>
+      </div>
+
+      <!-- Service Item -->
+      <div
+        class="animate_top rounded-lg py-12.5 px-8 xl:px-12.5 ease-in-out duration-300 hover:shadow-2 dark:hover:shadow-none dark:hover:bg-blacksection">
+        <img src="images/icon-05.svg" alt="Icon" />
+        <h4 class="font-medium text-title-sm text-black dark:text-white mt-11 mb-4.5">Fully Customizable</h4>
+        <p>Offering fully customizable solutions to meet your unique requirements.</p>
+      </div>
+
+      <!-- Service Item -->
+      <div
+        class="animate_top rounded-lg py-12.5 px-8 xl:px-12.5 ease-in-out duration-300 hover:shadow-2 dark:hover:shadow-none dark:hover:bg-blacksection">
+        <img src="images/icon-06.svg" alt="Icon" />
+        <h4 class="font-medium text-title-sm text-black dark:text-white mt-11 mb-4.5">Regular Updates</h4>
+        <p>Committing to regular updates to keep your platform up-to-date.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ===== Services End ===== -->

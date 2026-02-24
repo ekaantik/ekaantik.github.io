@@ -1,396 +1,390 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog Grids | Base - Tailwind CSS Startup Template</title>
-  <link rel="icon" href="favicon.ico"><link href="style.css" rel="stylesheet"></head>
-  <body
-    x-data="{ page: 'blog-grid', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
-    x-init="
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Grids | Base - Tailwind CSS Startup Template</title>
+  <link rel="icon" href="favicon.ico">
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body x-data="{ page: 'blog-grid', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
+  x-init="
          darkMode = JSON.parse(localStorage.getItem('darkMode'));
          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
-    :class="{'dark bg-black': darkMode === true}"
-  >
-    <!-- ===== Header Start ===== -->
-    <header class="fixed left-0 top-0 w-full z-99999 py-7"
-  :class="{ 'bg-white dark:bg-black shadow !py-4 transition duration-100' : stickyMenu }"
-  @scroll.window="stickyMenu = (window.pageYOffset > 20) ? true : false">
-  <div class="mx-auto max-w-1390 px-4 md:px-8 2xl:px-0 lg:flex items-center justify-between relative">
-    <div class="w-full lg:w-1/4 flex items-center justify-between">
-      <a href="index.html">
-        <div class="flex items-center">
-          <img class="dark:hidden w-15" src="images/logo.png" alt="Logo Light" />
-          <p class=" ml-4 dark:hidden">Ekaantik Software Solutions</p>
-        </div>
-        <div class="flex items-center">
-          <img class="hidden dark:block w-15" src="images/logo-dark.png" alt="Logo Dark" />
-          <p class=" ml-4 hidden dark:block">Ekaantik Software Solutions</p>
-        </div>
+  :class="{'dark bg-black': darkMode === true}">
+  <!-- ===== Header Start ===== -->
+  <header class="fixed left-0 top-0 w-full z-99999 py-7"
+    :class="{ 'bg-white dark:bg-black shadow !py-4 transition duration-100' : stickyMenu }"
+    @scroll.window="stickyMenu = (window.pageYOffset > 20) ? true : false">
+    <div class="mx-auto max-w-1390 px-4 md:px-8 2xl:px-0 lg:flex items-center justify-between relative">
+      <div class="w-full lg:w-1/4 flex items-center justify-between">
+        <a href="index.html">
+          <div class="flex items-center">
+            <img class="dark:hidden w-15" src="images/logo.png" alt="Logo Light" />
+            <p class=" ml-4 dark:hidden">Ekaantik Software Solutions</p>
+          </div>
+          <div class="flex items-center">
+            <img class="hidden dark:block w-15" src="images/logo-dark.png" alt="Logo Dark" />
+            <p class=" ml-4 hidden dark:block">Ekaantik Software Solutions</p>
+          </div>
 
 
-      </a>
+        </a>
 
-      <!-- Hamburger Toggle BTN -->
-      <button class="lg:hidden block" @click="navigationOpen = !navigationOpen">
-        <span class="block relative cursor-pointer w-5.5 h-5.5">
-          <span class="du-block absolute right-0 w-full h-full">
-            <span
-              class="block relative top-0 left-0 bg-black dark:bg-white rounded-sm w-0 h-0.5 my-1 ease-in-out duration-200 delay-[0]"
-              :class="{ '!w-full delay-300': !navigationOpen }"></span>
-            <span
-              class="block relative top-0 left-0 bg-black dark:bg-white rounded-sm w-0 h-0.5 my-1 ease-in-out duration-200 delay-150"
-              :class="{ '!w-full delay-400': !navigationOpen }"></span>
-            <span
-              class="block relative top-0 left-0 bg-black dark:bg-white rounded-sm w-0 h-0.5 my-1 ease-in-out duration-200 delay-200"
-              :class="{ '!w-full delay-500': !navigationOpen }"></span>
+        <!-- Hamburger Toggle BTN -->
+        <button class="lg:hidden block" @click="navigationOpen = !navigationOpen">
+          <span class="block relative cursor-pointer w-5.5 h-5.5">
+            <span class="du-block absolute right-0 w-full h-full">
+              <span
+                class="block relative top-0 left-0 bg-black dark:bg-white rounded-sm w-0 h-0.5 my-1 ease-in-out duration-200 delay-[0]"
+                :class="{ '!w-full delay-300': !navigationOpen }"></span>
+              <span
+                class="block relative top-0 left-0 bg-black dark:bg-white rounded-sm w-0 h-0.5 my-1 ease-in-out duration-200 delay-150"
+                :class="{ '!w-full delay-400': !navigationOpen }"></span>
+              <span
+                class="block relative top-0 left-0 bg-black dark:bg-white rounded-sm w-0 h-0.5 my-1 ease-in-out duration-200 delay-200"
+                :class="{ '!w-full delay-500': !navigationOpen }"></span>
+            </span>
+            <span class="du-block absolute right-0 w-full h-full rotate-45">
+              <span
+                class="block bg-black dark:bg-white rounded-sm ease-in-out duration-200 delay-300 absolute left-2.5 top-0 w-0.5 h-full"
+                :class="{ 'h-0 delay-[0]': !navigationOpen }"></span>
+              <span
+                class="block bg-black dark:bg-white rounded-sm ease-in-out duration-200 delay-400 absolute left-0 top-2.5 w-full h-0.5"
+                :class="{ 'h-0 dealy-200': !navigationOpen }"></span>
+            </span>
           </span>
-          <span class="du-block absolute right-0 w-full h-full rotate-45">
-            <span
-              class="block bg-black dark:bg-white rounded-sm ease-in-out duration-200 delay-300 absolute left-2.5 top-0 w-0.5 h-full"
-              :class="{ 'h-0 delay-[0]': !navigationOpen }"></span>
-            <span
-              class="block bg-black dark:bg-white rounded-sm ease-in-out duration-200 delay-400 absolute left-0 top-2.5 w-full h-0.5"
-              :class="{ 'h-0 dealy-200': !navigationOpen }"></span>
-          </span>
-        </span>
-      </button>
-      <!-- Hamburger Toggle BTN -->
-    </div>
+        </button>
+        <!-- Hamburger Toggle BTN -->
+      </div>
 
-    <div class="w-full lg:w-3/4 h-0 lg:h-auto invisible lg:visible lg:flex items-center justify-between"
-      :class="{ '!visible bg-white dark:bg-blacksection shadow-solid-5 !h-auto max-h-[400px] overflow-y-scroll rounded-md mt-4 p-7.5': navigationOpen }">
-      <nav>
-        <ul class="flex lg:items-center flex-col lg:flex-row gap-5 lg:gap-10">
-          <li><a href="index.html" class="hover:text-primary" :class="{ 'text-primary': page === 'home' }">Home</a></li>
-          <li><a href="index.html#features" class="hover:text-primary">About</a></li>
-          <li><a href="index.html#services" class="hover:text-primary">Services</a></li>
-          <li><a href="index.html#portfolio" class="hover:text-primary">Portfolio</a></li>
+      <div class="w-full lg:w-3/4 h-0 lg:h-auto invisible lg:visible lg:flex items-center justify-between"
+        :class="{ '!visible bg-white dark:bg-blacksection shadow-solid-5 !h-auto max-h-[400px] overflow-y-scroll rounded-md mt-4 p-7.5': navigationOpen }">
+        <nav>
+          <ul class="flex lg:items-center flex-col lg:flex-row gap-5 lg:gap-10">
+            <li><a href="index.html" class="hover:text-primary" :class="{ 'text-primary': page === 'home' }">Home</a>
+            </li>
+            <li><a href="index.html#features" class="hover:text-primary">About</a></li>
+            <li><a href="index.html#services" class="hover:text-primary">Services</a></li>
+            <li><a href="index.html#portfolio" class="hover:text-primary">Portfolio</a></li>
 
-        </ul>
-      </nav>
+          </ul>
+        </nav>
 
-      <div class="flex items-center gap-6 mt-7 lg:mt-0">
-        <div class="mr-1.5 absolute lg:static top-2.5 right-17" :class="navigationOpen ? '!-visible' : '!visible'">
-          <label class="block m-0 relative">
-            <input type="checkbox" :value="darkMode" @change="darkMode = !darkMode"
-              class="cursor-pointer w-full h-full opacity-0 absolute top-0 z-50 m-0" />
-            <!-- Icon Sun -->
-            <svg : class="fill-body dark:hidden" width="25" height="25" viewBox="0 0 25 25" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M12.0908 18.6363C10.3549 18.6363 8.69 17.9467 7.46249 16.7192C6.23497 15.4916 5.54537 13.8268 5.54537 12.0908C5.54537 10.3549 6.23497 8.69 7.46249 7.46249C8.69 6.23497 10.3549 5.54537 12.0908 5.54537C13.8268 5.54537 15.4916 6.23497 16.7192 7.46249C17.9467 8.69 18.6363 10.3549 18.6363 12.0908C18.6363 13.8268 17.9467 15.4916 16.7192 16.7192C15.4916 17.9467 13.8268 18.6363 12.0908 18.6363ZM12.0908 16.4545C13.2481 16.4545 14.358 15.9947 15.1764 15.1764C15.9947 14.358 16.4545 13.2481 16.4545 12.0908C16.4545 10.9335 15.9947 9.8236 15.1764 9.00526C14.358 8.18692 13.2481 7.72718 12.0908 7.72718C10.9335 7.72718 9.8236 8.18692 9.00526 9.00526C8.18692 9.8236 7.72718 10.9335 7.72718 12.0908C7.72718 13.2481 8.18692 14.358 9.00526 15.1764C9.8236 15.9947 10.9335 16.4545 12.0908 16.4545ZM10.9999 0.0908203H13.1817V3.36355H10.9999V0.0908203ZM10.9999 20.8181H13.1817V24.0908H10.9999V20.8181ZM2.83446 4.377L4.377 2.83446L6.69082 5.14828L5.14828 6.69082L2.83446 4.37809V4.377ZM17.4908 19.0334L19.0334 17.4908L21.3472 19.8046L19.8046 21.3472L17.4908 19.0334ZM19.8046 2.83337L21.3472 4.377L19.0334 6.69082L17.4908 5.14828L19.8046 2.83446V2.83337ZM5.14828 17.4908L6.69082 19.0334L4.377 21.3472L2.83446 19.8046L5.14828 17.4908ZM24.0908 10.9999V13.1817H20.8181V10.9999H24.0908ZM3.36355 10.9999V13.1817H0.0908203V10.9999H3.36355Z"
-                fill="" />
-            </svg>
-            <!-- Icon Sun -->
-            <img class="hidden dark:block" src="images/icon-moon.svg" alt="Moon" />
-          </label>
-        </div>
+        <div class="flex items-center gap-6 mt-7 lg:mt-0">
+          <div class="mr-1.5 absolute lg:static top-2.5 right-17" :class="navigationOpen ? '!-visible' : '!visible'">
+            <label class="block m-0 relative">
+              <input type="checkbox" :value="darkMode" @change="darkMode = !darkMode"
+                class="cursor-pointer w-full h-full opacity-0 absolute top-0 z-50 m-0" />
+              <!-- Icon Sun -->
+              <svg : class="fill-body dark:hidden" width="25" height="25" viewBox="0 0 25 25" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12.0908 18.6363C10.3549 18.6363 8.69 17.9467 7.46249 16.7192C6.23497 15.4916 5.54537 13.8268 5.54537 12.0908C5.54537 10.3549 6.23497 8.69 7.46249 7.46249C8.69 6.23497 10.3549 5.54537 12.0908 5.54537C13.8268 5.54537 15.4916 6.23497 16.7192 7.46249C17.9467 8.69 18.6363 10.3549 18.6363 12.0908C18.6363 13.8268 17.9467 15.4916 16.7192 16.7192C15.4916 17.9467 13.8268 18.6363 12.0908 18.6363ZM12.0908 16.4545C13.2481 16.4545 14.358 15.9947 15.1764 15.1764C15.9947 14.358 16.4545 13.2481 16.4545 12.0908C16.4545 10.9335 15.9947 9.8236 15.1764 9.00526C14.358 8.18692 13.2481 7.72718 12.0908 7.72718C10.9335 7.72718 9.8236 8.18692 9.00526 9.00526C8.18692 9.8236 7.72718 10.9335 7.72718 12.0908C7.72718 13.2481 8.18692 14.358 9.00526 15.1764C9.8236 15.9947 10.9335 16.4545 12.0908 16.4545ZM10.9999 0.0908203H13.1817V3.36355H10.9999V0.0908203ZM10.9999 20.8181H13.1817V24.0908H10.9999V20.8181ZM2.83446 4.377L4.377 2.83446L6.69082 5.14828L5.14828 6.69082L2.83446 4.37809V4.377ZM17.4908 19.0334L19.0334 17.4908L21.3472 19.8046L19.8046 21.3472L17.4908 19.0334ZM19.8046 2.83337L21.3472 4.377L19.0334 6.69082L17.4908 5.14828L19.8046 2.83446V2.83337ZM5.14828 17.4908L6.69082 19.0334L4.377 21.3472L2.83446 19.8046L5.14828 17.4908ZM24.0908 10.9999V13.1817H20.8181V10.9999H24.0908ZM3.36355 10.9999V13.1817H0.0908203V10.9999H3.36355Z"
+                  fill="" />
+              </svg>
+              <!-- Icon Sun -->
+              <img class="hidden dark:block" src="images/icon-moon.svg" alt="Moon" />
+            </label>
+          </div>
 
-        <!-- <a :class="{ '!text-white hover:text-white' : page === 'home', '!text-body' : page === 'home' && stickyMenu }"
+          <!-- <a :class="{ '!text-white hover:text-white' : page === 'home', '!text-body' : page === 'home' && stickyMenu }"
           class="font-medium text-body hover:text-primary">Contact Us</a> -->
-        <!-- <a href="index.html#contact"
+          <!-- <a href="index.html#contact"
           :class="{ '!text-white hover:text-white' : page === 'home', '!text-body' : page === 'home' && stickyMenu }"
           class="font-medium text-body hover:text-primary">Contact Us</a> -->
-        <a href="index.html#contact" : class="font-medium text-body hover:text-primary">Contact Us</a>
+          <a href="index.html#contact" : class="font-medium text-body hover:text-primary">Contact Us</a>
 
-      </div>
-    </div>
-  </div>
-</header>
-    <!-- ===== Header End ===== -->
-
-    <main>
-      <!-- ===== Blog Grid Start ===== -->
-      <section class="py-20 lg:py-25 xl:py-30">
-        <div class="mx-auto max-w-1280 px-4 md:px-8 xl:px-0 mt-12.5 lg:mt-17.5">
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7.5 xl:gap-10">
-            <!-- Blog Item -->
-            <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
-              <div class="group block relative z-1 overflow-hidden">
-                <img class="w-full" src="images/blog-01.png" alt="Blog" />
-
-                <div
-                  class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10"
-                >
-                  <a href="./blog-single.html" class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-3 px-7.5"
-                    >Read More</a
-                  >
-                </div>
-              </div>
-
-              <div class="p-7.5">
-                <div class="flex flex-wrap items-center gap-2 xl:gap-5">
-                  <div class="flex items-center gap-2">
-                    <img src="images/icon-man.svg" alt="User" />
-                    <p>Musharof Chy</p>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <img src="images/icon-calender.svg" alt="Calender" />
-                    <p>25 Dec, 2025</p>
-                  </div>
-                </div>
-                <h4 class="font-medium text-2xl ease-in-out duration-300 text-black dark:text-white hover:text-primary xl:w-[90%] mt-3">
-                  <a href="blog-single.html">Free advertising for your online business</a>
-                </h4>
-              </div>
-            </div>
-
-            <!-- Blog Item -->
-            <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
-              <div class="group block relative z-1 overflow-hidden">
-                <img class="w-full" src="images/blog-02.png" alt="Blog" />
-
-                <div
-                  class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10"
-                >
-                  <a href="./blog-single.html" class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-3 px-7.5"
-                    >Read More</a
-                  >
-                </div>
-              </div>
-
-              <div class="p-7.5">
-                <div class="flex flex-wrap items-center gap-2 xl:gap-5">
-                  <div class="flex items-center gap-2">
-                    <img src="images/icon-man.svg" alt="User" />
-                    <p>Musharof Chy</p>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <img src="images/icon-calender.svg" alt="Calender" />
-                    <p>25 Dec, 2025</p>
-                  </div>
-                </div>
-                <h4 class="font-medium text-2xl ease-in-out duration-300 text-black dark:text-white hover:text-primary xl:w-[90%] mt-3">
-                  <a href="blog-single.html">9 simple ways to improve your design skills</a>
-                </h4>
-              </div>
-            </div>
-
-            <!-- Blog Item -->
-            <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
-              <div class="group block relative z-1 overflow-hidden">
-                <img class="w-full" src="images/blog-03.png" alt="Blog" />
-
-                <div
-                  class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10"
-                >
-                  <a href="./blog-single.html" class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-3 px-7.5"
-                    >Read More</a
-                  >
-                </div>
-              </div>
-
-              <div class="p-7.5">
-                <div class="flex flex-wrap items-center gap-2 xl:gap-5">
-                  <div class="flex items-center gap-2">
-                    <img src="images/icon-man.svg" alt="User" />
-                    <p>Musharof Chy</p>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <img src="images/icon-calender.svg" alt="Calender" />
-                    <p>25 Dec, 2025</p>
-                  </div>
-                </div>
-                <h4 class="font-medium text-2xl ease-in-out duration-300 text-black dark:text-white hover:text-primary xl:w-[90%] mt-3">
-                  <a href="blog-single.html">Tips to quickly improve your coding speed.</a>
-                </h4>
-              </div>
-            </div>
-
-            <!-- Blog Item -->
-            <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
-              <div class="group block relative z-1 overflow-hidden">
-                <img class="w-full" src="images/blog-01.png" alt="Blog" />
-
-                <div
-                  class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10"
-                >
-                  <a href="./blog-single.html" class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-3 px-7.5"
-                    >Read More</a
-                  >
-                </div>
-              </div>
-
-              <div class="p-7.5">
-                <div class="flex flex-wrap items-center gap-2 xl:gap-5">
-                  <div class="flex items-center gap-2">
-                    <img src="images/icon-man.svg" alt="User" />
-                    <p>Musharof Chy</p>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <img src="images/icon-calender.svg" alt="Calender" />
-                    <p>25 Dec, 2025</p>
-                  </div>
-                </div>
-                <h4 class="font-medium text-2xl ease-in-out duration-300 text-black dark:text-white hover:text-primary xl:w-[90%] mt-3">
-                  <a href="blog-single.html">Free advertising for your online business</a>
-                </h4>
-              </div>
-            </div>
-
-            <!-- Blog Item -->
-            <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
-              <div class="group block relative z-1 overflow-hidden">
-                <img class="w-full" src="images/blog-02.png" alt="Blog" />
-
-                <div
-                  class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10"
-                >
-                  <a href="./blog-single.html" class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-3 px-7.5"
-                    >Read More</a
-                  >
-                </div>
-              </div>
-
-              <div class="p-7.5">
-                <div class="flex flex-wrap items-center gap-2 xl:gap-5">
-                  <div class="flex items-center gap-2">
-                    <img src="images/icon-man.svg" alt="User" />
-                    <p>Musharof Chy</p>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <img src="images/icon-calender.svg" alt="Calender" />
-                    <p>25 Dec, 2025</p>
-                  </div>
-                </div>
-                <h4 class="font-medium text-2xl ease-in-out duration-300 text-black dark:text-white hover:text-primary xl:w-[90%] mt-3">
-                  <a href="blog-single.html">9 simple ways to improve your design skills</a>
-                </h4>
-              </div>
-            </div>
-
-            <!-- Blog Item -->
-            <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
-              <div class="group block relative z-1 overflow-hidden">
-                <img class="w-full" src="images/blog-03.png" alt="Blog" />
-
-                <div
-                  class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10"
-                >
-                  <a href="./blog-single.html" class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-3 px-7.5"
-                    >Read More</a
-                  >
-                </div>
-              </div>
-
-              <div class="p-7.5">
-                <div class="flex flex-wrap items-center gap-2 xl:gap-5">
-                  <div class="flex items-center gap-2">
-                    <img src="images/icon-man.svg" alt="User" />
-                    <p>Musharof Chy</p>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <img src="images/icon-calender.svg" alt="Calender" />
-                    <p>25 Dec, 2025</p>
-                  </div>
-                </div>
-                <h4 class="font-medium text-2xl ease-in-out duration-300 text-black dark:text-white hover:text-primary xl:w-[90%] mt-3">
-                  <a href="blog-single.html">Tips to quickly improve your coding speed.</a>
-                </h4>
-              </div>
-            </div>
-          </div>
-
-          <!-- Pagination -->
-          <div class="mt-10 lg:mt-15 xl:mt-20 relative z-1">
-            <nav>
-              <ul class="flex items-center justify-center gap-3">
-                <li>
-                  <a
-                    class="group flex items-center justify-center w-7.5 md:w-10 h-7.5 md:h-10 rounded-full text-xs md:text-base shadow-6 dark:shadow-none ease-in-out duration-300 bg-white dark:bg-blacksection hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white"
-                    href="#"
-                  >
-                    <svg class="fill-body group-hover:fill-white ease-in-out duration-300" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2.93884 6.99999L7.88884 11.95L6.47484 13.364L0.11084 6.99999L6.47484 0.635986L7.88884 2.04999L2.93884 6.99999Z" />
-                    </svg>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="group flex items-center justify-center w-7.5 md:w-10 h-7.5 md:h-10 rounded-full text-xs md:text-base shadow-6 dark:shadow-none ease-in-out duration-300 bg-white dark:bg-blacksection hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white"
-                    href="#"
-                  >
-                    2
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="group flex items-center justify-center w-7.5 md:w-10 h-7.5 md:h-10 rounded-full text-xs md:text-base shadow-6 dark:shadow-none ease-in-out duration-300 bg-white dark:bg-blacksection hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white"
-                    href="#"
-                  >
-                    3
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="group flex items-center justify-center w-7.5 md:w-10 h-7.5 md:h-10 rounded-full text-xs md:text-base shadow-6 dark:shadow-none ease-in-out duration-300 bg-white dark:bg-blacksection hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white"
-                    href="#"
-                  >
-                    4
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="group flex items-center justify-center w-7.5 md:w-10 h-7.5 md:h-10 rounded-full text-xs md:text-base shadow-6 dark:shadow-none ease-in-out duration-300 bg-white dark:bg-blacksection hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white"
-                    href="#"
-                  >
-                    ...
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="group flex items-center justify-center w-7.5 md:w-10 h-7.5 md:h-10 rounded-full text-xs md:text-base shadow-6 dark:shadow-none ease-in-out duration-300 bg-white dark:bg-blacksection hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white"
-                    href="#"
-                  >
-                    12
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="group flex items-center justify-center w-7.5 md:w-10 h-7.5 md:h-10 rounded-full text-xs md:text-base shadow-6 dark:shadow-none ease-in-out duration-300 bg-white dark:bg-blacksection hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white"
-                    href="#"
-                  >
-                    <svg class="fill-body group-hover:fill-white ease-in-out duration-300" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M5.06067 7.00001L0.110671 2.05001L1.52467 0.636014L7.88867 7.00001L1.52467 13.364L0.110672 11.95L5.06067 7.00001Z" fill="#fefdfo" />
-                    </svg>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-          <!-- Pagination -->
         </div>
-      </section>
-      <!-- ===== Blog Grid End ===== -->
-
-      <!-- ===== CTA Start ===== -->
-      <section class="relative overflow-hidden bg-primary py-20">
-  <!-- Bg Shape -->
-  <img class="absolute bottom-0 right-0" src="images/shape-16.svg" alt="Bg Shape" />
-
-  <div class="mx-auto max-w-1280 relative z-10 px-4 md:px-8 xl:px-5">
-    <div class="flex flex-wrap md:flex-nowrap md:items-center md:justify-between gap-8">
-      <div class="animate_left lg:w-1/2">
-        <h2 class="font-semibold text-3xl lg:text-4xl xl:text-title-xl text-white mb-4">
-          Join us to scale your business
-        </h2>
-
-      </div>
-      <div class="animate_right flex-shrink-0">
-        <a href="#"
-          class="inline-flex font-medium text-black bg-white rounded-full ease-out duration-300 hover:shadow-xl py-3 px-7.5">
-          Get Started
-        </a>
       </div>
     </div>
-  </div>
-</section>
-      <!-- ===== CTA End ===== -->
-    </main>
-    <!-- ===== Footer Start ===== -->
-    <!-- <footer>
+  </header>
+  <!-- ===== Header End ===== -->
+
+  <main>
+    <!-- ===== Blog Grid Start ===== -->
+    <section class="py-20 lg:py-25 xl:py-30">
+      <div class="mx-auto max-w-1280 px-4 md:px-8 xl:px-0 mt-12.5 lg:mt-17.5">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7.5 xl:gap-10">
+          <!-- Blog Item -->
+          <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
+            <div class="group block relative z-1 overflow-hidden">
+              <img class="w-full" src="images/blog-01.png" alt="Blog" />
+
+              <div
+                class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10">
+                <a href="./blog-single.html"
+                  class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-3 px-7.5">Read
+                  More</a>
+              </div>
+            </div>
+
+            <div class="p-7.5">
+              <div class="flex flex-wrap items-center gap-2 xl:gap-5">
+                <div class="flex items-center gap-2">
+                  <img src="images/icon-man.svg" alt="User" />
+                  <p>Musharof Chy</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <img src="images/icon-calender.svg" alt="Calender" />
+                  <p>25 Dec, 2025</p>
+                </div>
+              </div>
+              <h4
+                class="font-medium text-2xl ease-in-out duration-300 text-black dark:text-white hover:text-primary xl:w-[90%] mt-3">
+                <a href="blog-single.html">Free advertising for your online business</a>
+              </h4>
+            </div>
+          </div>
+
+          <!-- Blog Item -->
+          <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
+            <div class="group block relative z-1 overflow-hidden">
+              <img class="w-full" src="images/blog-02.png" alt="Blog" />
+
+              <div
+                class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10">
+                <a href="./blog-single.html"
+                  class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-3 px-7.5">Read
+                  More</a>
+              </div>
+            </div>
+
+            <div class="p-7.5">
+              <div class="flex flex-wrap items-center gap-2 xl:gap-5">
+                <div class="flex items-center gap-2">
+                  <img src="images/icon-man.svg" alt="User" />
+                  <p>Musharof Chy</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <img src="images/icon-calender.svg" alt="Calender" />
+                  <p>25 Dec, 2025</p>
+                </div>
+              </div>
+              <h4
+                class="font-medium text-2xl ease-in-out duration-300 text-black dark:text-white hover:text-primary xl:w-[90%] mt-3">
+                <a href="blog-single.html">9 simple ways to improve your design skills</a>
+              </h4>
+            </div>
+          </div>
+
+          <!-- Blog Item -->
+          <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
+            <div class="group block relative z-1 overflow-hidden">
+              <img class="w-full" src="images/blog-03.png" alt="Blog" />
+
+              <div
+                class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10">
+                <a href="./blog-single.html"
+                  class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-3 px-7.5">Read
+                  More</a>
+              </div>
+            </div>
+
+            <div class="p-7.5">
+              <div class="flex flex-wrap items-center gap-2 xl:gap-5">
+                <div class="flex items-center gap-2">
+                  <img src="images/icon-man.svg" alt="User" />
+                  <p>Musharof Chy</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <img src="images/icon-calender.svg" alt="Calender" />
+                  <p>25 Dec, 2025</p>
+                </div>
+              </div>
+              <h4
+                class="font-medium text-2xl ease-in-out duration-300 text-black dark:text-white hover:text-primary xl:w-[90%] mt-3">
+                <a href="blog-single.html">Tips to quickly improve your coding speed.</a>
+              </h4>
+            </div>
+          </div>
+
+          <!-- Blog Item -->
+          <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
+            <div class="group block relative z-1 overflow-hidden">
+              <img class="w-full" src="images/blog-01.png" alt="Blog" />
+
+              <div
+                class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10">
+                <a href="./blog-single.html"
+                  class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-3 px-7.5">Read
+                  More</a>
+              </div>
+            </div>
+
+            <div class="p-7.5">
+              <div class="flex flex-wrap items-center gap-2 xl:gap-5">
+                <div class="flex items-center gap-2">
+                  <img src="images/icon-man.svg" alt="User" />
+                  <p>Musharof Chy</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <img src="images/icon-calender.svg" alt="Calender" />
+                  <p>25 Dec, 2025</p>
+                </div>
+              </div>
+              <h4
+                class="font-medium text-2xl ease-in-out duration-300 text-black dark:text-white hover:text-primary xl:w-[90%] mt-3">
+                <a href="blog-single.html">Free advertising for your online business</a>
+              </h4>
+            </div>
+          </div>
+
+          <!-- Blog Item -->
+          <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
+            <div class="group block relative z-1 overflow-hidden">
+              <img class="w-full" src="images/blog-02.png" alt="Blog" />
+
+              <div
+                class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10">
+                <a href="./blog-single.html"
+                  class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-3 px-7.5">Read
+                  More</a>
+              </div>
+            </div>
+
+            <div class="p-7.5">
+              <div class="flex flex-wrap items-center gap-2 xl:gap-5">
+                <div class="flex items-center gap-2">
+                  <img src="images/icon-man.svg" alt="User" />
+                  <p>Musharof Chy</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <img src="images/icon-calender.svg" alt="Calender" />
+                  <p>25 Dec, 2025</p>
+                </div>
+              </div>
+              <h4
+                class="font-medium text-2xl ease-in-out duration-300 text-black dark:text-white hover:text-primary xl:w-[90%] mt-3">
+                <a href="blog-single.html">9 simple ways to improve your design skills</a>
+              </h4>
+            </div>
+          </div>
+
+          <!-- Blog Item -->
+          <div class="animate_top rounded-lg shadow-3 dark:bg-blacksection dark:shadow-none">
+            <div class="group block relative z-1 overflow-hidden">
+              <img class="w-full" src="images/blog-03.png" alt="Blog" />
+
+              <div
+                class="group-hover:translate-y-0 absolute top-0 left-0 translate-y-full w-full h-full rounded-t-lg flex items-center justify-center backdrop-blur bg-white/20 ease-linear duration-300 z-10">
+                <a href="./blog-single.html"
+                  class="inline-flex font-medium rounded-full text-white bg-primary hover:bg-secondary ease-in-out duration-300 py-3 px-7.5">Read
+                  More</a>
+              </div>
+            </div>
+
+            <div class="p-7.5">
+              <div class="flex flex-wrap items-center gap-2 xl:gap-5">
+                <div class="flex items-center gap-2">
+                  <img src="images/icon-man.svg" alt="User" />
+                  <p>Musharof Chy</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <img src="images/icon-calender.svg" alt="Calender" />
+                  <p>25 Dec, 2025</p>
+                </div>
+              </div>
+              <h4
+                class="font-medium text-2xl ease-in-out duration-300 text-black dark:text-white hover:text-primary xl:w-[90%] mt-3">
+                <a href="blog-single.html">Tips to quickly improve your coding speed.</a>
+              </h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-10 lg:mt-15 xl:mt-20 relative z-1">
+          <nav>
+            <ul class="flex items-center justify-center gap-3">
+              <li>
+                <a class="group flex items-center justify-center w-7.5 md:w-10 h-7.5 md:h-10 rounded-full text-xs md:text-base shadow-6 dark:shadow-none ease-in-out duration-300 bg-white dark:bg-blacksection hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white"
+                  href="#">
+                  <svg class="fill-body group-hover:fill-white ease-in-out duration-300" width="8" height="14"
+                    viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.93884 6.99999L7.88884 11.95L6.47484 13.364L0.11084 6.99999L6.47484 0.635986L7.88884 2.04999L2.93884 6.99999Z" />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a class="group flex items-center justify-center w-7.5 md:w-10 h-7.5 md:h-10 rounded-full text-xs md:text-base shadow-6 dark:shadow-none ease-in-out duration-300 bg-white dark:bg-blacksection hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white"
+                  href="#">
+                  2
+                </a>
+              </li>
+              <li>
+                <a class="group flex items-center justify-center w-7.5 md:w-10 h-7.5 md:h-10 rounded-full text-xs md:text-base shadow-6 dark:shadow-none ease-in-out duration-300 bg-white dark:bg-blacksection hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white"
+                  href="#">
+                  3
+                </a>
+              </li>
+              <li>
+                <a class="group flex items-center justify-center w-7.5 md:w-10 h-7.5 md:h-10 rounded-full text-xs md:text-base shadow-6 dark:shadow-none ease-in-out duration-300 bg-white dark:bg-blacksection hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white"
+                  href="#">
+                  4
+                </a>
+              </li>
+              <li>
+                <a class="group flex items-center justify-center w-7.5 md:w-10 h-7.5 md:h-10 rounded-full text-xs md:text-base shadow-6 dark:shadow-none ease-in-out duration-300 bg-white dark:bg-blacksection hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white"
+                  href="#">
+                  ...
+                </a>
+              </li>
+              <li>
+                <a class="group flex items-center justify-center w-7.5 md:w-10 h-7.5 md:h-10 rounded-full text-xs md:text-base shadow-6 dark:shadow-none ease-in-out duration-300 bg-white dark:bg-blacksection hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white"
+                  href="#">
+                  12
+                </a>
+              </li>
+              <li>
+                <a class="group flex items-center justify-center w-7.5 md:w-10 h-7.5 md:h-10 rounded-full text-xs md:text-base shadow-6 dark:shadow-none ease-in-out duration-300 bg-white dark:bg-blacksection hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white"
+                  href="#">
+                  <svg class="fill-body group-hover:fill-white ease-in-out duration-300" width="8" height="14"
+                    viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M5.06067 7.00001L0.110671 2.05001L1.52467 0.636014L7.88867 7.00001L1.52467 13.364L0.110672 11.95L5.06067 7.00001Z"
+                      fill="#fefdfo" />
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <!-- Pagination -->
+      </div>
+    </section>
+    <!-- ===== Blog Grid End ===== -->
+
+    <!-- ===== CTA Start ===== -->
+    <section class="relative overflow-hidden bg-primary py-20">
+      <!-- Bg Shape -->
+      <img class="absolute bottom-0 right-0" src="images/shape-16.svg" alt="Bg Shape" />
+
+      <div class="mx-auto max-w-1280 relative z-10 px-4 md:px-8 xl:px-5">
+        <div class="flex flex-wrap md:flex-nowrap md:items-center md:justify-between gap-8">
+          <div class="animate_left lg:w-1/2">
+            <h2 class="font-semibold text-3xl lg:text-4xl xl:text-title-xl text-white mb-4">
+              Join us to scale your business
+            </h2>
+
+          </div>
+          <div class="animate_right flex-shrink-0">
+            <a href="#"
+              class="inline-flex font-medium text-black bg-white rounded-full ease-out duration-300 hover:shadow-xl py-3 px-7.5">
+              Get Started
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===== CTA End ===== -->
+  </main>
+  <!-- ===== Footer Start ===== -->
+  <!-- <footer>
   <div class="mx-auto max-w-1390 px-4 md:px-8 2xl:px-0">
 
     <div class="py-20 lg:py-25">
@@ -564,20 +558,21 @@
 
   </div>
 </footer> -->
-    <!-- ===== Footer End ===== -->
+  <!-- ===== Footer End ===== -->
 
-    <!-- ====== Back To Top Start ===== -->
-    <button
-  class="hidden items-center justify-center w-10 h-10 rounded-[4px] shadow-solid-5 bg-primary hover:bg-primaryho fixed bottom-8 right-8 z-999"
-  @click="window.scrollTo({top: 0, behavior: 'smooth'})"
-  @scroll.window="scrollTop = (window.pageYOffset > 50) ? true : false"
-  :class="{ '!flex' : scrollTop }"
->
-  <svg class="fill-white w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-    <path d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z" />
-  </svg>
-</button>
+  <!-- ====== Back To Top Start ===== -->
+  <button
+    class="hidden items-center justify-center w-10 h-10 rounded-[4px] shadow-solid-5 bg-primary hover:bg-primaryho fixed bottom-8 right-8 z-999"
+    @click="window.scrollTo({top: 0, behavior: 'smooth'})"
+    @scroll.window="scrollTop = (window.pageYOffset > 50) ? true : false" :class="{ '!flex' : scrollTop }">
+    <svg class="fill-white w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+      <path
+        d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z" />
+    </svg>
+  </button>
 
-    <!-- ====== Back To Top End ===== -->
-  <script defer src="bundle.js"></script></body>
+  <!-- ====== Back To Top End ===== -->
+  <script defer src="bundle.js"></script>
+</body>
+
 </html>

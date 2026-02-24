@@ -1,284 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project Showcase</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Showcase</title>
 
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<link href="style.css" rel="stylesheet">
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="style.css" rel="stylesheet">
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-<style>
-body { font-family: 'Inter', sans-serif; }
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
 
-/* DOTS */
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 9999px;
-  background: rgba(0,0,0,0.3);
-  transition: all .3s ease;
-  cursor: pointer;
-}
-.dot.active {
-  width: 22px;
-  background: #4f6df5;
-}
+    /* DOTS */
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 9999px;
+      background: rgba(0, 0, 0, 0.3);
+      transition: all .3s ease;
+      cursor: pointer;
+    }
 
-/* HOVER EFFECT */
-.hover-lift {
-  transition: transform .35s cubic-bezier(.4,0,.2,1),
-              box-shadow .35s cubic-bezier(.4,0,.2,1);
-}
-.hover-lift:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 20px 45px rgba(0,0,0,0.12);
-}
+    .dot.active {
+      width: 22px;
+      background: #4f6df5;
+    }
 
-/* FAQ */
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-}
-.faq-item.active .faq-answer {
-  max-height: 200px;
-}
+    /* HOVER EFFECT */
+    .hover-lift {
+      transition: transform .35s cubic-bezier(.4, 0, .2, 1),
+        box-shadow .35s cubic-bezier(.4, 0, .2, 1);
+    }
 
-/* FADE */
-.fade-down {
-  opacity: 0;
-  transform: translateY(-40px);
-  transition: all 0.9s cubic-bezier(.4,0,.2,1);
-}
-.fade-down.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-</style>
+    .hover-lift:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+    }
+
+    /* FAQ */
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+    }
+
+    /* FADE */
+    .fade-down {
+      opacity: 0;
+      transform: translateY(-40px);
+      transition: all 0.9s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .fade-down.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Section titles */
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 1.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .dark .section-title {
+      color: #f9fafb;
+    }
+
+    /* Card titles */
+    .card-title {
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 0.4rem;
+    }
+
+    .dark .card-title {
+      color: #f3f4f6;
+    }
+
+    /* Card text */
+    .card-text {
+      font-size: 0.875rem;
+      color: #0f1010;
+      line-height: 1.65;
+    }
+
+    .dark .card-text {
+      color: #9ca3af;
+    }
+
+    section.fade-down {
+      margin-bottom: 2.5rem;
+    }
+  </style>
 </head>
 
-<body x-data="{ page: 'portfolio', darkMode: true, stickyMenu: false, navigationOpen: false }"
-x-init="
+<body x-data="{ page: 'portfolio', darkMode: true, stickyMenu: false, navigationOpen: false }" x-init="
 darkMode = JSON.parse(localStorage.getItem('darkMode'));
 $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
-"
-:class="{'dark bg-black': darkMode === true}">
+" :class="{'dark bg-black': darkMode === true}">
 
-<section id="header" data-include="header.html"></section>
-<div class="pt-28"></div>
-<div class="flex flex-col lg:flex-row">
+  <section id="header" data-include="header.html"></section>
+  <div class="pt-28"></div>
+  <div class="flex flex-col lg:flex-row">
 
-  <!-- Responsive Sidebar -->
-  <div class="lg:w-[220px] w-full bg-[#4f6df5] text-white p-6 flex lg:flex-col flex-row gap-4 lg:sticky lg:top-0 lg:h-screen overflow-x-auto">
-    <h2 class="text-lg font-semibold text-center w-full lg:mb-6">Web Projects</h2>
-<button onclick="showProject(1)" class="bg-white/20 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project 1</button>
-<button onclick="showProject(2)" class="bg-white/10 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project 2</button>
-<button onclick="showProject(3)" class="bg-white/10 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project 3</button>
-<button onclick="showProject(4)" class="bg-white/10 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project 4</button>
-  </div>
-
-  <!-- Main Content -->
-  
-    <div class="flex-1 p-6 sm:p-8 lg:p-10 space-y-16">
-
-  <!-- PROJECT 1  -->
-  <div id="project1">
-
-    <!-- SLIDER -->
-    <div class="relative w-full overflow-hidden rounded-xl shadow-md fade-down">
-      <div id="slides" class="flex transition-transform duration-700 ease-in-out">
-
-        <div class="min-w-full">
-          <a href="https://www.myntra.com" target="_blank">
-            <img src="images/myntra.png" class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
-          </a>
-        </div>
-      
-        <div class="min-w-full">
-          <a href="https://www.myntra.com" target="_blank">
-            <img src="images/myntra1.png" class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
-          </a>
-        </div>
-
-        <div class="min-w-full">
-          <a href="https://www.myntra.com" target="_blank">
-            <img src="images/myntra2.png" class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
-          </a>
-        </div>
-
-        <div class="min-w-full">
-          <a href="https://www.myntra.com" target="_blank">
-            <img src="images/myntra3.png" class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
-          </a>
-        </div>
-
-        <div class="min-w-full">
-          <a href="https://www.myntra.com" target="_blank">
-            <img src="images/myntra4.png" class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
-          </a>
-        </div>
-
-      </div>
-
-      <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-        <div class="dot active"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
+    <!-- Sidebar -->
+    <div
+      class="lg:w-[220px] w-full bg-[#2e61f0] text-white p-6 flex lg:flex-col flex-row gap-4 lg:sticky lg:top-0 lg:h-screen overflow-x-auto">
+      <h2 class="text-lg font-semibold text-center w-full lg:mb-6">Web Projects</h2>
+      <button onclick="showProject(1)" class="bg-white/20 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project
+        1</button>
+      <button onclick="showProject(2)" class="bg-white/10 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project
+        2</button>
+      <button onclick="showProject(3)" class="bg-white/10 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project
+        3</button>
+      <button onclick="showProject(4)" class="bg-white/10 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project
+        4</button>
     </div>
 
-    <!-- APPROACH -->
-    <section class="fade-down">
-      <h2 class="text-2xl font-semibold mb-8">Approach & Development Steps</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- cards unchanged -->
-          <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
-            <div
-              class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">
-              1</div>
-            <h3 class="font-semibold mb-2">Requirement Analysis</h3>
-            <p class="text-sm text-gray-600">Understanding user needs and defining core e-commerce features.</p>
+    <!-- Main Content -->
+    <div class="flex-1 p-6 sm:p-8 lg:p-10 space-y-14">
+
+      <!-- PROJECT 1  -->
+      <div id="project1">
+
+        <!-- SLIDER -->
+        <div class="relative w-full overflow-hidden rounded-xl shadow-md fade-down -mt-7">
+          <div id="slides" class="flex transition-transform duration-700 ease-in-out">
+
+            <div class="min-w-full">
+              <a href="https://www.myntra.com" target="_blank">
+                <img src="images/myntra.png"
+                  class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
+              </a>
+            </div>
+
+            <div class="min-w-full">
+              <a href="https://www.myntra.com" target="_blank">
+                <img src="images/myntra1.png"
+                  class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
+              </a>
+            </div>
+
+            <div class="min-w-full">
+              <a href="https://www.myntra.com" target="_blank">
+                <img src="images/myntra2.png"
+                  class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
+              </a>
+            </div>
+
+            <div class="min-w-full">
+              <a href="https://www.myntra.com" target="_blank">
+                <img src="images/myntra3.png"
+                  class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
+              </a>
+            </div>
+
+            <div class="min-w-full">
+              <a href="https://www.myntra.com" target="_blank">
+                <img src="images/myntra4.png"
+                  class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
+              </a>
+            </div>
+
           </div>
 
-          <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
-            <div
-              class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">
-              2</div>
-            <h3 class="font-semibold mb-2">UI/UX Design</h3>
-            <p class="text-sm text-gray-600">Creating responsive layouts aligned with Myntra's design style.</p>
-          </div>
-
-          <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
-            <div
-              class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">
-              3</div>
-            <h3 class="font-semibold mb-2">Development</h3>
-            <p class="text-sm text-gray-600">Building frontend & backend modules with optimized performance.</p>
-          </div>
-
-          <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
-            <div
-              class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">
-              4</div>
-            <h3 class="font-semibold mb-2">Testing & Deployment</h3>
-            <p class="text-sm text-gray-600">Ensuring quality through testing before final deployment.</p>
+          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
           </div>
         </div>
-      </section>
 
-      <!-- CHALLENGES -->
-      <section class="fade-down">
-        <h2 class="text-2xl font-semibold mb-8">Challenges Faced</h2>
-        <div class="grid md:grid-cols-3 gap-6">
+        <!-- APPROACH -->
+        <section class="fade-down">
+          <h2 class="section-title">Approach & Development Steps</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
-          <div class="border rounded-xl p-6 shadow-sm hover-lift">
-            <div class="mb-4 text-[#4f6df5]">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                <path d="M3 12h18M12 3v18" />
-              </svg>
+            <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
+              <div
+                class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">
+                1</div>
+              <h3 class="card-title">Requirement Analysis</h3>
+              <p class="card-text">Understanding user needs and defining core e-commerce features.</p>
             </div>
-            <h3 class="font-semibold mb-2">Performance Optimization</h3>
-            <p class="text-sm text-gray-600">Managing large product data without affecting load speed.</p>
-          </div>
 
-          <div class="border rounded-xl p-6 shadow-sm hover-lift">
-            <div class="mb-4 text-[#4f6df5]">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                <rect x="3" y="4" width="18" height="16" rx="2" />
-              </svg>
+            <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
+              <div
+                class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">
+                2</div>
+              <h3 class="card-title">UI/UX Design</h3>
+              <p class="card-text">Creating responsive layouts aligned with Myntra's design style.</p>
             </div>
-            <h3 class="font-semibold mb-2">Responsive Design</h3>
-            <p class="text-sm text-gray-600">Maintaining layout consistency across all devices.</p>
-          </div>
 
-          <div class="border rounded-xl p-6 shadow-sm hover-lift">
-            <div class="mb-4 text-[#4f6df5]">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                <path d="M12 2l7 4v6c0 5-7 10-7 10S5 17 5 12V6l7-4z" />
-              </svg>
+            <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
+              <div
+                class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">
+                3</div>
+              <h3 class="card-title">Development</h3>
+              <p class="card-text">Building frontend & backend modules with optimized performance.</p>
             </div>
-            <h3 class="font-semibold mb-2">Secure Authentication</h3>
-            <p class="text-sm text-gray-600">Implementing secure login and user data protection.</p>
-          </div>
 
-        </div>
-      </section>
-
-      <!-- RESULTS -->
-      <section class="fade-down">
-        <h2 class="text-2xl font-semibold mb-8">Results Achieved</h2>
-        <div class="bg-gray-50 p-6 rounded-xl shadow-sm max-w-md hover-lift">
-          <canvas id="resultChart" height="150"></canvas>
-        </div>
-      </section>
-
-      <!-- FAQ -->
-      <section class="fade-down">
-        <h2 class="text-2xl font-semibold mb-8">Customer Feedback</h2>
-        <div class="space-y-4">
-
-          <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">
-            <div class="flex justify-between items-center">
-              <h3 class="font-medium">How scalable is the application?</h3>
-              <span>+</span>
-            </div>
-            <div class="faq-answer mt-2 text-sm text-gray-600">
-              The application is built with scalable architecture supporting high traffic loads.
+            <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
+              <div
+                class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">
+                4</div>
+              <h3 class="card-title">Testing & Deployment</h3>
+              <p class="card-text">Ensuring quality through testing before final deployment.</p>
             </div>
           </div>
+        </section>
 
-          <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">
-            <div class="flex justify-between items-center">
-              <h3 class="font-medium">Is the website mobile-friendly?</h3>
-              <span>+</span>
+        <!-- CHALLENGES -->
+        <section class="fade-down">
+          <h2 class="section-title">Challenges Faced</h2>
+          <div class="grid md:grid-cols-3 gap-6">
+
+            <div class="border rounded-xl p-6 shadow-sm hover-lift">
+              <h3 class="card-title">Performance Optimization</h3>
+              <p class="card-text">Managing large product data without affecting load speed.</p>
             </div>
-            <div class="faq-answer mt-2 text-sm text-gray-600">
-              Yes, the design is fully responsive across all screen sizes.
+
+            <div class="border rounded-xl p-6 shadow-sm hover-lift">
+              <h3 class="card-title">Responsive Design</h3>
+              <p class="card-text">Maintaining layout consistency across all devices.</p>
             </div>
+
+            <div class="border rounded-xl p-6 shadow-sm hover-lift">
+              <h3 class="card-title">Secure Authentication</h3>
+              <p class="card-text">Implementing secure login and user data protection.</p>
+            </div>
+
           </div>
+        </section>
 
-          <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">
-            <div class="flex justify-between items-center">
-              <h3 class="font-medium">How secure is user data?</h3>
-              <span>+</span>
-            </div>
-            <div class="faq-answer mt-2 text-sm text-gray-600">
-              We implemented secure authentication and encrypted data storage.
-            </div>
+        <!-- RESULTS -->
+        <section class="fade-down">
+          <h2 class="section-title">Results Achieved</h2>
+          <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-xl shadow-sm max-w-md hover-lift">
+            <canvas id="resultChart" height="150"></canvas>
           </div>
+        </section>
 
-        </div>
-      </section>
+        <!-- FAQ -->
+        <section class="fade-down">
+          <h2 class="section-title">Customer Feedback</h2>
+          <div class="space-y-4">
 
+            <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">
+              <div class="flex justify-between items-center">
+                <h3 class="font-medium text-gray-800 dark:text-gray-100">How scalable is the application?</h3>
+                <span>+</span>
+              </div>
+              <div class="faq-answer mt-2 text-sm text-gray-600 dark:text-gray-400">
+                The application is built with scalable architecture supporting high traffic loads.
+              </div>
+            </div>
+            <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">
+              <div class="flex justify-between items-center">
+                <h3 class="font-medium text-gray-800 dark:text-gray-100">Is the website mobile-friendly?</h3>
+                <span>+</span>
+              </div>
+              <div class="faq-answer mt-2 text-sm text-gray-600 dark:text-gray-400">
+                Yes, the design is fully responsive across all screen sizes.
+              </div>
+            </div>
+
+            <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">
+              <div class="flex justify-between items-center">
+                <h3 class="font-medium text-gray-800 dark:text-gray-100">How secure is user data?</h3>
+                <span>+</span>
+              </div>
+              <div class="faq-answer mt-2 text-sm text-gray-600 dark:text-gray-400">
+                We implemented secure authentication and encrypted data storage.
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
     </div>
-  </div>
     <!-- PROJECT 2 EMPTY -->
-  <div id="project2" class="hidden text-center py-20">
-    <h2 class="text-2xl font-semibold mb-4">Project 2</h2>
-    <p class="text-gray-500">Content coming soon...</p>
-  </div>
+    <div id="project2" class="hidden text-center py-20">
+      <h2 class="text-2xl font-semibold mb-4">Project 2</h2>
+      <p class="text-gray-500">Content coming soon...</p>
+    </div>
 
-  <!-- PROJECT 3 EMPTY -->
-  <div id="project3" class="hidden text-center py-20">
-    <h2 class="text-2xl font-semibold mb-4">Project 3</h2>
-    <p class="text-gray-500">Content coming soon...</p>
-  </div>
+    <!-- PROJECT 3 EMPTY -->
+    <div id="project3" class="hidden text-center py-20">
+      <h2 class="text-2xl font-semibold mb-4">Project 3</h2>
+      <p class="text-gray-500">Content coming soon...</p>
+    </div>
 
-  <!-- PROJECT 4 EMPTY -->
-  <div id="project4" class="hidden text-center py-20">
-    <h2 class="text-2xl font-semibold mb-4">Project 4</h2>
-    <p class="text-gray-500">Content coming soon...</p>
-  </div>
+    <!-- PROJECT 4 EMPTY -->
+    <div id="project4" class="hidden text-center py-20">
+      <h2 class="text-2xl font-semibold mb-4">Project 4</h2>
+      <p class="text-gray-500">Content coming soon...</p>
+    </div>
 
   </div>
-
+  <section id="footer" data-include="footer.html"></section>
   <script>
 
     /* FADE DOWN ANIMATION */
@@ -372,21 +409,21 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
         item.classList.toggle("active");
       });
     });
-function showProject(num) {
-  // hide all
-  for (let i = 1; i <= 4; i++) {
-    document.getElementById("project" + i).classList.add("hidden");
-  }
+    function showProject(num) {
+      // hide all
+      for (let i = 1; i <= 4; i++) {
+        document.getElementById("project" + i).classList.add("hidden");
+      }
 
-  // show selected
-  document.getElementById("project" + num).classList.remove("hidden");
-}
+      // show selected
+      document.getElementById("project" + num).classList.remove("hidden");
+    }
 
-document.querySelectorAll('[data-include]').forEach(async (el) => {
-  const file = el.getAttribute('data-include');
-  const res = await fetch(file);
-  el.innerHTML = await res.text();
-});
+    document.querySelectorAll('[data-include]').forEach(async (el) => {
+      const file = el.getAttribute('data-include');
+      const res = await fetch(file);
+      el.innerHTML = await res.text();
+    });
 
   </script>
 

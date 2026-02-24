@@ -47,14 +47,12 @@
   </style>
 </head>
 
-<body x-data="{ page: 'services', darkMode: true, stickyMenu: false, navigationOpen: false }"
-x-init="
+<body x-data="{ page: 'services', darkMode: true, stickyMenu: false, navigationOpen: false }" x-init="
 darkMode = JSON.parse(localStorage.getItem('darkMode'));
 $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
-"
-:class="{'dark bg-black': darkMode === true}">
+" :class="{'dark bg-black': darkMode === true}">
 
-<section id="header" data-include="header.html"></section> 
+  <section id="header" data-include="header.html"></section>
 
   <!-- ===== HERO ===== -->
   <section class="max-w-6xl mx-auto px-4 pt-28 pb-16 md:pt-32">
@@ -84,7 +82,8 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
       </div>
 
       <div class="fade-down">
-        <img src="images/automationTesting-service.jpg" alt="Automation Testing" class="width:25px height:25px rounded-lg shadow-sm">
+        <img src="images/automationTesting-service.jpg" alt="Automation Testing"
+          class="width:25px height:25px rounded-lg shadow-sm">
       </div>
 
     </div>
@@ -117,7 +116,8 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
           </svg>
         </div>
         <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">Test Automation</h3>
-        <p class="text-sm text-gray-700 dark:text-gray-300">Automated test suites to improve coverage and reduce manual effort.</p>
+        <p class="text-sm text-gray-700 dark:text-gray-300">Automated test suites to improve coverage and reduce manual
+          effort.</p>
       </div>
 
       <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
@@ -127,7 +127,8 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
           </svg>
         </div>
         <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">Performance Testing</h3>
-        <p class="text-sm text-gray-700 dark:text-gray-300">Load, stress, and scalability testing for high-traffic systems.</p>
+        <p class="text-sm text-gray-700 dark:text-gray-300">Load, stress, and scalability testing for high-traffic
+          systems.</p>
       </div>
 
       <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
@@ -157,7 +158,8 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
           </svg>
         </div>
         <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">Security Testing</h3>
-        <p class="text-sm text-gray-700 dark:text-gray-300">Identify vulnerabilities and improve application security.</p>
+        <p class="text-sm text-gray-700 dark:text-gray-300">Identify vulnerabilities and improve application security.
+        </p>
       </div>
 
       <div class="fade-down hover-lift border rounded-xl p-6 bg-white">
@@ -167,7 +169,8 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
           </svg>
         </div>
         <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">Quality Assurance Consulting</h3>
-        <p class="text-sm text-gray-700 dark:text-gray-300">Expert guidance to improve your testing strategy and processes.</p>
+        <p class="text-sm text-gray-700 dark:text-gray-300">Expert guidance to improve your testing strategy and
+          processes.</p>
       </div>
 
     </div>
@@ -201,7 +204,8 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
             class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">
             3</div>
           <h3 class="font-semibold mb-1 text-gray-900 dark:text-white">Execution</h3>
-          <p class="text-sm text-gray-700 dark:text-gray-300">We run automated and performance tests across environments.</p>
+          <p class="text-sm text-gray-700 dark:text-gray-300">We run automated and performance tests across
+            environments.</p>
         </div>
 
         <div class="fade-down hover-lift border rounded-xl p-6 text-center bg-white">
@@ -209,13 +213,14 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
             class="w-10 h-10 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#4f6df5] text-white font-semibold">
             4</div>
           <h3 class="font-semibold mb-1 text-gray-900 dark:text-white">Reporting & Optimization</h3>
-          <p class="text-sm text-gray-700 dark:text-gray-300">We analyze results and help you improve quality continuously.</p>
+          <p class="text-sm text-gray-700 dark:text-gray-300">We analyze results and help you improve quality
+            continuously.</p>
         </div>
 
       </div>
     </div>
   </section>
-
+  <section id="footer" data-include="footer.html"></section>
   <script>
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -228,10 +233,10 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
     document.querySelectorAll('.fade-down').forEach(el => observer.observe(el));
 
     document.querySelectorAll('[data-include]').forEach(async (el) => {
-  const file = el.getAttribute('data-include');
-  const res = await fetch(file);
-  el.innerHTML = await res.text();
-});
+      const file = el.getAttribute('data-include');
+      const res = await fetch(file);
+      el.innerHTML = await res.text();
+    });
   </script>
 
 </body>

@@ -67,14 +67,12 @@
 
 </head>
 
-<body x-data="{ page: 'services', darkMode: true, stickyMenu: false, navigationOpen: false }"
-x-init="
+<body x-data="{ page: 'services', darkMode: true, stickyMenu: false, navigationOpen: false }" x-init="
 darkMode = JSON.parse(localStorage.getItem('darkMode'));
 $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
-"
-:class="{'dark bg-black': darkMode === true}">
+" :class="{'dark bg-black': darkMode === true}">
 
-<section id="header" data-include="header.html"></section>
+  <section id="header" data-include="header.html"></section>
 
   <!-- ===== HERO ===== -->
   <section class="max-w-6xl mx-auto px-4 pt-28 pb-16 md:pt-32">
@@ -123,15 +121,13 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
     </div>
   </section>
 
-<<<<<<< HEAD
   <!-- ===== WHAT WE OFFER ===== -->
   <section class="max-w-6xl mx-auto px-4 pb-16">
     <h2 class="text-2xl font-semibold mb-8 text-center text-gray-900 dark:text-white">What We Offer</h2>
-=======
     <div>
       <img src="images/ai-service.jpg" alt="AI Development" class="w-25 h-25 rounded-lg shadow-sm">
     </div>
->>>>>>> 0567fd0768a628d0ccc994185f7faea92a51c027
+
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
@@ -249,7 +245,7 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
       </div>
     </div>
   </section>
-
+  <section id="footer" data-include="footer.html"></section>
   <script>
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('show') } })
@@ -257,10 +253,10 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
     document.querySelectorAll('.fade-down').forEach(el => observer.observe(el));
 
     document.querySelectorAll('[data-include]').forEach(async (el) => {
-  const file = el.getAttribute('data-include');
-  const res = await fetch(file);
-  el.innerHTML = await res.text();
-});
+      const file = el.getAttribute('data-include');
+      const res = await fetch(file);
+      el.innerHTML = await res.text();
+    });
   </script>
 
 </body>
