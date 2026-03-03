@@ -2,8 +2,6 @@
 <section id="portfolio" x-data="{ filter: 'all' }" style="
     padding: 80px 20px;
     font-family: Arial, sans-serif;
-    background: white;
-    color: black;
   ">
   <!-- Inline CSS only for this section -->
   <style>
@@ -18,11 +16,9 @@
       font-weight: 800;
       letter-spacing: 1px;
       margin-bottom: 12px;
-      color: #0f172a;
     }
 
     #portfolio p {
-      color: #64748b;
       font-size: 16px;
       max-width: 700px;
       margin: 0 auto;
@@ -38,8 +34,6 @@
       padding: 8px 18px;
       border: none;
       border-radius: 6px;
-      background: #ffffff;
-      color: #000000;
       cursor: pointer;
       font-weight: 600;
       transition: 0.3s;
@@ -48,7 +42,7 @@
     #portfolio .filters button.active,
     #portfolio .filters button:hover {
       background: #3b82f6;
-      color: white;
+      color: #ffffff;
     }
 
     #portfolio .grid {
@@ -60,7 +54,6 @@
     }
 
     #portfolio .card {
-      background: white;
       border-radius: 12px;
       overflow: hidden;
       position: relative;
@@ -88,35 +81,12 @@
       font-weight: 600;
     }
 
-    .company {
-      background: #dbeafe;
-      color: #1e3a8a;
-    }
-
-    .student {
-      background: #fef9c3;
-      color: #854d0e;
-    }
-
-    .aiml {
-      background: #ede9fe;
-      color: #5b21b6;
-    }
-
-    .cloud {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .iot {
-      background: #ffedd5;
-      color: #9a3412;
-    }
-
-    .web {
-      background: #fce7f3;
-      color: #9d174d;
-    }
+    .company { background: #dbeafe; color: #1e3a8a; }
+    .student { background: #fef9c3; color: #854d0e; }
+    .aiml { background: #ede9fe; color: #5b21b6; }
+    .cloud { background: #dcfce7; color: #166534; }
+    .iot { background: #ffedd5; color: #9a3412; }
+    .web { background: #fce7f3; color: #9d174d; }
 
     /* Read More  */
     #portfolio .overlay {
@@ -142,7 +112,7 @@
     #portfolio .overlay a {
       background: #3b82f6;
       padding: 8px 16px;
-      color: white;
+      color: #ffffff;
       border-radius: 20px;
       text-decoration: none;
       font-weight: bold;
@@ -156,14 +126,14 @@
   </style>
 
   <!-- Title -->
-  <div class="title">
+  <div class="title fade-section">
     <h2>Portfolio</h2>
     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at
       its layout. The point of using.</p>
   </div>
 
   <!-- Filters -->
-  <div class="filters">
+  <div class="filters fade-section">
     <button :class="filter=='all' && 'active'" @click="filter='all'">
       All
     </button>
@@ -182,9 +152,9 @@
   </div>
 
   <!-- Cards -->
-  <div class="grid">
+  <div class="grid fade-section">
     <!-- Sentiment Analysis -->
-    <div class="card" x-show="filter=='all' || filter=='AI/ML'">
+    <div class="card fade-section" x-show="filter=='all' || filter=='AI/ML'">
       <img src="images/sentiment.avif" class="card-img" alt="" />
       <div class="overlay">
         <a href="sentiment-analysis.html">Read More</a>
@@ -199,7 +169,7 @@
     </div>
 
     <!-- Cloud Hosting -->
-    <div class="card" x-show="filter=='all' || filter=='Cloud/DevOps'">
+    <div class="card fade-section" x-show="filter=='all' || filter=='Cloud/DevOps'">
       <img src="images/cloud hosting.jpg" alt="" />
       <div class="overlay">
         <a href="cloud-hosting.html">Read More</a>
@@ -214,7 +184,7 @@
     </div>
 
     <!-- CI/CD -->
-    <div class="card" x-show="filter=='all' || filter=='Cloud/DevOps'">
+    <div class="card fade-section" x-show="filter=='all' || filter=='Cloud/DevOps'">
       <img src="images/DevOps-Portfolio.png" alt="" />
       <div class="overlay">
         <a href="cicd-pipeline.html">Read More</a>
@@ -229,7 +199,7 @@
     </div>
 
     <!-- Mobile App -->
-    <div class="card" x-show="filter=='all' || filter=='Web/MobileApp'">
+    <div class="card fade-section" x-show="filter=='all' || filter=='Web/MobileApp'">
       <img src="images/mobile app.avif" alt="" />
       <div class="overlay">
         <a href="mobile-app.html">Read More</a>
@@ -244,9 +214,8 @@
     </div>
 
     <!-- IoT -->
-    <div class="card" x-show="filter=='all' || filter=='IoT'">
-      <img src="images/power plant monitoring.jpg" alt=""
-        style="width:87%; height:auto; display:block; margin:32px auto;" />
+    <div class="card fade-section" x-show="filter=='all' || filter=='IoT'">
+      <img src="images/power plant monitoring.jpg" alt="" />
 
       <div class="overlay">
         <a href="iot-dashboard.html">Read More</a>
@@ -262,7 +231,7 @@
     </div>
 
     <!-- Web -->
-    <div class="card" x-show="filter=='all' || filter=='Web/MobileApp'">
+    <div class="card fade-section" x-show="filter=='all' || filter=='Web/MobileApp'">
       <img src="images/app development.jpg " alt="" />
       <div class="overlay">
         <a href="web-project.html">Read More</a>

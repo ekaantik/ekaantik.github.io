@@ -13,10 +13,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-
     .hover-lift {
       transition: transform .35s cubic-bezier(.4, 0, .2, 1),
         box-shadow .35s cubic-bezier(.4, 0, .2, 1);
@@ -51,8 +47,8 @@
     .section-title {
       font-size: 1.5rem;
       font-weight: 600;
-      color: #1f2937;
       margin-bottom: 1.75rem;
+      color: #111827;
     }
 
     .dark .section-title {
@@ -61,22 +57,22 @@
 
     .card-title {
       font-weight: 600;
-      color: #1f2937;
       margin-bottom: .4rem;
+      color: #111827;
     }
 
     .dark .card-title {
-      color: #f3f4f6;
+      color: #e5e7eb;
     }
 
     .card-text {
       font-size: .875rem;
-      color: #101010;
       line-height: 1.65;
+      color: #4b5563;
     }
 
     .dark .card-text {
-      color: #9ca3af;
+      color: #d1d5db;
     }
 
     section.fade-down {
@@ -85,7 +81,7 @@
   </style>
 </head>
 
-<body x-data="{ page: 'portfolio', darkMode: true, stickyMenu: false, navigationOpen: false }" x-init="
+  <body x-data="{ page: 'portfolio', darkMode: true, stickyMenu: false, navigationOpen: false }" x-init="
 darkMode = JSON.parse(localStorage.getItem('darkMode'));
 $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
 " :class="{'dark bg-black': darkMode === true}">
@@ -97,7 +93,7 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
 
     <!-- SIDEBAR -->
     <div
-      class="lg:w-[220px] w-full bg-[#ffffff] text-black p-6 flex lg:flex-col flex-row gap-4 lg:sticky lg:top-0 lg:h-screen overflow-x-auto">
+      class="lg:w-[220px] w-full bg-white dark:bg-blacksection text-black dark:text-white p-6 flex lg:flex-col flex-row gap-4 lg:sticky lg:top-0 lg:h-screen overflow-x-auto">
       <h2 class="text-lg font-semibold text-center w-full lg:mb-6">Cloud Projects</h2>
       <button onclick="showProject(1)" class="bg-white/20 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project
         1</button>
@@ -153,9 +149,11 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
           </div>
         </div>
 
-        <!-- APPROACH -->
+        <!-- PROBLEM STATEMENT / PROJECT NAME is the hero block above -->
+
+        <!-- Solution Flow -->
         <section class="fade-down mt-10">
-          <h2 class="section-title"> Development Steps</h2>
+          <h2 class="section-title">Solution Flow</h2>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
@@ -200,9 +198,9 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
           </div>
         </section>
 
-        <!-- CHALLENGES -->
+        <!-- Key Challenges -->
         <section class="fade-down mt-10">
-          <h2 class="section-title">Cloud Hosting Challenges</h2>
+          <h2 class="section-title">Key Challenges</h2>
 
           <div class="grid md:grid-cols-3 gap-6">
             <div class="border rounded-xl p-6 shadow-sm hover-lift">
@@ -232,17 +230,17 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
             </div>
           </div>
         </section>
-        <!-- RESULTS -->
+        <!-- Results / Metrics -->
         <section class="fade-down mt-10">
-          <h2 class="section-title">Cloud Results</h2>
+          <h2 class="section-title">Results &amp; Metrics</h2>
 
           <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-xl shadow-sm max-w-md hover-lift">
             <canvas id="resultChart" height="150"></canvas>
           </div>
         </section>
-        <!-- FAQ -->
+        <!-- Customer Feedback -->
         <section class="fade-down mt-10">
-          <h2 class="section-title">Client Feedback</h2>
+          <h2 class="section-title">Customer Feedback</h2>
 
           <div class="space-y-4">
             <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">

@@ -46,12 +46,26 @@
       :class="{ '!visible bg-white dark:bg-blacksection shadow-solid-5 !h-auto max-h-[400px] overflow-y-scroll rounded-md mt-4 p-7.5': navigationOpen }">
       <nav>
         <ul class="flex lg:items-center flex-col lg:flex-row gap-5 lg:gap-10">
-          <li><a href="index.html" class="hover:text-primary" :class="{ 'text-primary': page === 'home' }">Home</a>
+          <li>
+            <a href="index.html" class="hover:text-primary" data-section="home">
+              Home
+            </a>
           </li>
-          <li><a href="index.html#features" class="hover:text-primary">About</a></li>
-          <li><a href="index.html#services" class="hover:text-primary">Services</a></li>
-          <li><a href="index.html#portfolio" class="hover:text-primary">Portfolio</a></li>
-
+          <li>
+            <a href="index.html#features" class="hover:text-primary" data-section="about">
+              About
+            </a>
+          </li>
+          <li>
+            <a href="index.html#services" class="hover:text-primary" data-section="services">
+              Services
+            </a>
+          </li>
+          <li>
+            <a href="index.html#portfolio" class="hover:text-primary" data-section="portfolio">
+              Portfolio
+            </a>
+          </li>
         </ul>
       </nav>
 

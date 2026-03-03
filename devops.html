@@ -77,8 +77,10 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
 
     <div class="text-sm text-gray-700 dark:text-gray-300 mb-4">
       <a href="index.html" class="hover:text-primary font-medium">Home</a>
-      <span class="mx-2 text-gray-400">|</span>
-      <span class="text-gray-900 dark:text-white font-medium">DevOps & Cloud</span>
+      <span class="mx-2 text-gray-400">&gt;</span>
+      <span class="hover:text-primary font-medium">Services</span>
+      <span class="mx-2 text-gray-400">&gt;</span>
+      <span class="text-gray-900 dark:text-white font-medium">DevOps &amp; Cloud</span>
     </div>
 
     <div class="grid md:grid-cols-2 gap-10 items-center">
@@ -92,17 +94,12 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
           We help you build, deploy, and scale modern cloud infrastructure using
           DevOps best practices, automation, and secure cloud-native solutions.
         </p>
-
-        <a href="contact.html"
-          class="inline-block mt-9 bg-[#4f6df5] text-white px-7 py-3 rounded-full text-sm font-medium hover:opacity-90 transition shadow-md">
-          Talk to Our Experts
-        </a>
       </div>
 
       <!-- Image -->
       <div>
-        <img src="images/devops-service.jpg" alt="DevOps" class="h-27 w-27 rounded-lg shadow-sm">
-      </div>>
+        <img src="images/devops-service.jpg" alt="DevOps" class="w-full max-w-md rounded-lg shadow-sm">
+      </div>
 
     </div>
   </section>

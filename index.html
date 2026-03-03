@@ -42,12 +42,109 @@
     </svg>
   </button>
 
-  <!-- ====== Section Loader Script ====== -->
+  <!-- ====== Section Loader, Animations & Nav Script ====== -->
   <script>
+    // Simple scroll animation for elements with .fade-section
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
+
+    function observeFadeSections(root) {
+      root.querySelectorAll('.fade-section').forEach((el) => fadeObserver.observe(el));
+    }
+
+    function setupHomeNav() {
+      const isHome =
+        window.location.pathname.endsWith('/') ||
+        window.location.pathname.endsWith('index.html');
+
+      if (!isHome) return;
+
+      const navLinks = document.querySelectorAll('header a[data-section]');
+      if (!navLinks.length) return;
+
+      const sectionMap = {
+        home: null,
+        about: 'features',
+        // Services should scroll to the pricing table section
+        services: 'pricing-table',
+        portfolio: 'portfolio'
+      };
+
+      function setActive(sectionKey) {
+        navLinks.forEach((link) => {
+          if (link.dataset.section === sectionKey) {
+            link.classList.add('text-primary');
+          } else {
+            link.classList.remove('text-primary');
+          }
+        });
+      }
+
+      navLinks.forEach((link) => {
+        link.addEventListener('click', (event) => {
+          const sectionKey = link.dataset.section;
+          if (!sectionKey) return;
+
+          const targetId = sectionMap[sectionKey];
+          if (!targetId) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setActive('home');
+            event.preventDefault();
+            return;
+          }
+
+          const targetEl = document.getElementById(targetId);
+          if (targetEl) {
+            event.preventDefault();
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+            setActive(sectionKey);
+          }
+        });
+      });
+
+      // Update active nav item on scroll
+      const sectionsForScroll = ['hero', 'features', 'services', 'portfolio']
+        .map((id) => document.getElementById(id))
+        .filter(Boolean);
+
+      window.addEventListener('scroll', () => {
+        const scrollPos = window.scrollY || window.pageYOffset;
+        let current = 'home';
+
+        sectionsForScroll.forEach((section) => {
+          const rect = section.getBoundingClientRect();
+          const top = rect.top + window.scrollY - 120;
+          if (scrollPos >= top) {
+            if (section.id === 'features') current = 'about';
+            else current = section.id;
+          }
+        });
+
+        setActive(current);
+      });
+
+      // Initial state
+      setActive('home');
+    }
+
     document.querySelectorAll('[data-include]').forEach(async (el) => {
       const file = el.getAttribute('data-include');
       const res = await fetch(file);
       el.innerHTML = await res.text();
+
+      observeFadeSections(el);
+
+      if (file === 'header.html') {
+        setupHomeNav();
+      }
     });
   </script>
 

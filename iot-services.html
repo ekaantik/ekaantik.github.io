@@ -53,8 +53,10 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
 
     <!-- Breadcrumb -->
     <div class="text-sm text-gray-700 dark:text-gray-300 mb-4">
-      <a href="index.html" class="font-medium">Home</a>
-      <span class="mx-2 text-gray-400">|</span>
+      <a href="index.html" class="hover:text-primary font-medium">Home</a>
+      <span class="mx-2 text-gray-400">&gt;</span>
+      <span class="hover:text-primary font-medium">Services</span>
+      <span class="mx-2 text-gray-400">&gt;</span>
       <span class="text-gray-900 font-medium dark:text-white">IoT Solutions</span>
     </div>
 
@@ -69,15 +71,10 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
           We build smart, connected IoT ecosystems that enable real-time data collection,
           automation, and intelligent decision-making across industries.
         </p>
-
-        <a href="contact.html"
-          class="inline-block mt-9 bg-blue-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-md">
-          Talk To Our Experts
-        </a>
       </div>
 
       <div>
-        <img src="images/iot-service.avif" alt="IoT" class="width:50px height:50px rounded-lg shadow-sm">
+        <img src="images/iot-service.avif" alt="IoT" class="w-full max-w-md rounded-lg shadow-sm">
       </div>
 
     </div>

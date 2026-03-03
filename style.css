@@ -2516,3 +2516,15 @@ h1,
   }
 }
 
+/* ===== Home page scroll animations ===== */
+
+.fade-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-section.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
