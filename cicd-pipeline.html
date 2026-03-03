@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -19,31 +18,14 @@
       font-family: 'Inter', sans-serif;
     }
 
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 9999px;
-      background: rgba(0, 0, 0, 0.3);
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .dot.active {
-      width: 22px;
-      background: #4f6df5;
-    }
-
-
     .hover-lift {
-      transition: transform 0.35s cubic-bezier(.4, 0, .2, 1),
-        box-shadow 0.35s cubic-bezier(.4, 0, .2, 1);
+      transition: transform .35s cubic-bezier(.4, 0, .2, 1), box-shadow .35s cubic-bezier(.4, 0, .2, 1);
     }
 
     .hover-lift:hover {
       transform: translateY(-8px) scale(1.03);
       box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
     }
-
 
     .faq-answer {
       max-height: 0;
@@ -54,7 +36,6 @@
     .faq-item.active .faq-answer {
       max-height: 200px;
     }
-
 
     .fade-down {
       opacity: 0;
@@ -72,27 +53,24 @@
       font-weight: 600;
       color: #1f2937;
       margin-bottom: 1.75rem;
-      letter-spacing: -0.01em;
     }
 
     .dark .section-title {
       color: #f9fafb;
     }
 
-    /* Card Titles */
     .card-title {
       font-weight: 600;
       color: #1f2937;
-      margin-bottom: 0.4rem;
+      margin-bottom: .4rem;
     }
 
     .dark .card-title {
       color: #f3f4f6;
     }
 
-    /* Card Text */
     .card-text {
-      font-size: 0.875rem;
+      font-size: .875rem;
       color: #121213;
       line-height: 1.65;
     }
@@ -101,32 +79,10 @@
       color: #9ca3af;
     }
 
-
-    .card-bg {
-      background: #ffffff;
-    }
-
-    .dark .card-bg {
-      background: #111827;
-    }
-
-    .chart-box {
-      background: #f9fafb;
-    }
-
-    .dark .chart-box {
-      background: #111827;
-    }
-
-    .slider-tight {
-      margin-bottom: 1.5rem;
-    }
-
     section {
       scroll-margin-top: 100px;
     }
   </style>
-
 </head>
 
 <body x-data="{ page: 'portfolio', darkMode: true, stickyMenu: false, navigationOpen: false }" x-init="
@@ -135,11 +91,11 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
 " :class="{'dark bg-black': darkMode === true}">
 
   <section id="header" data-include="header.html"></section>
-
   <div class="pt-28"></div>
 
   <div class="flex flex-col lg:flex-row">
 
+    <!-- SIDEBAR -->
     <div
       class="lg:w-[220px] w-full bg-[#ffffff] text-black p-6 flex lg:flex-col flex-row gap-4 lg:sticky lg:top-0 lg:h-screen overflow-x-auto">
       <h2 class="text-lg font-semibold text-center w-full lg:mb-6">DevOps Projects</h2>
@@ -153,63 +109,54 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
         4</button>
     </div>
 
+    <!-- MAIN CONTENT -->
     <div class="flex-1 p-6 sm:p-8 lg:p-10 space-y-16">
 
-      <!-- PROJECT 1-->
+      <!-- PROJECT 1 -->
       <div id="project1">
-        <!-- SLIDER -->
-        <div class="relative w-full overflow-hidden rounded-xl shadow-md fade-down">
-          <div id="slides" class="flex transition-transform duration-700 ease-in-out">
 
-            <div class="min-w-full">
-              <a href="https://www.myntra.com" target="_blank">
-                <img src="images/myntra.png"
-                  class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
+        <div class="fade-down">
+          <div class="flex flex-col lg:flex-row items-center gap-8 bg-white dark:bg-gray-900">
+
+            <!-- TEXT -->
+            <div class="lg:w-1/2 w-full space-y-5">
+              <h2 class="text-3xl font-semibold text-gray-800 dark:text-white">
+                CI/CD Pipeline Automation
+              </h2>
+
+              <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                This project showcases an automated CI/CD pipeline that builds, tests,
+                and deploys applications with minimal manual intervention. It ensures
+                faster releases, improved reliability, and seamless collaboration
+                between development and operations teams.
+              </p>
+
+              <div class="flex gap-4">
+                <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-lg text-sm font-semibold">CI/CD</span>
+                <span class="px-4 py-2 bg-purple-100 text-purple-700 rounded-lg text-sm font-semibold">Automation</span>
+                <span class="px-4 py-2 bg-green-100 text-green-700 rounded-lg text-sm font-semibold">DevOps</span>
+              </div>
+
+              <a href="https://www.myntra.com" target="_blank"
+                class="inline-block mt-4 px-4 py-2 text-sm font-medium bg-[#4f6df5] text-white rounded-md shadow hover:scale-105 transition duration-300">
+                Visit Live Project
               </a>
             </div>
 
-            <div class="min-w-full">
-              <a href="https://www.myntra.com" target="_blank">
-                <img src="images/myntra1.png"
-                  class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
-              </a>
+            <!-- IMAGE -->
+            <div class="lg:w-5/12 w-full flex justify-center">
+              <div
+                class="w-full max-w-[420px] h-[260px] bg-white rounded-xl shadow-lg flex items-center justify-center">
+                <img src="images/myntra.png" class="max-h-full max-w-full object-contain">
+              </div>
             </div>
 
-            <div class="min-w-full">
-              <a href="https://www.myntra.com" target="_blank">
-                <img src="images/myntra2.png"
-                  class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
-              </a>
-            </div>
-
-            <div class="min-w-full">
-              <a href="https://www.myntra.com" target="_blank">
-                <img src="images/myntra3.png"
-                  class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
-              </a>
-            </div>
-
-            <div class="min-w-full">
-              <a href="https://www.myntra.com" target="_blank">
-                <img src="images/myntra4.png"
-                  class="w-full h-[180px] sm:h-[250px] md:h-[320px] lg:h-[380px] object-cover cursor-pointer">
-              </a>
-            </div>
-
-          </div>
-
-          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-            <div class="dot active"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
           </div>
         </div>
 
         <!-- FLOW -->
-        <section class="fade-down">
-          <h2 class="section-title">CI/CD Pipeline Workflow</h2>
+        <section class="fade-down mt-10">
+          <h2 class="section-title">Workflow</h2>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
@@ -248,7 +195,7 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
           </div>
         </section>
         <!-- CHALLENGES -->
-        <section class="fade-down">
+        <section class="fade-down mt-10">
           <h2 class="section-title">DevOps Challenges</h2>
 
           <div class="grid md:grid-cols-3 gap-6">
@@ -271,7 +218,7 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
           </div>
         </section>
         <!-- RESULTS -->
-        <section class="fade-down">
+        <section class="fade-down mt-10">
           <h2 class="section-title">Pipeline Performance</h2>
 
           <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-xl shadow-sm max-w-md hover-lift">
@@ -279,7 +226,7 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
           </div>
         </section>
         <!-- FAQ -->
-        <section class="fade-down">
+        <section class="fade-down mt-10">
           <h2 class="section-title">Team Feedback</h2>
 
           <div class="space-y-4">
@@ -341,20 +288,13 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
   </div>
   <section id="footer" data-include="footer.html"></section>
   <script>
-    const fadeObserver = new IntersectionObserver(entries => { entries.forEach(e => e.isIntersecting && e.target.classList.add('show')); }, { threshold: 0.2 });
+    /* Fade animation */
+    const fadeObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => e.isIntersecting && e.target.classList.add('show'));
+    }, { threshold: 0.2 });
     document.querySelectorAll('.fade-down').forEach(el => fadeObserver.observe(el));
 
-    const slidesContainer = document.getElementById("slides");
-    const dots = document.querySelectorAll(".dot");
-    let slides = slidesContainer.children;
-    let index = 0;
-    const totalSlides = dots.length;
-    slidesContainer.appendChild(slides[0].cloneNode(true));
-
-    function showSlide() { slidesContainer.style.transform = `translateX(-${index * 100}%)`; dots.forEach(d => d.classList.remove('active')); if (index < totalSlides) dots[index].classList.add('active'); }
-    function nextSlide() { index++; showSlide(); if (index === totalSlides) { setTimeout(() => { slidesContainer.style.transition = 'none'; index = 0; slidesContainer.style.transform = 'translateX(0%)'; setTimeout(() => slidesContainer.style.transition = 'transform 0.7s ease-in-out', 50); }, 700); } }
-    setInterval(nextSlide, 4000);
-
+    /* Chart */
     let chartInitialized = false;
     const chartObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -362,24 +302,35 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
           chartInitialized = true;
           new Chart(document.getElementById('resultChart'), {
             type: 'bar',
-            data: { labels: ['Build Speed', 'Deployment Time', 'Success Rate'], datasets: [{ data: [85, 90, 95], backgroundColor: '#4f6df5', borderRadius: 6 }] },
-            options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { display: false } }, x: { grid: { display: false } } } }
+            data: {
+              labels: ['Build Speed', 'Deployment Time', 'Success Rate'],
+              datasets: [{ data: [85, 90, 95], backgroundColor: '#4f6df5', borderRadius: 6 }]
+            },
+            options: {
+              responsive: true,
+              plugins: { legend: { display: false } },
+              scales: { y: { beginAtZero: true, grid: { display: false } }, x: { grid: { display: false } } }
+            }
           });
         }
       });
     }, { threshold: 0.4 });
     chartObserver.observe(document.getElementById('resultChart'));
 
-    document.querySelectorAll('.faq-item').forEach(item => item.addEventListener('click', () => item.classList.toggle('active')));
+    /* FAQ toggle */
+    document.querySelectorAll('.faq-item').forEach(item =>
+      item.addEventListener('click', () => item.classList.toggle('active'))
+    );
+
+    /* Sidebar project switch */
     function showProject(num) {
-      // hide all
       for (let i = 1; i <= 4; i++) {
         document.getElementById("project" + i).classList.add("hidden");
       }
-
-      // show selected
       document.getElementById("project" + num).classList.remove("hidden");
     }
+
+    /* Include header/footer */
     document.querySelectorAll('[data-include]').forEach(async (el) => {
       const file = el.getAttribute('data-include');
       const res = await fetch(file);
