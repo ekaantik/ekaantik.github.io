@@ -4,32 +4,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Power Plant Monitoring System</title>
+  <title>Sentiment Analysis AI/ML Showcase</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="style.css" rel="stylesheet">
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-
     .hover-lift {
-      transition: transform .35s cubic-bezier(.4, 0, .2, 1), box-shadow .35s cubic-bezier(.4, 0, .2, 1);
+      transition: transform .35s cubic-bezier(.4, 0, .2, 1),
+        box-shadow .35s cubic-bezier(.4, 0, .2, 1);
     }
 
     .hover-lift:hover {
       transform: translateY(-8px) scale(1.03);
-      box-shadow: 0 20px 45px rgba(0, 0, 0, .12);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
     }
 
     .faq-answer {
       max-height: 0;
       overflow: hidden;
-      transition: max-height .4s ease;
+      transition: max-height 0.4s ease;
     }
 
     .faq-item.active .faq-answer {
@@ -39,7 +37,7 @@
     .fade-down {
       opacity: 0;
       transform: translateY(-40px);
-      transition: all .9s cubic-bezier(.4, 0, .2, 1);
+      transition: all 0.9s cubic-bezier(.4, 0, .2, 1);
     }
 
     .fade-down.show {
@@ -50,8 +48,8 @@
     .section-title {
       font-size: 1.5rem;
       font-weight: 600;
-      color: #1f2937;
       margin-bottom: 1.75rem;
+      color: #111827;
     }
 
     .dark .section-title {
@@ -60,291 +58,621 @@
 
     .card-title {
       font-weight: 600;
-      color: #1f2937;
       margin-bottom: .4rem;
+      color: #111827;
     }
 
     .dark .card-title {
-      color: #f3f4f6;
+      color: #e5e7eb;
     }
 
     .card-text {
       font-size: .875rem;
-      color: #121213;
       line-height: 1.65;
+      color: #4b5563;
     }
 
     .dark .card-text {
-      color: #9ca3af;
+      color: #d1d5db;
     }
 
-    .chart-box {
-      background: #f9fafb;
+    section.fade-down {
+      margin-bottom: 2.5rem;
     }
 
-    .dark .chart-box {
-      background: #111827;
-    }
-
-    section {
-      scroll-margin-top: 100px;
+    .hover-lift:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, .15);
     }
   </style>
 </head>
 
-<body x-data="{ page: 'portfolio', darkMode: true, stickyMenu: false, navigationOpen: false }"
-  x-init="darkMode = JSON.parse(localStorage.getItem('darkMode')); $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))"
-  :class="{'dark bg-black': darkMode === true}">
+<body x-data="{ page: 'portfolio', darkMode: true, stickyMenu: false, navigationOpen: false }" x-init="
+darkMode = JSON.parse(localStorage.getItem('darkMode'));
+$watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
+" :class="{'dark bg-black': darkMode === true}">
 
+  <!-- HEADER -->
   <section id="header" data-include="header.html"></section>
   <div class="pt-28"></div>
 
   <div class="flex flex-col lg:flex-row">
 
-    <!-- Sidebar -->
+    <!-- SIDEBAR -->
     <div
-      class="lg:w-[220px] w-full bg-white text-black p-6 flex lg:flex-col flex-row gap-4 lg:sticky lg:top-0 lg:h-screen overflow-x-auto">
-      <h2 class="text-lg font-semibold text-center w-full lg:mb-6">Power Plant</h2>
-      <button onclick="showProject(1)" class="bg-white/20 px-4 py-2 rounded-lg">Project 1</button>
-      <button onclick="showProject(2)" class="bg-white/10 px-4 py-2 rounded-lg">Project 2</button>
-      <button onclick="showProject(3)" class="bg-white/10 px-4 py-2 rounded-lg">Project 3</button>
-      <button onclick="showProject(4)" class="bg-white/10 px-4 py-2 rounded-lg">Project 4</button>
+      class="lg:w-[220px] w-full bg-white dark:bg-black text-black dark:text-white p-6 flex lg:flex-col flex-row gap-4 lg:sticky lg:top-0 lg:h-screen overflow-x-auto">
+      <h2 class="text-lg font-semibold text-center w-full lg:mb-6">AI/ML Projects</h2>
+      <button onclick="showProject(1)" class="bg-white/20 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project
+        1</button>
+      <button onclick="showProject(2)" class="bg-white/10 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project
+        2</button>
+      <button onclick="showProject(3)" class="bg-white/10 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project
+        3</button>
+      <button onclick="showProject(4)" class="bg-white/10 px-4 py-2 rounded-lg text-left whitespace-nowrap">Project
+        4</button>
     </div>
 
-    <!-- Main Content -->
-    <div class="flex-1 p-6 sm:p-8 lg:p-10 space-y-16">
 
-      <!-- PROJECT 1 -->
-      <div id="project1">
+    <div class="flex-1 py-6">
+      <!-- project1 -->
+      <div id="project1" class="space-y-16 px-6 lg:px-10 w-ful">
 
-        <!-- Intro -->
-        <div class="fade-down">
-          <div class="flex flex-col lg:flex-row items-center gap-8 bg-white dark:bg-gray-900 ">
+        <!-- HERO -->
+        <section class="fade-down max-w-6xl px-6 mx-auto">
+          <div class="flex flex-col lg:flex-row items-center gap-12">
 
-            <!-- Text -->
+            <!-- TEXT -->
             <div class="lg:w-1/2 space-y-5">
-              <h2 class="text-3xl font-semibold text-gray-800 dark:text-white">
-                Power Plant Monitoring System
+              <h2 class="text-3xl font-semibold text-gray-800 dark:text-white leading-snug">
+                Power Plant Management System
               </h2>
 
-              <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-                A smart monitoring platform designed to track power plant performance,
-                detect anomalies, and ensure operational efficiency through real-time data
-                analytics and predictive maintenance.
+              <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
+                An AI-powered solution that analyzes customer reviews and social media
+                content to classify sentiment into Positive, Negative, or Neutral
+                categories using advanced NLP and Machine Learning models.
               </p>
 
-              <div class="flex gap-3 flex-wrap">
-                <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-lg text-sm font-semibold">IoT Sensors</span>
-                <span class="px-4 py-2 bg-green-100 text-green-700 rounded-lg text-sm font-semibold">Real-time
-                  Analytics</span>
-                <span class="px-4 py-2 bg-purple-100 text-purple-700 rounded-lg text-sm font-semibold">Predictive
-                  Maintenance</span>
+              <div class="flex flex-wrap gap-3 pt-2">
+                <span
+                  class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium">
+                  AI/ML
+                </span>
+                <span
+                  class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium">
+                  NLP
+                </span>
+                <span
+                  class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium">
+                  Deployment Ready
+                </span>
               </div>
 
               <a href="https://www.myntra.com" target="_blank"
-                class="inline-block mt-4 px-4 py-2 text-sm font-medium bg-[#4f6df5] text-white rounded-md shadow hover:scale-105 transition duration-300">
-                Visit Live Project
+                class="inline-block mt-4 px-5 py-2 text-sm font-medium bg-[#4f6df5] text-white rounded-md shadow hover:shadow-lg hover:-translate-y-1 transition duration-300">
+                View Live Project
               </a>
             </div>
 
-            <!-- Image -->
-            <div class="lg:w-5/12 flex justify-center">
-              <div
-                class="w-full max-w-[420px] h-[260px] bg-white dark:bg-gray-800 rounded-xl shadow-lg flex items-center justify-center overflow-hidden">
-                <img src="images/myntra.png" class="max-h-full max-w-full object-contain">
-              </div>
+            <!-- IMAGE -->
+            <div class="lg:w-1/2 flex justify-center">
+              <img src="images/myntra.png" class="max-h-64 object-contain drop-shadow-xl">
             </div>
 
           </div>
-        </div>
+        </section>
+        <!-- TECH STACK -->
+        <section class="fade-down px-6 lg:px-10 w-full">
+          <h2 class="section-title">Technology Stack</h2>
 
-        <!-- Steps -->
-        <section class="fade-down mt-10">
-          <h2 class="section-title">Steps</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
-              <div
-                class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">
-                1</div>
-              <h3 class="card-title">Sensor Integration</h3>
-              <p class="card-text">Integrating sensors for temperature, pressure, voltage, and equipment data
-                collection.</p>
-            </div>
+          <div class="flex flex-wrap gap-3">
 
-            <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
-              <div
-                class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">
-                2</div>
-              <h3 class="card-title">Data Transmission</h3>
-              <p class="card-text">Secure real-time data transfer using IoT gateways and cloud communication protocols.
+            <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg text-sm">
+              Python
+            </span>
+
+            <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg text-sm">
+              Scikit-Learn
+            </span>
+
+            <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg text-sm">
+              Natural Language Processing
+            </span>
+
+            <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg text-sm">
+              Pandas
+            </span>
+
+            <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg text-sm">
+              Flask API
+            </span>
+
+            <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg text-sm">
+              Chart.js Dashboard
+            </span>
+
+          </div>
+        </section>
+        <!-- FEATURES -->
+        <section class="fade-down px-6 lg:px-10 w-full">
+          <h2 class="section-title">Key Features</h2>
+
+          <div class="grid md:grid-cols-3 gap-6">
+
+            <div class="border rounded-xl p-6 hover-lift">
+              <h3 class="card-title">Real-Time Sentiment Detection</h3>
+              <p class="card-text">
+                Analyzes text data instantly and classifies sentiment as Positive, Negative, or Neutral.
               </p>
             </div>
 
-            <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
-              <div
-                class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">
-                3</div>
-              <h3 class="card-title">Dashboard Development</h3>
-              <p class="card-text">Building live monitoring dashboards with alerts and analytics.</p>
+            <div class="border rounded-xl p-6 hover-lift">
+              <h3 class="card-title">NLP Text Processing</h3>
+              <p class="card-text">
+                Uses tokenization, stopword removal, and vectorization to prepare text for machine learning models.
+              </p>
             </div>
 
-            <div class="border rounded-xl p-6 shadow-sm text-center hover-lift">
-              <div
-                class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5] text-white flex items-center justify-center font-semibold">
-                4</div>
-              <h3 class="card-title">Alert & Automation</h3>
-              <p class="card-text">Automated alerts, predictive maintenance, and anomaly detection.</p>
+            <div class="border rounded-xl p-6 hover-lift">
+              <h3 class="card-title">Interactive Dashboard</h3>
+              <p class="card-text">
+                Visualizes sentiment trends and analytics through dynamic charts and reports.
+              </p>
             </div>
 
           </div>
         </section>
 
-        <!-- Challenges -->
-        <section class="fade-down mt-10">
-          <h2 class="section-title">Key Challenges</h2>
+
+        <!-- PROJECT HIGHLIGHTS -->
+        <section class="fade-down px-6 lg:px-10 w-full">
+          <h2 class="text-xl font-semibold mb-8 text-gray-800 dark:text-white">
+            Project Highlights
+          </h2>
+
+          <div class="grid md:grid-cols-3 gap-8">
+
+            <div
+              class="border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300 text-center">
+              <div class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5]/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" stroke-width="2"
+                  viewBox="0 0 24 24">
+                  <path d="M9 12l2 2 4-4" />
+                </svg>
+              </div>
+              <h3 class="text-base font-semibold text-gray-800 dark:text-white">92% Accuracy</h3>
+              <p class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                Optimized ML models delivering reliable sentiment predictions.
+              </p>
+            </div>
+
+            <div
+              class="border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300 text-center">
+              <div class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5]/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" stroke-width="2"
+                  viewBox="0 0 24 24">
+                  <path d="M3 3v18h18" />
+                </svg>
+              </div>
+              <h3 class="text-base font-semibold text-gray-800 dark:text-white">50K+ Reviews</h3>
+              <p class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                Trained on large real-world datasets for better generalization.
+              </p>
+            </div>
+
+            <div
+              class="border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300 text-center">
+              <div class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5]/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="2"
+                  viewBox="0 0 24 24">
+                  <path d="M13 7h8m0 0v8m0-8L10 18l-4-4-6 6" />
+                </svg>
+              </div>
+              <h3 class="text-base font-semibold text-gray-800 dark:text-white">Real-Time API</h3>
+              <p class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                Deployment-ready solution for live sentiment tracking.
+              </p>
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- SOLUTION FLOW -->
+        <section class="fade-down px-6 lg:px-10 w-full">
+          <h2 class="text-xl font-semibold mb-8 text-gray-800 dark:text-white">
+            Solution Flow
+          </h2>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            <!-- CARD 1 -->
+            <div
+              class="border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300 text-center">
+              <div class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5]/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-[#4f6df5]" fill="none" stroke="currentColor" stroke-width="2"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 7v10M16 7v10M4 7h16M4 17h16" />
+                </svg>
+              </div>
+              <h3 class="text-base font-semibold text-gray-800 dark:text-white mb-2">
+                Data Collection
+              </h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">
+                Gathering structured and unstructured text datasets from multiple sources.
+              </p>
+            </div>
+
+
+            <!-- CARD 2 -->
+            <div
+              class="border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300 text-center">
+              <div class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5]/10 flex items-center justify-center">
+                <svg class="w-6 h-6 text-[#4f6df5]" fill="none" stroke="currentColor" stroke-width="2"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-6h6v6M5 21h14M12 3v4" />
+                </svg>
+              </div>
+              <h3 class="text-base font-semibold text-gray-800 dark:text-white mb-2">
+                Preprocessing
+              </h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">
+                Cleaning, tokenizing and transforming raw text into machine-readable format.
+              </p>
+            </div>
+
+            <!-- CARD 3 -->
+            <div
+              class="border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300 text-center">
+              <div class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5]/10 flex items-center justify-center">
+                <svg class="w-6 h-6 text-[#4f6df5]" fill="none" stroke="currentColor" stroke-width="2"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 6v6l4 2M6 12a6 6 0 1112 0 6 6 0 01-12 0z" />
+                </svg>
+              </div>
+              <h3 class="text-base font-semibold text-gray-800 dark:text-white mb-2">
+                Model Training
+              </h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">
+                Training and validating machine learning models for sentiment classification.
+              </p>
+            </div>
+
+            <!-- CARD 4 -->
+            <div
+              class="border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300 text-center">
+              <div class="w-10 h-10 mx-auto mb-4 rounded-full bg-[#4f6df5]/10 flex items-center justify-center">
+                <svg class="w-6 h-6 text-[#4f6df5]" fill="none" stroke="currentColor" stroke-width="2"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </div>
+              <h3 class="text-base font-semibold text-gray-800 dark:text-white mb-2">
+                Deployment
+              </h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">
+                Exposing the trained model through scalable REST APIs.
+              </p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Key Challenges -->
+        <section class="fade-down px-6 lg:px-10 w-full">
+          <h2 class="text-xl font-semibold mb-8 text-gray-800 dark:text-white">
+            Key Challenges
+          </h2>
+
           <div class="grid md:grid-cols-3 gap-6">
 
-            <div class="border rounded-xl p-6 shadow-sm hover-lift">
-              <h3 class="card-title">Real-time Data Handling</h3>
-              <p class="card-text">Processing high-frequency sensor data with minimal latency.</p>
+            <!-- CARD 1 -->
+            <div
+              class="border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300">
+              <div class="mb-4 text-[#4f6df5]">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 8c-1.5 0-3 .5-3 2s1.5 2 3 2 3 .5 3 2-1.5 2-3 2M12 4v2M12 18v2" />
+                </svg>
+              </div>
+              <h3 class="text-base font-semibold text-gray-800 dark:text-white mb-2">
+                Sarcasm Detection
+              </h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">
+                Identifying contextual sarcasm and nuanced emotional expressions.
+              </p>
             </div>
 
-            <div class="border rounded-xl p-6 shadow-sm hover-lift">
-              <h3 class="card-title">Hardware Reliability</h3>
-              <p class="card-text">Ensuring sensor accuracy and durability in harsh environments.</p>
+            <!-- CARD 2 -->
+            <div
+              class="border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300">
+              <div class="mb-4 text-[#4f6df5]">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 4h16v16H4zM9 9h6v6H9z" />
+                </svg>
+              </div>
+              <h3 class="text-base font-semibold text-gray-800 dark:text-white mb-2">
+                Data Imbalance
+              </h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">
+                Handling skewed sentiment distributions across training datasets.
+              </p>
             </div>
 
-            <div class="border rounded-xl p-6 shadow-sm hover-lift">
-              <h3 class="card-title">Security</h3>
-              <p class="card-text">Protecting critical infrastructure data from cyber threats.</p>
+            <!-- CARD 3 -->
+            <div
+              class="border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300">
+              <div class="mb-4 text-[#4f6df5]">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 12h18M12 3v18" />
+                </svg>
+              </div>
+              <h3 class="text-base font-semibold text-gray-800 dark:text-white mb-2">
+                Multilingual Support
+              </h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">
+                Extending analysis capabilities to support multiple languages.
+              </p>
             </div>
 
           </div>
         </section>
+        <!-- TIMELINE -->
+        <section class="fade-down px-6 lg:px-10 w-full">
+          <h2 class="section-title">Project Timeline</h2>
 
-        <!-- Results Chart -->
-        <section class="fade-down mt-10">
-          <h2 class="section-title">Monitoring Results</h2>
-          <div class="chart-box p-6 rounded-xl shadow-sm max-w-md hover-lift">
-            <canvas id="resultChart" height="150"></canvas>
-          </div>
-        </section>
-
-        <!-- FAQ -->
-        <section class="fade-down mt-10">
-          <h2 class="section-title">Client Feedback</h2>
           <div class="space-y-4">
 
-            <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">
-              <div class="flex justify-between items-center">
-                <h3 class="card-title">How accurate is the monitoring system?</h3>
-                <span class="text-gray-800 dark:text-gray-100">+</span>
-              </div>
-              <div class="faq-answer mt-2 card-text">
-                High-precision sensors ensure accurate and reliable readings.
-              </div>
+            <div class="border-l-4 border-blue-500 pl-4">
+              <h3 class="font-semibold">WEEK-1</h3>
+              <p class="card-text">
+                Gathered datasets of customer reviews and social media comments for sentiment training.
+              </p>
             </div>
 
-            <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">
-              <div class="flex justify-between items-center">
-                <h3 class="card-title">Does it support remote monitoring?</h3>
-                <span class="text-gray-800 dark:text-gray-100">+</span>
-              </div>
-              <div class="faq-answer mt-2 card-text">
-                Yes, accessible via cloud dashboards from anywhere.
-              </div>
+            <div class="border-l-4 border-blue-500 pl-4">
+              <h3 class="font-semibold">WEEK-2</h3>
+              <p class="card-text">
+                Performed cleaning, tokenization, stopword removal, and TF-IDF vectorization.
+              </p>
             </div>
 
-            <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">
-              <div class="flex justify-between items-center">
-                <h3 class="card-title">Is predictive maintenance supported?</h3>
-                <span class="text-gray-800 dark:text-gray-100">+</span>
-              </div>
-              <div class="faq-answer mt-2 card-text">
-                AI-driven analytics help predict failures before they occur.
-              </div>
+            <div class="border-l-4 border-blue-500 pl-4">
+              <h3 class="font-semibold">WEEK-3</h3>
+              <p class="card-text">
+                Trained multiple ML models including Logistic Regression and Naive Bayes.
+              </p>
+            </div>
+
+            <div class="border-l-4 border-blue-500 pl-4">
+              <h3 class="font-semibold">WEEK-4</h3>
+              <p class="card-text">
+                Integrated the trained model into a REST API and dashboard interface.
+              </p>
             </div>
 
           </div>
         </section>
 
+        <!-- RESULTS & METRICS -->
+        <section class="fade-down px-6 lg:px-10 w-full">
+
+          <h2 class="text-xl font-semibold mb-8 text-gray-800 dark:text-white">
+            Results & Performance Metrics
+          </h2>
+
+          <div class="grid md:grid-cols-2 gap-12 items-center">
+
+            <!-- LEFT SIDE - METRICS -->
+            <div class="space-y-6">
+
+              <div>
+                <div class="flex justify-between mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <span>Model Accuracy</span>
+                  <span>92%</span>
+                </div>
+                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                  <div class="bg-[#4f6df5] h-2 rounded-full" style="width: 92%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <span>Precision</span>
+                  <span>89%</span>
+                </div>
+                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                  <div class="bg-[#4f6df5] h-2 rounded-full" style="width: 89%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <span>Recall</span>
+                  <span>90%</span>
+                </div>
+                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                  <div class="bg-[#4f6df5] h-2 rounded-full" style="width: 90%"></div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- RIGHT SIDE - SMALL SUMMARY -->
+            <div class="space-y-4">
+              <h3 class="text-base font-semibold text-gray-800 dark:text-white">
+                Performance Overview
+              </h3>
+
+              <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                The model achieved strong classification performance across multiple
+                validation datasets. Fine-tuning and preprocessing techniques
+                significantly improved prediction consistency and reduced bias.
+              </p>
+
+              <div class="flex gap-6 pt-4">
+                <div>
+                  <p class="text-3xl font-semibold text-[#4f6df5]">50K+</p>
+                  <p class="text-sm text-gray-500 dark:text-gray-400">Reviews Analyzed</p>
+                </div>
+                <div>
+                  <p class="text-3xl font-semibold text-[#4f6df5]">3</p>
+                  <p class="text-sm text-gray-500 dark:text-gray-400">ML Models Tested</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- Customer Feedback -->
+        <section class="fade-down px-6 lg:px-10 w-full">
+          <h2 class="text-xl font-semibold mb-8 text-gray-800 dark:text-white">
+            Customer Feedback
+          </h2>
+          <div class="space-y-4">
+            <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">
+              <div class="flex justify-between items-center">
+                <h3 class="text-base font-semibold text-gray-800 dark:text-white">How accurate is the sentiment model?
+                </h3><span class="text-sm">+</span>
+
+              </div>
+              <div class="faq-answer mt-2 text-sm text-gray-600 dark:text-gray-400">
+                Achieves high accuracy using fine-tuned NLP models. </div>
+            </div>
+            <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">
+              <div class="flex justify-between items-center">
+                <h3 class="text-base font-semibold text-gray-800 dark:text-white">
+                  Can it analyze real-time data?</h3> <span class="text-sm">+</span>
+
+              </div>
+              <div class="faq-answer mt-2 text-sm text-gray-600 dark:text-gray-400">
+                Yes, supports real-time sentiment tracking via APIs. </div>
+            </div>
+            <div class="faq-item border rounded-xl p-4 cursor-pointer hover-lift">
+              <div class="flex justify-between items-center">
+                <h3 class="text-base font-semibold text-gray-800 dark:text-white">
+                  Does it support dashboards?</h3> <span class="text-sm">+</span>
+
+              </div>
+              <div class="faq-answer mt-2 text-sm text-gray-600 dark:text-gray-400">
+                Integrated with visual dashboards for analytics insights. </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
-    <!-- PROJECT 2 EMPTY -->
-    <div id="project2" class="hidden text-center py-20">
-      <h2 class="text-2xl font-semibold mb-4">Project 2</h2>
-      <p class="text-gray-500">Content coming soon...</p>
+    <!-- PROJECT 2 -->
+    <div id="project2" class="hidden flex-1 flex items-center justify-center min-h-[60vh]">
+      <div class="text-center">
+        <h2 class="text-2xl font-semibold mb-4">Project 2</h2>
+        <p class="text-gray-500">Content coming soon...</p>
+      </div>
     </div>
 
-    <!-- PROJECT 3 EMPTY -->
-    <div id="project3" class="hidden text-center py-20">
-      <h2 class="text-2xl font-semibold mb-4">Project 3</h2>
-      <p class="text-gray-500">Content coming soon...</p>
+    <!-- PROJECT 3 -->
+    <div id="project3" class="hidden flex-1 flex items-center justify-center min-h-[60vh]">
+      <div class="text-center">
+        <h2 class="text-2xl font-semibold mb-4">Project 3</h2>
+        <p class="text-gray-500">Content coming soon...</p>
+      </div>
     </div>
 
-    <!-- PROJECT 4 EMPTY -->
-    <div id="project4" class="hidden text-center py-20">
-      <h2 class="text-2xl font-semibold mb-4">Project 4</h2>
-      <p class="text-gray-500">Content coming soon...</p>
+    <!-- PROJECT 4 -->
+    <div id="project4" class="hidden flex-1 flex items-center justify-center min-h-[60vh]">
+      <div class="text-center">
+        <h2 class="text-2xl font-semibold mb-4">Project 4</h2>
+        <p class="text-gray-500">Content coming soon...</p>
+      </div>
     </div>
 
   </div>
-  <section id="footer" data-include="footer.html"></section>
-  <script>
-    /* Fade animation */
-    const fadeObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('show');
-      });
-    }, { threshold: 0.2 });
-    document.querySelectorAll('.fade-down').forEach(el => fadeObserver.observe(el));
 
-    /* Chart */
-    let chartInitialized = false;
-    const chartObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !chartInitialized) {
-          chartInitialized = true;
-          new Chart(document.getElementById('resultChart'), {
-            type: 'bar',
-            data: {
-              labels: ['Efficiency', 'Uptime', 'Safety'],
-              datasets: [{
-                data: [96, 99, 94],
-                backgroundColor: '#4f6df5',
-                borderRadius: 6
-              }]
-            },
-            options: {
-              responsive: true,
-              plugins: { legend: { display: false } },
-              scales: { y: { beginAtZero: true } }
+  <!-- FOOTER -->
+  <section id="footer" class="pt-24" data-include="footer.html"></section>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+
+      /* FADE ANIMATION */
+      const fadeObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) e.target.classList.add('show');
+        });
+      }, { threshold: 0.2 });
+
+      document.querySelectorAll('.fade-down').forEach(el => fadeObserver.observe(el));
+
+
+      /* CHART (ONLY IF EXISTS) */
+      const chartElement = document.getElementById('resultChart');
+
+      if (chartElement) {
+        let chartInitialized = false;
+
+        const chartObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && !chartInitialized) {
+              chartInitialized = true;
+
+              new Chart(chartElement, {
+                type: 'bar',
+                data: {
+                  labels: ['Accuracy', 'Precision', 'Recall'],
+                  datasets: [{
+                    data: [92, 88, 90],
+                    backgroundColor: '#4f6df5',
+                    borderRadius: 6
+                  }]
+                },
+                options: {
+                  responsive: true,
+                  plugins: { legend: { display: false } }
+                }
+              });
             }
           });
+        }, { threshold: 0.4 });
+
+        chartObserver.observe(chartElement);
+      }
+
+
+      /* FAQ TOGGLE */
+      document.querySelectorAll('.faq-item').forEach(item =>
+        item.addEventListener('click', () =>
+          item.classList.toggle('active')
+        )
+      );
+
+
+      /* PROJECT SWITCH */
+      window.showProject = function (num) {
+        for (let i = 1; i <= 4; i++) {
+          const project = document.getElementById("project" + i);
+          if (project) project.classList.add("hidden");
+        }
+        const activeProject = document.getElementById("project" + num);
+        if (activeProject) activeProject.classList.remove("hidden");
+      };
+
+
+      /* HEADER / FOOTER INCLUDE (SAFE VERSION) */
+      document.querySelectorAll('[data-include]').forEach(async (el) => {
+        const file = el.getAttribute('data-include');
+        try {
+          const res = await fetch(file);
+          if (!res.ok) throw new Error("File not found");
+          el.innerHTML = await res.text();
+        } catch (err) {
+          console.error("Include failed:", file);
         }
       });
-    }, { threshold: 0.4 });
-    chartObserver.observe(document.getElementById('resultChart'));
 
-    /* FAQ toggle */
-    document.querySelectorAll(".faq-item").forEach(item => {
-      item.addEventListener("click", () => {
-        item.classList.toggle("active");
-      });
-    });
-
-    /* Project switch */
-    function showProject(num) {
-      for (let i = 1; i <= 4; i++) {
-        document.getElementById("project" + i).classList.add("hidden");
-      }
-      document.getElementById("project" + num).classList.remove("hidden");
-    }
-
-    /* Header & Footer include */
-    document.querySelectorAll('[data-include]').forEach(async el => {
-      const file = el.getAttribute('data-include');
-      const res = await fetch(file);
-      el.innerHTML = await res.text();
     });
   </script>
+</body>
+
+</html>

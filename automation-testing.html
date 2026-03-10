@@ -55,7 +55,7 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
   <section id="header" data-include="header.html"></section>
 
   <!-- ===== HERO ===== -->
-  <section class="max-w-6xl mx-auto px-4 pt-28 pb-16 md:pt-32">
+  <section class="max-w-6xl mx-auto px-4 pt-32 pb-16 md:pt-36">
 
     <!-- Breadcrumb -->
     <div class="text-sm text-gray-700 dark:text-gray-300 mb-4">
@@ -78,10 +78,15 @@ $watch('darkMode', val => localStorage.setItem('darkMode', JSON.stringify(val)))
         </p>
       </div>
 
-      <div class="fade-down">
+      <!-- <div class="fade-down">
         <img src="images/automationTesting-service.jpg" alt="Automation Testing"
           class="w-full max-w-md rounded-lg shadow-sm">
-      </div>
+      </div> -->
+      <div class="fade-down w-full h-[320px] md:h-[380px] lg:h-[420px] overflow-hidden rounded-xl shadow-sm">
+  <img src="images/automationTesting-service.jpg"
+       alt="Automation Testing"
+       class="w-full h-full object-cover">
+</div>
 
     </div>
   </section>
