@@ -373,30 +373,46 @@ ul { list-style: none; margin: 0; padding: 0; }
 .team { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
 .member {
   --accent: var(--brand);
-  position: relative; overflow: hidden; text-align: center; padding: 0 24px 28px; border-radius: var(--radius);
-  background: var(--surface); box-shadow: var(--shadow-card);
+  position: relative; overflow: hidden; border-radius: 16px; background: var(--surface); box-shadow: var(--shadow-card);
   transition: transform .4s var(--ease), box-shadow .4s var(--ease);
 }
 .member:nth-child(2) { --accent: var(--pink); }
 .member:nth-child(3) { --accent: var(--green); }
 .member:nth-child(4) { --accent: var(--orange); }
-.member__banner {
-  height: 96px; margin: 0 -24px; position: relative; overflow: hidden;
-  background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 65%, #181c31));
-}
-.member__banner::before, .member__banner::after { content: ""; position: absolute; border-radius: 50%; border: 18px solid rgba(255, 255, 255, .12); transition: transform .6s var(--ease); }
-.member__banner::before { width: 120px; height: 120px; right: -40px; top: -50px; }
-.member__banner::after { width: 70px; height: 70px; left: 14px; bottom: -40px; }
 .member:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
-.member:hover .member__banner::before { transform: scale(1.25); }
-.member:hover .member__banner::after { transform: translateY(-8px); }
-.member .avatar {
-  position: relative; width: 88px; height: 88px; margin: -44px auto 18px; font-size: 26px;
-  background: var(--accent); border: 5px solid var(--surface); box-shadow: 0 10px 24px -8px rgba(24, 28, 49, .3);
+
+.member__photo {
+  position: relative; aspect-ratio: 4 / 4.4; overflow: hidden;
+  background:
+    radial-gradient(circle at 85% 12%, rgba(255, 255, 255, .22) 0 60px, transparent 61px),
+    radial-gradient(circle at 10% 95%, rgba(255, 255, 255, .14) 0 80px, transparent 81px),
+    linear-gradient(150deg, var(--accent), color-mix(in srgb, var(--accent) 55%, #181c31));
 }
-.member h3 { font-size: 20px; margin-bottom: 4px; }
-.member p { font-size: 14.5px; color: var(--muted); min-height: 46px; }
-.member .chips { justify-content: center; margin-top: 14px; }
+.member__photo img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top;
+  transition: transform .7s var(--ease);
+}
+.member:hover .member__photo img { transform: scale(1.05); }
+.member__photo::after { /* accent bar that grows on hover */
+  content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 4px; background: var(--accent);
+  transform: scaleX(.25); transform-origin: left; transition: transform .5s var(--ease); z-index: 2;
+}
+.member:hover .member__photo::after { transform: scaleX(1); }
+.member__initials {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  font-family: var(--font-head); font-size: 72px; font-weight: 600; letter-spacing: .02em; color: rgba(255, 255, 255, .92);
+  text-shadow: 0 6px 24px rgba(0, 0, 0, .15); transition: transform .6s var(--ease);
+}
+.member:hover .member__initials { transform: scale(1.06); }
+.member__badge {
+  position: absolute; left: 16px; top: 16px; z-index: 2; padding: 5px 12px; border-radius: 999px;
+  font-size: 12.5px; font-weight: 600; color: var(--heading); background: rgba(255, 255, 255, .92);
+  box-shadow: 0 6px 16px -6px rgba(24, 28, 49, .3);
+}
+.member__body { padding: 22px 22px 24px; text-align: center; }
+.member__body h3 { font-size: 20px; margin-bottom: 4px; transition: color .25s; }
+.member:hover .member__body h3 { color: var(--accent); }
+.member__body p { font-size: 15px; color: var(--muted); }
 
 /* ---------- Contact ---------- */
 .contact { display: grid; grid-template-columns: 420px 1fr; gap: 30px; }
