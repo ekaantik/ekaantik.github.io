@@ -66,8 +66,11 @@
     var revealer = new IntersectionObserver(function (entries, obs) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-visible");
-        obs.unobserve(entry.target);
+        var el = entry.target;
+        el.classList.add("is-visible");
+        obs.unobserve(el);
+        var delay = parseInt(el.style.getPropertyValue("--d"), 10) || 0;
+        setTimeout(function () { el.classList.remove("reveal", "is-visible"); }, 900 + delay);
       });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
     revealEls.forEach(function (el) { revealer.observe(el); });
@@ -103,17 +106,6 @@
     counters.forEach(runCounter);
   }
 
-  /* ---------- Cursor-tracking glow on cards ---------- */
-  if (window.matchMedia("(hover: hover)").matches) {
-    document.querySelectorAll(".card").forEach(function (card) {
-      card.addEventListener("pointermove", function (e) {
-        var r = card.getBoundingClientRect();
-        card.style.setProperty("--mx", e.clientX - r.left + "px");
-        card.style.setProperty("--my", e.clientY - r.top + "px");
-      });
-    });
-  }
-
   /* ---------- Portfolio filters ---------- */
   var filterBtns = document.querySelectorAll("[data-filter]");
   var works = document.querySelectorAll("[data-category]");
@@ -141,7 +133,7 @@
       var body =
         "Name: " + d.get("name") + "\n" +
         "Email: " + d.get("email") + "\n" +
-        (d.get("company") ? "Company: " + d.get("company") + "\n" : "") +
+        (d.get("phone") ? "Phone: " + d.get("phone") + "\n" : "") +
         "\n" + d.get("message");
       window.location.href =
         "mailto:" + form.getAttribute("data-to") +
