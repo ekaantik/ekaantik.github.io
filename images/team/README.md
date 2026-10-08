@@ -1,7 +1,7 @@
 # Team photos
 
 Drop each person's photo here with exactly these file names. The homepage picks them up automatically;
-until a file exists, the card shows a branded initials placeholder.
+until a file exists, the card shows the shared avatar illustration (`avatar.png`).
 
 | Person           | File name              |
 |------------------|------------------------|

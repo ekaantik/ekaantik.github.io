@@ -372,47 +372,82 @@ ul { list-style: none; margin: 0; padding: 0; }
 /* ---------- Team ---------- */
 .team { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
 .member {
-  --accent: var(--brand);
+  --accent: var(--brand); --accent-2: var(--pink);
   position: relative; overflow: hidden; border-radius: 16px; background: var(--surface); box-shadow: var(--shadow-card);
-  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+  transition: transform .45s var(--ease), box-shadow .45s var(--ease);
 }
-.member:nth-child(2) { --accent: var(--pink); }
-.member:nth-child(3) { --accent: var(--green); }
-.member:nth-child(4) { --accent: var(--orange); }
-.member:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+.member:nth-child(2) { --accent: var(--pink); --accent-2: var(--brand); }
+.member:nth-child(3) { --accent: var(--green); --accent-2: var(--brand); }
+.member:nth-child(4) { --accent: var(--orange); --accent-2: var(--pink); }
+.member:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
 
+/* photo frame with a soft tint in the member's colour */
 .member__photo {
-  position: relative; aspect-ratio: 4 / 4.4; overflow: hidden;
+  position: relative; aspect-ratio: 1.1 / 1; overflow: hidden;
   background:
-    radial-gradient(circle at 85% 12%, rgba(255, 255, 255, .22) 0 60px, transparent 61px),
-    radial-gradient(circle at 10% 95%, rgba(255, 255, 255, .14) 0 80px, transparent 81px),
-    linear-gradient(150deg, var(--accent), color-mix(in srgb, var(--accent) 55%, #181c31));
+    radial-gradient(circle at 50% 78%, color-mix(in srgb, var(--accent) 22%, transparent) 0, transparent 62%),
+    linear-gradient(180deg, color-mix(in srgb, var(--accent) 8%, var(--surface)), color-mix(in srgb, var(--accent) 16%, var(--surface)));
 }
+.member__photo::before { /* decorative ring that drifts on hover */
+  content: ""; position: absolute; width: 150px; height: 150px; right: -50px; top: -50px; border-radius: 50%;
+  border: 22px solid color-mix(in srgb, var(--accent) 18%, transparent); transition: transform .8s var(--ease);
+}
+.member:hover .member__photo::before { transform: translate(-16px, 16px) scale(1.15); }
 .member__photo img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top;
   transition: transform .7s var(--ease);
 }
-.member:hover .member__photo img { transform: scale(1.05); }
-.member__photo::after { /* accent bar that grows on hover */
-  content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 4px; background: var(--accent);
-  transform: scaleX(.25); transform-origin: left; transition: transform .5s var(--ease); z-index: 2;
+.member__photo img.is-avatar { object-fit: contain; object-position: center bottom; padding: 18px 10px 0; }
+.member:hover .member__photo img { transform: translateY(-8px) scale(1.04); }
+
+/* hover panel: the original slanted bands, now staged */
+.member__hover { position: absolute; inset: auto 0 0 0; height: 100%; z-index: 3; pointer-events: none; }
+.member__band { position: absolute; left: -10%; width: 120%; transition: transform .55s var(--ease); }
+.member__band--back { bottom: 0; height: 74px; background: var(--pink); transform: translateY(110%); }
+.member__band--front {
+  bottom: -34px; height: 96px; background: var(--brand); transform: translateY(140%) rotate(-6deg);
+  transform-origin: left bottom; transition-delay: .08s; box-shadow: 0 -10px 30px -10px rgba(24, 28, 49, .35);
 }
-.member:hover .member__photo::after { transform: scaleX(1); }
-.member__initials {
-  position: absolute; inset: 0; display: grid; place-items: center;
-  font-family: var(--font-head); font-size: 72px; font-weight: 600; letter-spacing: .02em; color: rgba(255, 255, 255, .92);
-  text-shadow: 0 6px 24px rgba(0, 0, 0, .15); transition: transform .6s var(--ease);
+.member__band--front { background: var(--accent); }
+.member__band--back { background: var(--accent-2); }
+.member:hover .member__band--back { transform: translateY(0); }
+.member:hover .member__band--front { transform: translateY(0) rotate(-6deg); }
+
+.member__social {
+  position: absolute; left: 0; right: 0; bottom: 12px; z-index: 2; display: flex; justify-content: center; gap: 14px;
+  list-style: none; margin: 0; padding: 0; pointer-events: auto;
 }
-.member:hover .member__initials { transform: scale(1.06); }
+.member__social a {
+  width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%;
+  color: #fff; background: rgba(255, 255, 255, .16); border: 1px solid rgba(255, 255, 255, .35);
+  opacity: 0; transform: translateY(18px) scale(.8);
+  transition: opacity .35s var(--ease), transform .45s var(--ease), background-color .25s, color .25s;
+}
+.member__social svg { width: 17px; height: 17px; }
+.member:hover .member__social a { opacity: 1; transform: none; }
+.member:hover .member__social li:nth-child(1) a { transition-delay: .22s, .22s, 0s, 0s; }
+.member:hover .member__social li:nth-child(2) a { transition-delay: .3s, .3s, 0s, 0s; }
+.member:hover .member__social li:nth-child(3) a { transition-delay: .38s, .38s, 0s, 0s; }
+.member__social a:hover { background: #fff; color: var(--heading); transform: translateY(-3px) !important; }
+.member:not(:hover) .member__social { pointer-events: none; }
+
 .member__badge {
-  position: absolute; left: 16px; top: 16px; z-index: 2; padding: 5px 12px; border-radius: 999px;
-  font-size: 12.5px; font-weight: 600; color: var(--heading); background: rgba(255, 255, 255, .92);
-  box-shadow: 0 6px 16px -6px rgba(24, 28, 49, .3);
+  position: absolute; left: 16px; top: 16px; z-index: 4; padding: 5px 12px; border-radius: 999px;
+  font-size: 12.5px; font-weight: 600; color: #fff; background: var(--accent);
+  box-shadow: 0 8px 18px -8px color-mix(in srgb, var(--accent) 80%, transparent);
 }
-.member__body { padding: 22px 22px 24px; text-align: center; }
-.member__body h3 { font-size: 20px; margin-bottom: 4px; transition: color .25s; }
+.member__body { position: relative; padding: 22px 22px 26px; text-align: center; }
+.member__body::before { /* accent underline that grows on hover */
+  content: ""; position: absolute; left: 50%; top: 0; width: 40px; height: 3px; border-radius: 3px; background: var(--accent);
+  transform: translateX(-50%) scaleX(0); transition: transform .45s var(--ease) .1s;
+}
+.member:hover .member__body::before { transform: translateX(-50%) scaleX(1); }
+.member__body h3 { font-size: 21px; margin-bottom: 4px; transition: color .25s; }
 .member:hover .member__body h3 { color: var(--accent); }
 .member__body p { font-size: 15px; color: var(--muted); }
+@media (hover: none) {
+  .member__band--back, .member__band--front, .member__social a { transition: none; }
+}
 
 /* ---------- Contact ---------- */
 .contact { display: grid; grid-template-columns: 420px 1fr; gap: 30px; }
