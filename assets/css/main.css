@@ -428,7 +428,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 .member:hover .member__social li:nth-child(1) a { transition-delay: .22s, .22s, 0s, 0s; }
 .member:hover .member__social li:nth-child(2) a { transition-delay: .3s, .3s, 0s, 0s; }
 .member:hover .member__social li:nth-child(3) a { transition-delay: .38s, .38s, 0s, 0s; }
-.member__social a:hover { background: #fff; color: var(--heading); transform: translateY(-3px) !important; }
+.member__social a:hover { background: #fff; color: var(--accent); border-color: #fff; transform: translateY(-3px) !important; box-shadow: 0 8px 18px -6px rgba(0, 0, 0, .35); }
 .member:not(:hover) .member__social { pointer-events: none; }
 
 .member__badge {
@@ -438,7 +438,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 .member__body { position: relative; padding: 22px 22px 26px; text-align: center; }
 .member__body::before { /* accent underline that grows on hover */
-  content: ""; position: absolute; left: 50%; top: 0; width: 40px; height: 3px; border-radius: 3px; background: var(--accent);
+  content: ""; position: absolute; left: 50%; top: 12px; width: 40px; height: 3px; border-radius: 3px; background: var(--accent);
   transform: translateX(-50%) scaleX(0); transition: transform .45s var(--ease) .1s;
 }
 .member:hover .member__body::before { transform: translateX(-50%) scaleX(1); }
